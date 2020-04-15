@@ -26,7 +26,7 @@ nav{
 }
 
 .logo{
-    height: 142px;
+    height: 8.875em;
 }
 
 nav img{
@@ -65,7 +65,6 @@ nav ul li a {
 nav ul li a:hover{
     color: #71ABDB;
     text-decoration: none;
-    background: rgb(65,73,78);
 }
 
 .ligne1{
@@ -96,7 +95,7 @@ nav ul li a:hover{
 }
 
 .ligne2 a{
-    font-size: 24px;
+    font-size: 23px;
 }
 
 .ligne2 li:nth-child(3){
