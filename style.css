@@ -1,5 +1,8 @@
 body{
     font-family: Work Sans;
+    min-width: 800px;
+    width: auto !important;
+    width:800px;
 }
 
 ul {
@@ -15,11 +18,12 @@ header{
 }
 
 nav{
-    padding-left: 2.5em;
+    padding-left: 3vw;
+    padding-right: 1em;
     width: 88%;
 }
 
-header .logo{
+.logo{
     height: 142px;
 }
 
@@ -43,10 +47,6 @@ nav button{
     border: 1px solid #676161;
     box-sizing: border-box;
     border-radius: 0px 10px 10px 0px;
-}
-
-nav form{
-    display: inline;
 }
 
 nav li{
@@ -83,6 +83,11 @@ nav ul li a:hover{
     float: right;
 }
 
+.ligne1 li:nth-child(2){
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .ligne2{
     padding-top: 0.5em;
     padding-bottom: 1em;
@@ -100,22 +105,65 @@ nav ul li a:hover{
     margin-left: 2.5em;
 }
 
+@media only screen and (max-width: 1200px){
+    nav button{
+        width: 2.5em;
+    }
+
+    nav input{
+        width: 36vw;
+    }
+}
+
+@media only screen and (max-width: 1000px){
+    nav input{
+        width: 20vw;
+    }
+}
+
+@media only screen and (max-width: 800px){
+    nav input{
+        width: 9.875em;
+    }
+    nav {
+        padding-left: 1.5em;
+    }
+}
+
 footer { 
     background-color: #2F2F2F; 
     color: #71ABDB;
+    padding: 0.9375em 3.8125em;
 }
 
-footer img {
-    display: block;
+footer .ligne1 li{
+    display: inline;
+}
+
+footer .divlogo {
     margin-right: auto;
     margin-left: auto;
 }
 
 .footer-copyright { 
-    color: #fff; 
-    padding: 10px 0;
+    color: #fff;
+    font-size: 15px;
 }
 
-footer .logo{
-    width: 10vw;
+.FAQ{
+    float: left;
+    text-align: left;
+}
+
+.Contact{
+    float: right;
+    text-align: right;
+}
+
+footer h6{
+    font-size: 24px;
+}
+
+footer p{
+    font-size: 14px;
 }
