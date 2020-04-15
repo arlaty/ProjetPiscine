@@ -136,14 +136,31 @@ footer {
     padding: 0.9375em 3.8125em;
 }
 
-footer .ligne1 li{
+footer ul li{
     display: inline;
+}
+
+footer ul{
+    text-align: center;
 }
 
 footer .divlogo {
     margin-right: auto;
     margin-left: auto;
 }
+
+footer a{
+    text-decoration: none;
+    font-size: 24px;
+    color: #71ABDB;
+}
+
+footer h6 a:hover{
+    text-decoration: none;
+    font-size: 24px;
+    color: #71ABDB;
+}
+
 footer h6{
     font-size: 24px;
 }
@@ -177,4 +194,3 @@ footer p{
 .faq h4 {
     text-decoration: underline;
 }
-
