@@ -11,6 +11,8 @@ ul {
     padding: 0;
 }
 
+/*CSS du header*/
+
 header{
     display: flex;
     background: #2f2f2f;
@@ -66,44 +68,6 @@ nav ul li a:hover{
     background: rgb(65,73,78);
 }
 
-
-.logo{
-    width: 23%;
-}
-
-/*CSS pour le carrousel de la page d'accueil*/
-
-#carrousel {
-    
- position: relative;
- height: 400px;
- width: 1200px;
- margin: auto;
-}
-#carrousel ul li {
-    padding-top:  40px;
-position: absolute;
- top: 0;
- left: 0;
- list-style: none;
-}
-.next {
- position: relative;
- top: 250px; 
-
- left: 900px;
- background-color: #add080;
- font-size: 20px;
- border-radius: 6px;
-}
-.prev {
- position: relative;
- top: 250px;
- left: 420px;
- background-color: #add080;
- font-size: 20px;
- border-radius: 6px;
-}
 .ligne1{
     padding-top: 1em;
     padding-bottom: 1em;
@@ -168,14 +132,20 @@ position: absolute;
     }
 }
 
+/*CSS pour le footer*/
+
 footer { 
     background-color: #2F2F2F; 
     color: #71ABDB;
     padding: 0.9375em 3.8125em;
 }
 
-footer .ligne1 li{
+footer ul li{
     display: inline;
+}
+
+footer ul{
+    text-align: center;
 }
 
 footer .divlogo {
@@ -183,8 +153,28 @@ footer .divlogo {
     margin-left: auto;
 }
 
+footer a{
+    text-decoration: none;
+    font-size: 24px;
+    color: #71ABDB;
+}
+
+footer h6 a:hover{
+    text-decoration: none;
+    font-size: 24px;
+    color: #71ABDB;
+}
+
+footer h6{
+    font-size: 24px;
+}
+
+footer p{
+    font-size: 14px;
+}
+
 .footer-copyright { 
-    color: #fff;
+    color: #fff; 
     font-size: 15px;
 }
 
@@ -198,10 +188,53 @@ footer .divlogo {
     text-align: right;
 }
 
-footer h6{
-    font-size: 24px;
-}
-
 footer p{
     font-size: 14px;
+}
+
+/*CSS pour la page FAQ*/
+
+.faq{
+    margin-top: 80px;
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-bottom: 90px;
+}
+
+.faq h4 {
+    text-decoration: underline;
+}
+
+/*CSS pour le carrousel de la page d'accueil*/
+
+#carrousel {
+    position: relative;
+    height: 400px;
+    width: 1200px;
+    margin: auto;
+}
+
+#carrousel ul li {
+    padding-top:  40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    list-style: none;
+}
+
+.next {
+    position: relative;
+    top: 250px; 
+    left: 900px;
+    background-color: #add080;
+    font-size: 20px;
+    border-radius: 6px;
+}
+.prev {
+    position: relative;
+    top: 250px;
+    left: 420px;
+    background-color: #add080;
+    font-size: 20px;
+    border-radius: 6px;
 }

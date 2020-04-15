@@ -25,8 +25,6 @@
        </div>
        <input type="button" value="Précédent" class="prev">
        <input type="button" value="Suivant" class="next">
-
-       
        <div id="cat">
         <h4>Quelques catégories : </h4>
         <p>
@@ -61,10 +59,7 @@
           </div>
         </div>
       </div>
-
    </div>
-
-   
    <?php include("./modules/footer.php"); ?>
 </body>
 </html>

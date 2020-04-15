@@ -1,5 +1,5 @@
 <header>
-    <a href="#"><img src="./icon/logo.png" alt="logo"class="logo"></a>
+    <a href="index.php"><img src="./icon/logo.png" alt="logo"class="logo"></a>
     <nav>
         <div class="ligne1">
             <ul>

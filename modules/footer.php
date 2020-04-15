@@ -1,8 +1,8 @@
 <footer>
-    <div class="ligne1">
+    <div>
         <ul>
             <li class="FAQ">
-                <h6>FAQ</h6> 
+                <h6><a href="FAQ.php">FAQ</a></h6> 
                 <p> 
                     Comment devenir vendeur ?<br>
                     Comment fonctionnent les enchères ?<br>
