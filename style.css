@@ -30,6 +30,41 @@ nav ul li a:hover{
     background: rgb(65,73,78);
 }
 
+
 .logo{
     width: 23%;
+}
+
+/*CSS pour le carrousel de la page d'accueil*/
+
+#carrousel {
+    
+ position: relative;
+ height: 200px;
+ width: 1200px;
+ margin: auto;
+}
+#carrousel ul li {
+    padding-top:  40px;
+position: absolute;
+ top: 0;
+ left: 0;
+ list-style: none;
+}
+.next {
+ position: relative;
+ top: 250px; 
+
+ left: 900px;
+ background-color: #add080;
+ font-size: 20px;
+ border-radius: 6px;
+}
+.prev {
+ position: relative;
+ top: 250px;
+ left: 420px;
+ background-color: #add080;
+ font-size: 20px;
+ border-radius: 6px;
 }
