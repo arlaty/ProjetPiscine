@@ -52,3 +52,14 @@ footer img {
     color: #fff; 
     padding: 10px 0;
 }
+
+.faq{
+    margin-top: 80px;
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-bottom: 90px;
+}
+
+.faq h4 {
+    text-decoration: underline;
+}
