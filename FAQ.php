@@ -14,7 +14,7 @@
     	<hr color="black">
     	<br><br>
 
-		<h4>Questions fréquentes<br><br></h4>
+		<h4><u>Questions fréquentes</u><br><br></h4>
 
 		<h5>Comment devenir vendeur ?</h5>
 		<p> 
