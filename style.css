@@ -33,3 +33,22 @@ nav ul li a:hover{
 .logo{
     width: 23%;
 }
+
+footer { 
+    background-color: #2F2F2F; 
+    color: #71ABDB;
+}
+footer .FAQ {
+}
+footer .Contact {
+    float :right;
+}
+footer img {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+.footer-copyright { 
+    color: #fff; 
+    padding: 10px 0;
+}
