@@ -22,7 +22,7 @@
         <div class="ligne2">
             <ul>
                 <li><a href="#">Catégories</a></li>
-                <li><a href="#">Achat</a></li>
+                <li><a href="#">Achats</a></li>
                 <li><a href="#">Vendre</a></li>
             </ul>
         </div>
