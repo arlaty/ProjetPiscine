@@ -79,7 +79,7 @@ nav ul li a:hover{
 }
 
 .ligne1 a{
-    font-size: 27px;
+    font-size: 26px;
 }
 
 .ligne1 li:nth-child(3){
@@ -208,7 +208,7 @@ footer .Contact{
 
 /*Responsive*/
 
-@media only screen and (max-width: 1200px){
+@media only screen and (max-width: 1330px){
     nav button{
         width: 2.5em;
     }
@@ -218,15 +218,15 @@ footer .Contact{
     }
 }
 
-@media only screen and (max-width: 1000px){
+@media only screen and (max-width: 1110px){
     nav input{
-        width: 20vw;
+        width: 17vw;
     }
 }
 
 @media only screen and (max-width: 800px){
     nav input{
-        width: 9.875em;
+        width: 7.625em;
     }
     nav {
         padding-left: 1.5em;
