@@ -1,19 +1,35 @@
 body{
-    padding: 0px;
-    margin: 0px;   
+    font-family: Work Sans;
 }
 
-.navbar {
+header{
+    display: flex;
     background: #2f2f2f;
-}
-.nav-link, .navbar-brand {
-    cursor: pointer;
-}
-.nav-link {
-    margin-right: 1em !important;
-    color: #71ABDB;
+    padding: 15px 45px;
 }
 
-.navbar-collapse {
-    justify-content: flex-end;
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li{
+    display: inline-block;
+}
+
+nav ul li a {
+    color: #71ABDB;
+    text-decoration: none;
+    display: inline-block;
+    padding: 1em 2em;
+}
+
+nav ul li a:hover{
+    color: #71ABDB;
+    background: rgb(65,73,78);
+}
+
+.logo{
+    width: 23%;
 }
