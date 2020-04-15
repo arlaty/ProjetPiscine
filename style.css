@@ -1,0 +1,35 @@
+body{
+    font-family: Work Sans;
+}
+
+header{
+    display: flex;
+    background: #2f2f2f;
+    padding: 15px 45px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li{
+    display: inline-block;
+}
+
+nav ul li a {
+    color: #71ABDB;
+    text-decoration: none;
+    display: inline-block;
+    padding: 1em 2em;
+}
+
+nav ul li a:hover{
+    color: #71ABDB;
+    background: rgb(65,73,78);
+}
+
+.logo{
+    width: 23%;
+}
