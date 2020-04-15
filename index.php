@@ -12,9 +12,7 @@
 <body>
     <?php include("./modules/header.php"); ?>
     <div>
-        <p>
-            zfdafaz
-        </p>
+
     </div>
     <?php include("./modules/footer.php"); ?>
 </body>
