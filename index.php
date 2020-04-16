@@ -31,6 +31,7 @@
         </li>
     </ul>
     <div id="cat">
+        <div class="container"></div>
         <p></p>
            <h4>Quelques catégories : </h4>
            <p>
@@ -38,7 +39,7 @@
           </p>
 
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="img-thumbnail">
                     <a href="#">
                         <img src="images/categorieTresor.jpg" alt="lights" style="width: 100%; opacity: 0.8;">
@@ -62,6 +63,7 @@
                     </a>
                 </div>
             </div>
+        </div>
         </div>
     <br>
 </div>
