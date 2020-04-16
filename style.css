@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+
 body{
-    font-family: Work Sans;
+    font-family: 'Work Sans';
     min-width: 800px;
     width: auto !important;
     width:800px;
@@ -16,7 +18,7 @@ ul {
 header{
     display: flex;
     background: #2f2f2f;
-    padding: 0.9375em 2.8125em 0em 2.8125em;
+    padding: 0.9375em 2.8125em 0em;
 }
 
 nav{
@@ -77,7 +79,7 @@ nav ul li a:hover{
 }
 
 .ligne1 a{
-    font-size: 27px;
+    font-size: 26px;
 }
 
 .ligne1 li:nth-child(3){
@@ -106,31 +108,6 @@ nav ul li a:hover{
     margin-left: 2.5em;
 }
 
-@media only screen and (max-width: 1200px){
-    nav button{
-        width: 2.5em;
-    }
-
-    nav input{
-        width: 36vw;
-    }
-}
-
-@media only screen and (max-width: 1000px){
-    nav input{
-        width: 20vw;
-    }
-}
-
-@media only screen and (max-width: 800px){
-    nav input{
-        width: 9.875em;
-    }
-    nav {
-        padding-left: 1.5em;
-    }
-}
-
 /*CSS pour le footer*/
 
 footer { 
@@ -139,28 +116,18 @@ footer {
     padding: 0.9375em 3.8125em;
 }
 
-footer ul li{
-    display: inline;
-}
-
-footer ul{
-    text-align: center;
-}
-
-footer .divlogo {
-    margin-right: auto;
-    margin-left: auto;
+.partie1{
+    display: flex;
+    justify-content: space-between;
 }
 
 footer a{
     text-decoration: none;
-    font-size: 24px;
     color: #71ABDB;
 }
 
 footer h6 a:hover{
     text-decoration: none;
-    font-size: 24px;
     color: #71ABDB;
 }
 
@@ -177,18 +144,8 @@ footer p{
     font-size: 15px;
 }
 
-.FAQ{
-    float: left;
-    text-align: left;
-}
-
-.Contact{
-    float: right;
+footer .Contact{
     text-align: right;
-}
-
-footer p{
-    font-size: 14px;
 }
 
 /*CSS pour la page FAQ*/
@@ -200,30 +157,84 @@ footer p{
     margin-bottom: 90px;
 }
 
-.faq h4 {
-    text-decoration: underline;
-}
-
 /*CSS pour le carrousel de la page d'accueil*/
 
 .carroussel{
-    padding: 8em 1em;
+    padding: 6em 1em 4.5em 1em;
     display: flex;
     justify-content: center;
-}
-
-.carroussel ul li{
-    display: inline;
 }
 
 #carrousel img {
     width: 82vw;
 }
 
-#carrousel ul li {
-    list-style: none;
+.carroussel a img{
+    margin: 11.9vw 1.5em;
 }
 
-.carroussel a img{
-    margin-top: 10.5em;
+/*CSS pour les catégories de la page d'accueil*/
+
+.cat{
+    padding: 0em 5vw;
+}
+
+.cat .arrow{
+    display: flex;
+}
+
+.cat h4{
+    font-weight: bold;
+    font-size: 30px;
+    margin-right: 30px;
+}
+
+.cat .row{
+    padding: 2em 3em;
+}
+
+.cat .arrow{
+    font-size: 24px;
+}
+
+.cat .caption{
+    font-size: 20px;
+}
+
+.cat a{
+    text-decoration: none;
+    color: #2f2f2f;
+}
+
+/*Responsive*/
+
+@media only screen and (max-width: 1330px){
+    nav button{
+        width: 2.5em;
+    }
+
+    nav input{
+        width: 36vw;
+    }
+}
+
+@media only screen and (max-width: 1110px){
+    nav input{
+        width: 17vw;
+    }
+}
+
+@media only screen and (max-width: 800px){
+    nav input{
+        width: 7.625em;
+    }
+    nav {
+        padding-left: 1.5em;
+    }
+    #carrousel img {
+        width: 656px;
+    }
+    .carroussel a img{
+        margin-top: 95.2px;
+    }
 }
