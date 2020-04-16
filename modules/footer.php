@@ -21,5 +21,5 @@
             </p>
         </div>
     </div>
-    <div class="footer-copyright text-center"></a>Copyright 2020 &copy; EbayECE Inc| Droit d'auteur: ebayece@lac.fr</div> 
+    <div class="footer-copyright"></a>Copyright 2020 &copy; EbayECE Inc| Droit d'auteur: ebayece@lac.fr</div> 
 </footer>

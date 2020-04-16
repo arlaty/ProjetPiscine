@@ -3,8 +3,28 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript" src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		function on() {
+		document.getElementById("overlay").style.display = "block";
+		}
+
+		function off() {
+		document.getElementById("overlay").style.display = "none";
+		}
+
+		function onAcheteur() {
+			$('.form-acheteur').css('display', '');
+		}
+
+		function offAcheteur() {
+			$('.form-acheteur').css('display', 'none');
+		}
+	</script>
 	<title>Connexion/inscription</title>
 </head>
 <body>
@@ -46,97 +66,81 @@
 
 	    	<form>
 	    		<table>
-		    		
-		    		<div classe="identite">
-		    			<tr>
-			    			<td>Nom :</td>
-			    			<td><input type="text" name="nom"></td>
-			    		</tr>
-			    		<tr>
-			    			<td>Prénom :</td>
-			    			<td><input type="text" name="prenom"></td>
-			    		</tr>
-			    		<tr>
-			    			<td>E-mail :</td>
-			    			<td><input type="text" name="email"></td>
-			    		</tr>
-			    		<tr>
-			    			<td>Adresse (ligne 1) :</td>
-			    			<td><input type="text" name="ad1"></td>
-			    		</tr>
-			    		<tr>
-			    			<td>Adresse (ligne 2) :</td>
-			    			<td><input type="text" name="ad2"></td>
-			    		</tr>
-			    		<tr>
-			    			<td><br>Type :</td>
-			    			<td>
-			    				<input type="radio" id="type1" name="type" value="acheteur" checked>
-							  	<label for="acheteur">Acheteur</label>
-							 	<input type="radio" id="type2" name="type" value="vendeur" checked>
-							  	<label for="vendeur">Vendeur</label>
-			    			</td>
-			    		</tr>
-			    	</div>
-
-
-		    		<!-- Formulaire si Acheteur-->
-		    		<div class="form-acheteur">
-			    		<tr>
-			    			<td><br>Type de carte :</td>
-			    			<td>
-								<select name="carte" size="1">
-									<option>Visa</option>
-									<option>MasterCard</option>
-									<option>American Express</option>
-									<option>Paypal</option>
-								</select>
-			    			</td>
-			    		</tr>
-			    		<tr>
-			    			<td>Titulaire de la carte :</td>
-			    			<td><input type="text" name="tit"></td>
-			    		</tr>
-			    		<tr>
-			    			<td>Numéro :</td>
-			    			<td><input type="number" name="num" step="1" min="00000000000000000" max="99999999999999999"></td>
-			    		</tr>
-			    		<tr>
-			    			<td>Date d'expiration :</td>
-			    			<td><input type="date" name="exp"></td>
-			    		</tr>
-			    		<tr>
-			    			<td>Cryptogramme :</td>
-			    			<td><input type="number" name="crypt" step="1" min="000" max="999"></td>
-			    		</tr>
-		    		</div>
-
-
-		    		<div classe="login">
-			    		<tr>
-			    			<td><br>Identifiant :</td>
-			    			<td><input type="text" name="identifiant"></td>
-			    		</tr>
-			    		<tr>
-			    			<td>Mot de passe  :</td>
-			    			<td><input type="text" name="mdp1"></td>
-			    		</tr>
-			    		<tr>
-			    			<td>Confirmer le mot de passe  :</td>
-			    			<td><input type="text" name="mdp1"></td>
-			    		</tr>
-			    	</div>
-
-		    		<div class="form-acheteur">
-			    		<tr>
-			    			<td><div>
-								  <p>J'accepte la clause d'offre :</p>
-								  <button onclick="on()">CLAUSE *</button>
-							</div> </td>
-			    			<td><input type="checkbox" name="accepter"></td>
-			    		</tr>
-		    		</div>
-
+					<tr>
+						<td>Nom :</td>
+						<td><input type="text" name="nom"></td>
+					</tr>
+					<tr>
+						<td>Prénom :</td>
+						<td><input type="text" name="prenom"></td>
+					</tr>
+					<tr>
+						<td>E-mail :</td>
+						<td><input type="text" name="email"></td>
+					</tr>
+					<tr>
+						<td>Adresse (ligne 1) :</td>
+						<td><input type="text" name="ad1"></td>
+					</tr>
+					<tr>
+						<td>Adresse (ligne 2) :</td>
+						<td><input type="text" name="ad2"></td>
+					</tr>
+					<tr>
+						<td><br>Type :</td>
+						<td>
+							<input type="radio" id="type1" name="type" value="acheteur" onclick="onAcheteur()">
+							<label for="acheteur">Acheteur</label>
+							<input type="radio" id="type2" name="type" value="vendeur" onclick="offAcheteur()">
+							<label for="vendeur">Vendeur</label>
+						</td>
+					</tr>
+					<tr class="form-acheteur">
+						<td><br>Type de carte :</td>
+						<td>
+							<select name="carte" size="1">
+								<option>Visa</option>
+								<option>MasterCard</option>
+								<option>American Express</option>
+								<option>Paypal</option>
+							</select>
+						</td>
+					</tr>
+					<tr class="form-acheteur">
+						<td>Titulaire de la carte :</td>
+						<td><input type="text" name="tit"></td>
+					</tr>
+					<tr class="form-acheteur">
+						<td>Numéro :</td>
+						<td><input type="number" name="num" step="1" min="00000000000000000" max="99999999999999999"></td>
+					</tr>
+					<tr class="form-acheteur">
+						<td>Date d'expiration :</td>
+						<td><input type="month" name="exp"></td>
+					</tr>
+					<tr class="form-acheteur">
+						<td>Cryptogramme :</td>
+						<td><input type="number" name="crypt" step="1" min="000" max="999"></td>
+					</tr>
+					<tr>
+						<td><br>Identifiant :</td>
+						<td><input type="text" name="identifiant"></td>
+					</tr>
+					<tr>
+						<td>Mot de passe  :</td>
+						<td><input type="text" name="mdp1"></td>
+					</tr>
+					<tr>
+						<td>Confirmer le mot de passe  :</td>
+						<td><input type="text" name="mdp1"></td>
+					</tr>
+					<tr class="form-acheteur">
+						<td><div>
+								<p>J'accepte la clause d'offre :</p>
+								<div class="clause" onclick="on()">CLAUSE *</div>
+						</div> </td>
+						<td><input type="checkbox" name="accepter"></td>
+					</tr>
 		    		<tr>
 						<td colspan="2" align="center">
 							<br><input type="submit" name="create" value="Créer un compte">

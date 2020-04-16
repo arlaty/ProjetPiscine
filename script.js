@@ -53,20 +53,3 @@ $(document).ready(function () {
  	slideImg(); // enfin, on lance la fonction une première fois
 
  });
-
-/*if(document.getElementById('type').value  == "Acheteur"){
-	document.getElementById('form-acheteur').style.display = block;
-}
-else{
-	document.getElementById('form-acheteur').style.display = block;
-}*/
-
-function on() {
-  document.getElementById("overlay").style.display = "block";
-}
-
-function off() {
-	document.getElementById("overlay").style.display = "none";
-}
-
-

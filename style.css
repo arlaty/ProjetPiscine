@@ -5,6 +5,7 @@ body{
     min-width: 800px;
     width: auto !important;
     width:800px;
+    margin: 0;
 }
 
 ul {
@@ -142,6 +143,7 @@ footer p{
 .footer-copyright { 
     color: #fff; 
     font-size: 15px;
+    text-align: center;
 }
 
 footer .Contact{
@@ -317,8 +319,79 @@ footer .Contact{
 
 }
 
+/*Formulaire connexion/inscription*/
+.en-tete{
+    background: #2f2f2f;
+    padding: 0.9375em 2.8125em 0em;
+}
 
-/*Responsive*/
+.en-tete .logo{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row{
+    display:flex;
+    margin: 25px;
+}
+
+#col{
+    flex: 1; 
+    padding: 2em;
+    margin: 15px;
+}
+.connexion{
+    border-right: 1px solid #000;
+    margin-right:20px;
+}
+
+.row form input, select{
+    margin-left: 40px;
+}
+.row form a{
+    text-decoration: none;
+    color: black;
+}
+.row form label{
+    font-size: 12px;
+}
+
+.row h1{
+    text-align: center;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+#text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+.clause:hover{
+    color: #71ABDB;
+    cursor: pointer;
+}
+
+/*FIN Formulaire connexion/inscription*/
+
+/*Responsive*/ 
 
 @media only screen and (max-width: 1330px){
     nav button{
@@ -382,69 +455,3 @@ footer .Contact{
         margin: 1em 0.95em;
     }
 }
-
-
-/*Formulaire connexion/inscription*/
-.en-tete{
-    
-    background: #2f2f2f;
-    padding: 0.9375em 2.8125em 0em;
-}
-.en-tete .logo{
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.row{
-    display:flex;
-    margin: 25px;
-}
-
-#col{
-    flex: 1; 
-    padding: 2em;
-    margin: 15px;
-}
-.connexion{
-    border-right: 1px solid #000;
-    margin-right:20px;
-}
-form input, select{
-    margin-left: 40px;
-}
-form a{
-    text-decoration: none;
-    color: black;
-}
-form label{
-    font-size: 12px;
-}
-
-.row h1{
-    text-align: center;
-}
-
-#overlay {
-  position: fixed;
-  display: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 2;
-  cursor: pointer;
-}
-
-#text{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  color: white;
-  transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-}
-/*FIN Formulaire connexion/inscription*/
