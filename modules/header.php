@@ -21,8 +21,8 @@
         </div>
         <div class="ligne2">
             <ul>
-                <li><a href="#">Catégories</a></li>
-                <li><a href="#">Achats</a></li>
+                <li><a href="vitrine.php">Catégories</a></li>
+                <li><a href="vitrine.php">Achats</a></li>
                 <li><a href="#">Vendre</a></li>
             </ul>
         </div>
