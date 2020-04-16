@@ -238,3 +238,24 @@ footer .Contact{
         margin-top: 95.2px;
     }
 }
+
+/*Vitrine catégories et achats*/
+
+/*Article*/
+.objet{
+    width: 17vw;
+    padding: 20px 40px;
+    border:3px solid 0 0;
+}
+img {
+    width: 11vw; 
+}
+.objet p{
+   
+    font-size: 12px;
+}
+.prix{
+     
+    float: right;
+    text-align: right;
+}
