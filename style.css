@@ -268,55 +268,68 @@ footer .Contact{
 }
 
 /*Affichage pour un article avec sa  description*/
+
+#pageArticle a{
+    text-decoration: none;
+    color: #71ABDB;
+    font-weight: bold;
+}
 .article{
+
     margin: auto;
-    border: solid;
-    background-color: white;
+    border: 1px solid #A7B3B4;
     width: 74vw;
-    height: 400px;
-    
+    height: 500px;
+    padding: 3.4vw 0px 0px 3.4vw;   
 }
 
+.article h4{
+    font-weight: bold;
+    color: #71ABDB;
+}
 .article .image{
-    margin: 0px 0px 0px 6vw;
+    margin: 0px 0px 0px 3.1vw;
     background-color: white;
     float: left;
+    text-align: center;
 
     
 }
 
 .article .image img{
    
-    width: 20vw; 
+    width: 310px; 
     
 }
+ .sousImages ul li{
+    display: inline;
+}
 .article .image .sousImages img{
-    padding: 10px 0px 0px 0px;
-    width: 70px;
-    
+    margin: 5px 0px 0px 0px;
+    width: 40px;
+    text-align: center;
+    border: 1px solid black;
+   
     
 }
 .text{
-    margin: 0px 0px 0px 55px;
+    margin: 0px 0px 0px 3.8vw;
     background-color: white;
     float: left;
     
     
 }
-.text p{
-    line-height: 15px;
-}
 
-.article .choix button{
-    width: 180px;
+
+.article button{
+    width: 13.8vw;
     background-color: #2F2F2F;
     border: 2px solid #71ABDB;
     color: #71ABDB;
     text-align: center;
     border-radius: 20px;
-    font-size: 16px;
-
-
+    font-size: 1.3vw;
+    margin: 1.3vw;
 }
 
 /*Formulaire connexion/inscription*/
