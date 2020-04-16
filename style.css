@@ -265,6 +265,59 @@ footer .Contact{
     text-align: right;
 }
 
+/*Affichage pour un article avec sa  description*/
+.article{
+    margin: auto;
+    border: solid;
+    background-color: white;
+    width: 74vw;
+    height: 400px;
+    
+}
+
+.article .image{
+    margin: 0px 0px 0px 6vw;
+    background-color: white;
+    float: left;
+
+    
+}
+
+.article .image img{
+   
+    width: 20vw; 
+    
+}
+.article .image .sousImages img{
+    padding: 10px 0px 0px 0px;
+    width: 70px;
+    
+    
+}
+.text{
+    margin: 0px 0px 0px 55px;
+    background-color: white;
+    float: left;
+    
+    
+}
+.text p{
+    line-height: 15px;
+}
+
+.article .choix button{
+    width: 180px;
+    background-color: #2F2F2F;
+    border: 2px solid #71ABDB;
+    color: #71ABDB;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 16px;
+
+
+}
+
+
 /*Responsive*/
 
 @media only screen and (max-width: 1330px){
