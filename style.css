@@ -375,6 +375,11 @@ footer .Contact{
   cursor: pointer;
 }
 
+.inscription form, .connexion form{
+    display: flex;
+    justify-content: center;
+}
+
 #text{
   position: absolute;
   top: 50%;
