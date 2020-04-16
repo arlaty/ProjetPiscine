@@ -23,6 +23,8 @@
                 <li><img src="Images/promo4.jpg"/></li>
                 <li><img src="Images/promo5.jpg"/></li>
             </ul>
+
+
         </div>
         <a href="#" class="next"><img src="./icon/arrow-right.png" alt="arrow next"></a>
     </div>
