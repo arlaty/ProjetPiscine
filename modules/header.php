@@ -10,7 +10,7 @@
                     </form>
                 </li>
                 <li>
-                    <a href="#">Mon Ebay 
+                    <a href="connexion.php">Mon Ebay 
                     <img src="./icon/login-32.png" alt="login"></a>
                 </li>
                 <li>
@@ -21,9 +21,9 @@
         </div>
         <div class="ligne2">
             <ul>
-                <li><a href="#">Catégories</a></li>
-                <li><a href="#">Achats</a></li>
-                <li><a href="#">Vendre</a></li>
+                <li><a href="vitrine.php?main=Catego">Catégories</a></li>
+                <li><a href="vitrine.php?main=Achat">Achats</a></li>
+                <li><a href="connexion.php">Vendre</a></li>
             </ul>
         </div>
     </nav>

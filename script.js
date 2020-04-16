@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+	//CARROUSEL
  	var $carrousel = $('#carrousel'); // on cible le bloc du carrousel
  	$img = $('#carrousel img'); // on cible les images contenues dans le carrousel
  	indexImg = $img.length - 1; // on définit l'index du dernier élément
@@ -49,5 +50,6 @@ $(document).ready(function () {
  			slideImg(); // on oublie pas de relancer la fonction à la fin
  		}, 4000); // on définit l'intervalle à 4000 millisecondes (4s)
  	}
- slideImg(); // enfin, on lance la fonction une première fois
+ 	slideImg(); // enfin, on lance la fonction une première fois
+
  });
