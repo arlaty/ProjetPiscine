@@ -1,6 +1,6 @@
 <?php
-    $db_handle =new mysqli('localhost','root','','ece ebay');
-    mysqli_set_charset($db_handle, 'utf8'); 
+    $db_handle =new mysqli('localhost','root','','ebay ece');
+    mysqli_set_charset($db_handle, 'utf8');
 ?>
 
 <!DOCTYPE html>
@@ -19,35 +19,73 @@
 <body>
     <?php include("./modules/header.php"); ?>
     <div class="vitrine">
-        <h1>Articles en vente immédiate:</h1>
-        <div class="tableObjet">
-            <?php searchObjetParAchat($db_handle,"achat");?>
-        </div>
-        <h1>Articles en vente à la meilleure offre:</h1>
-        <div class="tableObjet">
-            <?php searchObjetParAchat($db_handle,"offre");?>
-        </div>
-        <h1>Articles en vente enchere:</h1>
-        <div class="tableObjet">
-            <?php searchObjetParAchat($db_handle,"enchere");?>
-        </div>
+        <?php search($db_handle);?>
     </div>
     <?php include("./modules/footer.php"); ?>
 </body>
 </html>
 
 <?php
-	function searchObjetParAchat($db_handle,$typeAchat){
+    function search($db_handle){
+        if (isset($_GET['main'])){
+            if ($_GET['main']=="Catego"){?>
+                <h1>Ferrailles et Trésors:</h1>
+                <div class="tableObjet">
+                    <?php searchObjetParCategories($db_handle,"Ferraille ou Trésor");?>
+                </div>
+                <h1>Bon pour le musée:</h1>
+                <div class="tableObjet">
+                    <?php searchObjetParCategories($db_handle,"Bon pour le Musée");?>
+                </div>
+                <h1>Accessoires VIP:</h1>
+                <div class="tableObjet">
+                    <?php searchObjetParCategories($db_handle,"Accessoire VIP");?>
+                </div><?php
+            }
+            else if ($_GET['main']=="Achat"){?>
+                <h1>Articles en vente immédiate:</h1>
+                <div class="tableObjet">
+                    <?php searchObjetParAchat($db_handle,"achat WHERE immediat=1",0);?>
+                </div>
+                <h1>Articles en vente à la meilleure offre:</h1>
+                <div class="tableObjet">
+                    <?php searchObjetParAchat($db_handle,"achat WHERE offre=1",0);?>
+                </div>
+                <h1>Articles en vente enchere:</h1>
+                <div class="tableObjet">
+                    <?php searchObjetParAchat($db_handle,"enchere",0);?>
+                </div><?php
+            }
+            else {$i=0;?>
+                <div class="tableObjet">
+                    <?php $i=searchObjetParAchat($db_handle,"achat WHERE immediat=1 OR offre=1",$i);?>
+                    <?php $i=searchObjetParAchat($db_handle,"enchere",$i);if (($i%4!=0)&&($i!=0)){echo "</div>";}?>
+                </div><?php
+            }
+        }
+        else {$i=0;?>
+            <div class="tableObjet">
+                <?php $i=searchObjetParAchat($db_handle,"achat WHERE immediat=1 OR offre=1",$i);?>
+                <?php $i=searchObjetParAchat($db_handle,"enchere",$i);if (($i%4!=0)&&($i!=0)){echo "</div>";}?>
+            </div><?php
+        }
+    }
+
+	function searchObjetParAchat($db_handle,$typeAchat,$i){
         $sql = "SELECT `objetId`, `prix` FROM ".$typeAchat;
         $result=mysqli_query($db_handle,$sql);
-        $i=0;
         while($data = mysqli_fetch_assoc($result)){
             if ($i%4==0)
             {
                 echo "<div class='tablerow'>";
             }
             echo "<a href='#' class='objet'>";
-            searchObjet($db_handle,$data['objetId']);
+            $sql = "SELECT `titre`, `image1`FROM `objet` WHERE `id`=".$data['objetId'];
+            $result2=mysqli_query($db_handle,$sql);
+            while($data2 = mysqli_fetch_assoc($result2)){
+                echo "<img src='images/".$data2['image1']."'>";
+                echo "<p class='titre'>".$data2['titre']."</p>";
+            }
             echo "<p class='prix'>".$data['prix']."€</p>";
             echo "</a>";
             if ($i%4==3)
@@ -56,23 +94,61 @@
             }
             $i++;
         }
-        if (($i%4!=3)&&($i!=0))
+        if (($i%4!=3)&&($i!=0)&&(isset($_GET['main'])))
         {
             echo "</div>";
         }
 
-        if ($i==0)
+        if (($i==0)&&(isset($_GET['main'])))
         {
             echo "<h2>Nous n'avons pas d'objets à vendre</h2>";
         }
-	}
-
-	function searchObjet($db_handle,$id){
-        $sql = "SELECT `titre`, `image1`FROM `objet` WHERE `id`=".$id;
-        $result=mysqli_query($db_handle,$sql);
-        while($data = mysqli_fetch_assoc($result)){
-            echo "<img src='images/".$data['image1']."'>";
-            echo "<p class='titre'>".$data['titre']."</p>";
-        }
+        return $i;
     }
+    
+    function searchObjetParCategories($db_handle,$typeCatego){
+        $sql = "SELECT id, titre, image1 FROM objet WHERE categories LIKE '%$typeCatego%'";
+        $result=mysqli_query($db_handle,$sql);
+        $i=0;
+        while($data = mysqli_fetch_assoc($result)){
+            if ($i%4==0)
+            {
+                echo "<div class='tablerow'>";
+            }
+            $id=$data['id'];
+            $sql = "SELECT prix FROM achat WHERE (immediat=1 OR offre=1) AND objetId='$id'";
+            $result2=mysqli_query($db_handle,$sql);
+            while($data2 = mysqli_fetch_assoc($result2)){
+                echo "<a href='#' class='objet'>";
+                echo "<img src='images/".$data['image1']."'>";
+                echo "<p class='titre'>".$data['titre']."</p>";
+                echo "<p class='prix'>".$data2['prix']."€</p>";
+                echo "</a>";
+            }
+            $sql = "SELECT prix FROM enchere WHERE objetId='$id'";
+            $result2=mysqli_query($db_handle,$sql);
+            while($data2 = mysqli_fetch_assoc($result2)){
+                echo "<a href='#' class='objet'>";
+                echo "<img src='images/".$data['image1']."'>";
+                echo "<p class='titre'>".$data['titre']."</p>";
+                echo "<p class='prix'>".$data2['prix']."€</p>";
+                echo "</a>";
+            }
+            if ($i%4==3)
+            {
+                echo "</div>";
+            }
+            $i++;
+        }
+        if (($i%4!=3)&&($i!=0)&&(isset($_GET['main'])))
+        {
+            echo "</div>";
+        }
+
+        if (($i==0)&&(isset($_GET['main'])))
+        {
+            echo "<h2>Nous n'avons pas d'objets à vendre</h2>";
+        }
+        return $i;
+	}
 ?>
