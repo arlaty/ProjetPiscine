@@ -1,3 +1,8 @@
+<?php
+    $db_handle =new mysqli('localhost','root','','ebay ece');
+    mysqli_set_charset($db_handle, 'utf8');
+?>
+
 <!DOCTYPE html>
 <html >
 <head lang="en">
@@ -8,88 +13,100 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script type="text/javascript" >
-    $(document).ready(function(){
-      $('.i1').click(function() {
-        var images =$('.i1').attr('src');
-        alert(images);
-        });
-      $('.i2').click(function() {
-        var images =$('.i2').attr('src');
-        alert(images);
-        // Change src attribute of image
-        $(ip).attr("src", 'images');
-        });
-      $('.i3').click(function() {
-        var images =$('.i3').attr('src');
-        alert(images);
-        });
-      $('.i4').click(function() {
-        var images =$('.i4').attr('src');
-        alert(images);
-        });
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $img = $('#carrousel img');
 
-      var $carrousel = $('.image'); // on cible le bloc du carrousel
- $img = $('.sousImages img'); // on cible les images contenues dans le carrousel
- $currentImg = $img.eq(0); // enfin, on cible l'image courante, qui possède l'index i (0 pour l'instant)
- //$test=$('.image img');
- //$test.css('display','none');
-
-
- //$img.css('display', 'none'); // on cache les images
- //$currentImg.css('display', 'block'); // on affiche seulement l'image courante
- //si on clique sur le bouton "Suivant"
-
-
-
+      $('.img1').click(function () {
+        $img.css('display', 'none');
+        $currentImg = $img.eq(0);
+        $currentImg.css('display', 'block');
+      });
+      $('.img2').click(function () {
+        $img.css('display', 'none');
+        $currentImg = $img.eq(1);
+        $currentImg.css('display', 'block');
+      });
+      $('.img3').click(function () {
+        $img.css('display', 'none');
+        $currentImg = $img.eq(2); 
+        $currentImg.css('display', 'block'); 
+      });
     });
   </script>
   <title>ECE ebay</title>
 </head>
 <body>
   <?php include("./modules/header.php"); ?>
-  <div id="pageArticle">
-  <a href="#"><- Retour en aux articles</a><br><br>
-  <div class="article">
-    
-    <h4>Pièce ancienne Française 100 Francs argent Panthéon 1985 rare</h4>
-    <p class="reference">Référence : 123456789</p>
-    <div class="image">
-      <img src="images/objet1(1).jpg" class="ip">
-      <div class="sousImages">
-        <ul>
-          <li><img src="images/objet1(1).jpg" onclick="" class="i1"></li>
-          <li><img src="images/objet1(2).jpg" onclick="" class="i2"></li>
-          <li><img src="images/objet1(3).jpg" onclick="" class="i3"></li>
-          <li><img src="images/objet1(3).jpg" onclick="" class="i4"></li>
-        </ul>   
-      </div>
-    </div>
-
-    <div class="text">
-      <p>Description :</p>
-      <p>
-        Valeur faciale : 100 Francs <br>
-        Millésime : 1983 <br>
-        Métal : Argent 900 ‰ <br>
-        Diamètre : 31 mm <br>
-        Poids : 15 g <br>
-        Tranche : Lisse <br>
-        Emission : 5 000 972 ex.<br>
-        100 Francs Argent Panthéon - France 1983
-      </p>
-      <p class="prix"> Prix : 11€</p>
-        <button type="button" name="achat">Passer à l'achat</button>
-        <button type="button" name="panier">Ajouter au panier</button>
-
-
-    </div>
-
+  <div class="pageArticle">
+    <a href="#" class="return"><- Retour en aux articles</a>
+    <?php
+      if (isset($_GET['id'])){
+        $sql = "SELECT * FROM objet WHERE id=".$_GET['id'];
+        $result=mysqli_query($db_handle,$sql);
+        if (mysqli_num_rows($result)==0){
+          echo "<h2>L'article demandé n'existe pas</h2>";
+        }
+        else{
+          while($data = mysqli_fetch_assoc($result)){?>
+            <div class='article'>
+              <h4><?php echo $data['titre']?></h4>
+              <p class='reference'>Référence : <?php echo $data['id']?></p>
+              <div class="ligne2">
+                <div class='image'>
+                  <div id="carrousel">
+                    <ul>
+                      <li><img src="images/<?php echo $data['image1']?>"></li>
+                      <?php
+                        if($data['image2']!="")echo"<li><img src='images/".$data['image2']."' style='display: none;'></li>";
+                        if($data['image3']!="")echo"<li><img src='images/".$data['image3']."' style='display: none;'></li>";
+                      ?>
+                    </ul> 
+                  </div>
+                  <div class="sousImages">
+                      <a href='#' class='img1'><img src="images/<?php echo $data['image1']?>"></a>
+                      <?php
+                      if($data['image2']!="")echo"<a href='#' class='img2'><img src='images/".$data['image2']."'></a>";
+                      if($data['image3']!="")echo"<a href='#' class='img3'><img src='images/".$data['image3']."'></a>";
+                      ?>
+                  </div>
+                </div>
+                <div class="text">
+                  <p>Description :</p>
+                  <p><?php echo $data['description']?></p>
+                  <?php
+                    $sql = "SELECT `prix`,immediat,offre FROM achat WHERE (immediat=1 OR offre=1) AND objetId=".$data['id'];
+                    $result2=mysqli_query($db_handle,$sql);
+                    while($data2 = mysqli_fetch_assoc($result2)){
+                      echo "<p class='prix'> Prix : ".$data2['prix']."€</p><div class='button'>";
+                      if ($data2['immediat']==1){
+                        echo"<a href='#'>Passer à l'achat</a>
+                        <a href='#'>Ajouter au panier</a>";
+                      }
+                      if ($data2['offre']==1){
+                        echo "<a href='#'>Négocier</a>";
+                      }
+                    }
+                    $today = date("Y-m-d H:i:s");
+                    $sql = "SELECT `prix` FROM enchere WHERE fin>'$today' AND objetId=".$data['id'];
+                    $result2=mysqli_query($db_handle,$sql);
+                    while($data2 = mysqli_fetch_assoc($result2)){
+                      echo "<p class='prix'> Prix : ".$data2['prix']."€</p><div class='button'>";
+                      echo"<a href='#'>Enchérir</a>";
+                    }
+                  ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php
+          }
+        }  
+      }else {
+        echo "<h2>Mauvaise requête</h2>";
+      }
+    ?>
   </div>
-  </div>
-  <br>
-  <br>
-
   <?php include("./modules/footer.php"); ?>
 </body>
 </html>

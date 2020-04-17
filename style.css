@@ -18,11 +18,12 @@ ul {
 
 header{
     display: flex;
+    justify-content: center;
     background: #2f2f2f;
     padding: 0.9375em 2.8125em 0em;
 }
 
-nav{
+header nav{
     padding-left: 3vw;
     padding-right: 1em;
     width: 92%;
@@ -32,11 +33,7 @@ nav{
     height: 8.875em;
 }
 
-nav img{
-    width: 30px;
-}
-
-nav input{
+header nav input{
     width: 46vw;
     height: 2.5em;
     float: left;
@@ -44,7 +41,7 @@ nav input{
     border-radius: 10px 0px 0px 10px;
 }
 
-nav button{
+header nav button{
     width: 3.8vw;
     height: 2.5em;
     float: left;
@@ -54,61 +51,49 @@ nav button{
     border-radius: 0px 10px 10px 0px;
 }
 
+
 nav li{
     display: inline;
     padding: 0;
 }
 
-nav ul li a {
+header nav a {
     color: #71ABDB;
     text-decoration: none;
     display: inline;
 }
 
-nav ul li a:hover{
+header nav a:hover{
     color: #71ABDB;
     text-decoration: none;
 }
 
-.ligne1{
-    padding-top: 1em;
-    padding-bottom: 1em;
+header .ligne1{
+    padding: 1em 0em;
+    display: flex;
+    justify-content: space-between;
 }
 
-.ligne1 ul{
-    text-align: center;
-}
-
-.ligne1 a{
+header .ligne1 a{
     font-size: 26px;
 }
 
-.ligne1 li:nth-child(3){
-    float: right;
-}
-
-.ligne1 li:nth-child(2){
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.ligne2{
+header .ligne2{
     padding-top: 0.5em;
     padding-bottom: 1em;
 }
 
-.ligne2 a{
+header .ligne2 a{
     font-size: 23px;
 }
 
-.ligne2 li:nth-child(3){
+header .ligne2 li:nth-child(3){
     float: right;
 }
 
-.ligne2 li:nth-child(2){
+header .ligne2 li:nth-child(2){
     margin-left: 2.5em;
 }
-
 /*CSS pour le footer*/
 
 footer { 
@@ -269,67 +254,74 @@ footer .Contact{
 
 /*Affichage pour un article avec sa  description*/
 
-#pageArticle a{
+.pageArticle{
+    padding: 2em;
+}
+
+.pageArticle a{
     text-decoration: none;
     color: #71ABDB;
-    font-weight: bold;
 }
-.article{
 
-    margin: auto;
+.pageArticle .ligne2{
+    display: flex;
+    justify-content: center;
+}
+
+.pageArticle .article{
+    margin: 2em;
     border: 1px solid #A7B3B4;
     width: 74vw;
-    height: 500px;
-    padding: 3.4vw 0px 0px 3.4vw;   
+    padding: 3.4vw;   
 }
 
-.article h4{
+.pageArticle .article h4{
     font-weight: bold;
     color: #71ABDB;
 }
-.article .image{
-    margin: 0px 0px 0px 3.1vw;
-    background-color: white;
-    float: left;
-    text-align: center;
 
-    
+.pageArticle .image{
+    margin-left: 3.1vw;
 }
 
-.article .image img{
-   
-    width: 310px; 
-    
+.pageArticle #carrousel img{   
+    width: 24.3vw; 
 }
- .sousImages ul li{
-    display: inline;
+
+.pageArticle .sousImages {
+    padding-top: 1em;
+    display: flex;
+    justify-content: center;
 }
-.article .image .sousImages img{
-    margin: 5px 0px 0px 0px;
+
+.pageArticle .article .image .sousImages img{
     width: 40px;
-    text-align: center;
-    border: 1px solid black;
-   
-    
-}
-.text{
-    margin: 0px 0px 0px 3.8vw;
-    background-color: white;
-    float: left;
-    
-    
+    border: 1px solid black;    
 }
 
+.pageArticle .text{
+    padding: 3vw;
+}
 
-.article button{
-    width: 13.8vw;
+.pageArticle .button{
+    display: flex;
+}
+
+.pageArticle .article .text a{
+    width: 13vw;
+    padding: 0.625em;
+    height: 3em;
+    text-decoration: none;
     background-color: #2F2F2F;
     border: 2px solid #71ABDB;
     color: #71ABDB;
     text-align: center;
+    min-width: 10em;
     border-radius: 20px;
-    font-size: 1.3vw;
-    margin: 1.3vw;
+}
+
+.pageArticle .prix{
+    font-weight: bold;
 }
 
 /*Formulaire connexion/inscription*/
@@ -388,6 +380,11 @@ footer .Contact{
   cursor: pointer;
 }
 
+.inscription form, .connexion form{
+    display: flex;
+    justify-content: center;
+}
+
 #text{
   position: absolute;
   top: 50%;
@@ -404,24 +401,117 @@ footer .Contact{
 
 /*FIN Formulaire connexion/inscription*/
 
+/*Mon compte*/
+
+.monCompte {
+    margin: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.monCompte ul {
+    list-style-type: none;
+    
+    padding: 20px;
+    width: 20%;
+    float: left;
+    height: 100%;
+    overflow: auto;
+}
+
+.monCompte li button{
+
+    display: block;
+    color: #000;
+    padding: 8px 0 8px;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    width:150px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+    text-align:center;
+    margin-bottom: 10px;
+}
+
+.monCompte li button.active {
+    background-color: #71ABDB;
+    color: white;
+}
+
+.monCompte li button:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+.monCompte nav{
+    margin-right: 40px;
+}
+
+.monCompte .content{
+    margin-left: 20%;
+    border-left: 1px solid #ccc;
+}
+
+.contenu{
+    margin-left:10%;
+}
+#profil h6{
+    background-color: white;
+
+    position:flex;
+    top: 10px;
+    left: 20px
+}
+#profil .CB{    
+    border-left: 1px solid black;
+    width: 500px;
+    left: 20px;
+}
+#profil .CB p{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+#modify{
+  margin-left : 150px;
+  padding: 10px 25px;
+  background-color: white;
+  border: 4px solid #71ABDB;
+  font-size: 20px;
+}
+.compteAcheteur{
+    display:none;
+}
+
+
+
+/*FIN Mon Compte*/
+
 /*Responsive*/ 
 
 @media only screen and (max-width: 1330px){
-    nav button{
+    header nav button{
         width: 2.5em;
     }
 
-    nav input{
+    header nav input{
         width: 36vw;
     }
     .objet .titre{
         height: 54px;
     }
+    .pageArticle .article .text button{
+        font-size: 1rem;
+    }
 }
 
 @media only screen and (max-width: 1110px){
-    nav input{
+    header nav input{
         width: 17vw;
+    }
+
+    header .grp1{
+        width: 28vw;
     }
 
     .vitrine{
@@ -440,15 +530,24 @@ footer .Contact{
     .objet .titre{
         height: 72px;
     }
+    .pageArticle .article .text a{
+        font-size: 11px;
+        width: 11em;
+    }
 }
 
 @media only screen and (max-width: 800px){
-    nav input{
+    header nav input{
         width: 7.625em;
     }
-    nav {
+    header nav {
         padding-left: 1.5em;
     }
+
+    header .grp1{
+        width: 18em;
+    }
+
     #carrousel img {
         width: 656px;
     }
@@ -466,5 +565,21 @@ footer .Contact{
 
     .objet{
         margin: 1em 0.95em;
+    }
+    .pageArticle .article{
+        width: 37em;
+        padding: 1.7em;   
+    }
+
+    .pageArticle .image{
+        margin-left: 1.55em;
+    }
+
+    .pageArticle #carrousel img{   
+        width: 12.15em; 
+    }
+
+    .pageArticle .article .text button{
+        width: 9em;
     }
 }
