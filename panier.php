@@ -31,6 +31,18 @@
             <div class="monPanierPrixArticle">
                 <p>12€</p>
             </div>
+        </div> 
+        <div class="articlePanier"> 
+            <img src="images/objet1(1).jpg" width="100px">
+            <div class="titreDescR">
+                <p>Titre : Pièce ancienne Francaise, 100 Francs, en argent, Panthéon, 1985, rare.</p>
+                <p class="monPanierReference">Référence : 123456789</p>
+                <button type="button" name="voir" class="suprPanier">Voir l'article</button>
+                <button type="button" name="supprimer" class="suprPanier">Supprimer</button>
+            </div>
+            <div class="monPanierPrixArticle">
+                <p>12€</p>
+            </div>
         </div>  
     </div>
     <hr width="25%"  color="black"><!-- Permet de faire une ligne horizontale pour séparer les articles du total --> 
@@ -45,7 +57,7 @@
     </div>
     <button type="button" name="achat" class="finaliserAchat">Finaliser l'achat</button><br><br>
 
-     <hr width="75%"  color="black">
+     <hr width="75%"  color="#C8C9CA">
     <!-- div qui regroupe les enchères et les meilleures offre qui permet de les afficher sur le même ligne -->
     <div class="monPanierDev">
 
@@ -66,13 +78,38 @@
                     <div class="infoResultatEnchere">
                         <p class="infoenchere"style="font-weight: bold">Résultat : </p>
                         <p class="infoenchere"> 11 enchères </p>
+
                     </div>
+                    <button type="button" name="voir" class="suprPanier">Voir l'article</button>
+                    <button type="button" name="offre1" class="suprPanier" style="width: 150px;">Faire une offre</button>
 
                 </div>
                 <div class="monPanierPrixArticle">
                     <p>12€</p>
                 </div>
             </div>  
+            <div class="articlePanier">
+                <img src="images/objet1(1).jpg" width="100px">
+                <div class="titreDescR">
+                    <p>Titre : Pièce ancienne Francaise, 100 Francs, en argent, Panthéon, 1985, rare.</p>
+                    <p class="monPanierReference">Référence : 123456789</p>
+                    <div class="tpsRestant">
+                        <p class="infoenchere" style="font-weight: bold">Temps restant : </p>
+                        <p class="infoenchere" > 1j 15h </p>
+                    </div>
+                    <div class="infoResultatEnchere">
+                        <p class="infoenchere"style="font-weight: bold">Résultat : </p>
+                        <p class="infoenchere"> 11 enchères </p>
+
+                    </div>
+                    <button type="button" name="voir" class="suprPanier">Voir l'article</button>
+                    <button type="button" name="offre1" class="suprPanier" style="width: 150px;">Faire une offre</button>
+
+                </div>
+                <div class="monPanierPrixArticle">
+                    <p>12€</p>
+                </div>
+            </div>
         </div>
 
         <!-- div qui comprend l'ensemble des meilleures Offres de l'acheteur -->
@@ -86,7 +123,7 @@
                     <p class="monPanierReference">Référence : 123456789</p>
                     <p class="infoenchere"> 4 offres réalisées </p>
                     <button type="button" name="voir" class="suprPanier">Voir l'article</button>
-                    <button type="button" name="offre1" class="suprPanier">Faire une offre</button>
+                    <button type="button" name="offre1" class="suprPanier" style="width: 150px;">Faire une offre</button>
 
                 </div>
                 <div class="monPanierPrixArticle">

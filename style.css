@@ -505,23 +505,28 @@ footer .Contact{
 
 .achatsImmediats{
     margin: auto;
-    padding: 0px 0px 0px 10px;
-    width: 34.7vw;
-    
+    padding: 0px 10px 0px 10px;
+    width: 500px;
 }
 .ssTitreCPanier {
     text-align: center;
     text-decoration: underline;
+    text-decoration-color: #71ABDB;
+    font-size: 25px;
+
 } 
 /*Affichage d'un article dans le panier pour la catégorie achat immédiat*/
 .articlePanier{
     display: inline-flex;
     align-items: flex-start;
-    font-size: 18px;
+    font-size: 16px;
+    border: 1px solid #71ABDB;
+    margin-bottom: 10px;
 }
 .titreDescR{
     line-height: 15px;
-    margin: 0px 0px 0px 10px;
+    margin: 0px 30px 0px 10px;
+    font-weight: bold;
 }
 .monPanierPrixArticle{
     align-self: center;
@@ -531,6 +536,7 @@ footer .Contact{
 .monPanierReference{
     font-size:12px;  
     margin-top: -15px;  
+    font-weight: normal;
 }
 .TotalAchatImmediat{
     display: flex;
@@ -543,18 +549,23 @@ footer .Contact{
 .monPanierDev{
     display: flex;
     justify-content: center;
+    
 }
 
 .encheres{
-    width: 34.7vw;
-    padding: 0px 0px 0px 10px;
-    border-right: 2px solid #000000;
+    width: 500px;
+    padding: 0px 10px 0px 10px;
+    border-right: 1px solid #C8C9CA;
+    
+    
     
 }
 
 .meilleuresOffres{
-    padding: 0px 0px 0px 10px;
-    width: 34.7vw;
+    padding: 0px 10px 0px 10px;
+    width: 500px;
+    border-left:  1px solid #C8C9CA;
+    margin-left: 5px;
 }
 
 /*Affichage d'un article dans le panier pour la catégorie enchère et meilleur offre*/
@@ -568,13 +579,15 @@ footer .Contact{
 }
 .infoenchere{
     margin-top: -15px;
-    font-size: 13.5px;
+    font-size: 13px;
+    font-weight: normal;
 }
 /*Bouton finaliser l'achat*/
 .finaliserAchat{ 
-    background-color: #71ABDB;
-    border: 1px solid #2F2F2D;
-    color: #2F2F2F;
+    
+    background-color: #2F2F2F;
+    border: 0.7px solid #71ABDB;
+    color: #71ABDB;
     text-align: center;
     border-radius: 10px;
     font-size: 20px;
@@ -588,17 +601,20 @@ footer .Contact{
 
 /*Autres boutons de la page*/
 .suprPanier {
-    background-color: #2F2F2F;
-    border: 0.7px solid #71ABDB;
-    color: #71ABDB;
+    width: 120px;
+    height: 25px;
+    background-color: #71ABDB;
+    border: 1px solid #2F2F2D;
+    color: #2F2F2F;
     text-align: center;
-    border-radius: 15px;
     font-size: 16.5px;
     margin: auto;
+   margin-bottom: 10px;
 }
 .suprPanier:hover{
     opacity: 0.8;
 }
+/*FIN Mon Panier*/
 
 /*==================================================================================*/
 
