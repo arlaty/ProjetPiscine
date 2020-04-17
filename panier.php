@@ -14,7 +14,6 @@
 <body>
     <?php include("./modules/header.php"); ?>
     <!-- Lien permettant de revenir à la page précédente -->
-    <a class="monpanierRetourA" href="#"><- Retour en aux articles</a><br><br>
     <h3 class="monPanierHeader">Mon panier</h3><br>
 <!-- Partie des achats immédits -->
     <div class="achatsImmediats">

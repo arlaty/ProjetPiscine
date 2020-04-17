@@ -13,7 +13,7 @@
                 <img src="./icon/login-32.png" alt="login"></a>
             </div>
             <div>
-                <a href="#">Mon panier 
+                <a href="panier.php">Mon panier 
                 <img src="./icon/cart-32.png" alt="cart"></a>
             </div>
         </div>

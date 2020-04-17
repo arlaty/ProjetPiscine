@@ -517,20 +517,19 @@ footer .Contact{
 .articlePanier{
     display: inline-flex;
     align-items: flex-start;
+    font-size: 18px;
 }
 .titreDescR{
     line-height: 15px;
     margin: 0px 0px 0px 10px;
-    font-size: 1.25vw;
 }
 .monPanierPrixArticle{
     align-self: center;
     padding-right: 10px;
     font-weight: bold;
-    font-size: 1.25vw
 }
 .monPanierReference{
-    font-size: 0.8vw;  
+    font-size:12px;  
     margin-top: -15px;  
 }
 .TotalAchatImmediat{
@@ -569,7 +568,7 @@ footer .Contact{
 }
 .infoenchere{
     margin-top: -15px;
-    font-size: 0.9vw;
+    font-size: 13.5px;
 }
 /*Bouton finaliser l'achat*/
 .finaliserAchat{ 
@@ -594,7 +593,7 @@ footer .Contact{
     color: #71ABDB;
     text-align: center;
     border-radius: 15px;
-    font-size: 1.1vw;
+    font-size: 16.5px;
     margin: auto;
 }
 .suprPanier:hover{
