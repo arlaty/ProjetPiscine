@@ -86,7 +86,9 @@
                     <p>Titre : Pièce ancienne Francaise, 100 Francs, en argent, Panthéon, 1985, rare.</p>
                     <p class="monPanierReference">Référence : 123456789</p>
                     <p class="infoenchere"> 4 offres réalisées </p>
+                    <button type="button" name="voir" class="suprPanier">Voir l'article</button>
                     <button type="button" name="offre1" class="suprPanier">Faire une offre</button>
+
                 </div>
                 <div class="monPanierPrixArticle">
                     <p>12€</p>
