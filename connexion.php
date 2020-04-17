@@ -67,7 +67,7 @@
 		    		</tr>
 		    		<tr>
 						<td colspan="2" align="center">
-							<br><input type="submit" name="connect" value="Se connecter">
+							<br><br><input type="submit" name="connect" value="Se connecter">
 						</td>
 					</tr>
 				</table>
