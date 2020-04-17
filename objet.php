@@ -64,10 +64,10 @@
                     </ul> 
                   </div>
                   <div class="sousImages">
-                      <a href='#' class='img1'><img src="images/<?php echo $data['image1']?>"></a>
+                      <a class='img1'><img src="images/<?php echo $data['image1']?>"></a>
                       <?php
-                      if($data['image2']!="")echo"<a href='#' class='img2'><img src='images/".$data['image2']."'></a>";
-                      if($data['image3']!="")echo"<a href='#' class='img3'><img src='images/".$data['image3']."'></a>";
+                      if($data['image2']!="")echo"<a class='img2'><img src='images/".$data['image2']."'></a>";
+                      if($data['image3']!="")echo"<a class='img3'><img src='images/".$data['image3']."'></a>";
                       ?>
                   </div>
                 </div>
