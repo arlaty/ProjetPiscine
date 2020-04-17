@@ -22,7 +22,7 @@ header{
     padding: 0.9375em 2.8125em 0em;
 }
 
-nav{
+header nav{
     padding-left: 3vw;
     padding-right: 1em;
     width: 92%;
@@ -32,11 +32,11 @@ nav{
     height: 8.875em;
 }
 
-nav img{
+header nav img{
     width: 30px;
 }
 
-nav input{
+header nav input{
     width: 46vw;
     height: 2.5em;
     float: left;
@@ -44,7 +44,7 @@ nav input{
     border-radius: 10px 0px 0px 10px;
 }
 
-nav button{
+header nav button{
     width: 3.8vw;
     height: 2.5em;
     float: left;
@@ -54,18 +54,18 @@ nav button{
     border-radius: 0px 10px 10px 0px;
 }
 
-nav li{
+header nav li{
     display: inline;
     padding: 0;
 }
 
-nav ul li a {
+header nav ul li a {
     color: #71ABDB;
     text-decoration: none;
     display: inline;
 }
 
-nav ul li a:hover{
+header nav ul li a:hover{
     color: #71ABDB;
     text-decoration: none;
 }
