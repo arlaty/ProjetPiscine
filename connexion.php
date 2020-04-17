@@ -55,7 +55,7 @@
 	    	<hr color="black" width="80%">
 	    	<br><br>
 
-	    	<form>
+	    	<form action="" method="post">
 	    		<table>
 		    		<tr>
 		    			<td>Identifiant / E-mail :<br></td>
@@ -169,8 +169,7 @@
 	    	</form>
 
 	    	<!--Pop up Clause d'offre-->
-	    	<div id="overlay" onclick="off()">
-	    		
+	    	<div id="overlay" onclick="off()">	
 				  <div id="text"><h3>
 		    				Clause offre
 		    			</h3>
