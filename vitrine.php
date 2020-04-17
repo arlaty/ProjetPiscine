@@ -27,6 +27,7 @@
 
 <?php
     function search($db_handle){
+        $today = date("Y-m-d H:i:s");
         if (isset($_GET['main'])){
             if ($_GET['main']=="Catego"){?>
                 <h1>Ferrailles et Trésors:</h1>
@@ -53,20 +54,20 @@
                 </div>
                 <h1>Articles en vente enchere:</h1>
                 <div class="tableObjet">
-                    <?php searchObjetParAchat($db_handle,"enchere",0);?>
+                    <?php searchObjetParAchat($db_handle,"enchere WHERE fin>'$today'",0);?>
                 </div><?php
             }
             else {$i=0;?>
                 <div class="tableObjet">
                     <?php $i=searchObjetParAchat($db_handle,"achat WHERE immediat=1 OR offre=1",$i);?>
-                    <?php $i=searchObjetParAchat($db_handle,"enchere",$i);if (($i%4!=0)&&($i!=0)){echo "</div>";}?>
+                    <?php $i=searchObjetParAchat($db_handle,"enchere WHERE fin>'$today'",$i);if (($i%4!=0)&&($i!=0)){echo "</div>";}?>
                 </div><?php
             }
         }
         else {$i=0;?>
             <div class="tableObjet">
                 <?php $i=searchObjetParAchat($db_handle,"achat WHERE immediat=1 OR offre=1",$i);?>
-                <?php $i=searchObjetParAchat($db_handle,"enchere",$i);if (($i%4!=0)&&($i!=0)){echo "</div>";}?>
+                <?php $i=searchObjetParAchat($db_handle,"enchere WHERE fin>'$today'",$i);if (($i%4!=0)&&($i!=0)){echo "</div>";}?>
             </div><?php
         }
     }
@@ -79,7 +80,7 @@
             {
                 echo "<div class='tablerow'>";
             }
-            echo "<a href='#' class='objet'>";
+            echo "<a href='objet.php?id=".$data['objetId']."' class='objet'>";
             $sql = "SELECT `titre`, `image1`FROM `objet` WHERE `id`=".$data['objetId'];
             $result2=mysqli_query($db_handle,$sql);
             while($data2 = mysqli_fetch_assoc($result2)){
@@ -107,6 +108,7 @@
     }
     
     function searchObjetParCategories($db_handle,$typeCatego){
+        $today = date("Y-m-d H:i:s");
         $sql = "SELECT id, titre, image1 FROM objet WHERE categories LIKE '%$typeCatego%'";
         $result=mysqli_query($db_handle,$sql);
         $i=0;
@@ -119,36 +121,39 @@
             $sql = "SELECT prix FROM achat WHERE (immediat=1 OR offre=1) AND objetId='$id'";
             $result2=mysqli_query($db_handle,$sql);
             while($data2 = mysqli_fetch_assoc($result2)){
-                echo "<a href='#' class='objet'>";
+                echo "<a href='objet.php?id=".$data['id']."' class='objet'>";
                 echo "<img src='images/".$data['image1']."'>";
                 echo "<p class='titre'>".$data['titre']."</p>";
                 echo "<p class='prix'>".$data2['prix']."€</p>";
                 echo "</a>";
+                if ($i%4==3)
+                {
+                    echo "</div>";
+                }
+                $i++;
             }
-            $sql = "SELECT prix FROM enchere WHERE objetId='$id'";
+            $sql = "SELECT prix FROM enchere WHERE fin>'$today' AND objetId='$id'";
             $result2=mysqli_query($db_handle,$sql);
             while($data2 = mysqli_fetch_assoc($result2)){
-                echo "<a href='#' class='objet'>";
+                echo "<a href='objet.php?id=".$data['id']."' class='objet'>";
                 echo "<img src='images/".$data['image1']."'>";
                 echo "<p class='titre'>".$data['titre']."</p>";
                 echo "<p class='prix'>".$data2['prix']."€</p>";
                 echo "</a>";
+                if ($i%4==3)
+                {
+                    echo "</div>";
+                }
+                $i++;
             }
-            if ($i%4==3)
-            {
-                echo "</div>";
-            }
-            $i++;
         }
         if (($i%4!=3)&&($i!=0)&&(isset($_GET['main'])))
         {
             echo "</div>";
         }
-
         if (($i==0)&&(isset($_GET['main'])))
         {
             echo "<h2>Nous n'avons pas d'objets à vendre</h2>";
         }
-        return $i;
 	}
 ?>
