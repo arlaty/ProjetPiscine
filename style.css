@@ -455,7 +455,7 @@ footer .Contact{
     border-left: 1px solid #ccc;
 }
 
-.contenu{
+.contenu, .contenuperso{
     margin-left:10%;
 }
 #profil h6{
@@ -481,8 +481,22 @@ footer .Contact{
   border: 4px solid #71ABDB;
   font-size: 20px;
 }
-.compteAcheteur{
+.compteAcheteur, .compteVendeur{
     display:none;
+}
+
+.monCompte li button.active2{
+    background-color: #71ABDB;
+    color: white;
+}
+
+.monCompte li button:hover:not(.active2) {
+    background-color: #555;
+    color: white;
+}
+.monCompte .contentperso{
+    margin-left: 40%;
+    border-left: 1px solid #ccc;
 }
 
 /*FIN Mon Compte*/
