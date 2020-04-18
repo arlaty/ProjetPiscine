@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2020 at 06:33 PM
+-- Generation Time: Apr 18, 2020 at 07:13 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -38,15 +38,15 @@ CREATE TABLE IF NOT EXISTS `achat` (
   KEY `objetId` (`objetId`),
   KEY `vendeurId` (`vendeurId`),
   KEY `acheteurId` (`acheteurId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `achat`
 --
 
 INSERT INTO `achat` (`id`, `objetId`, `vendeurId`, `acheteurId`, `prix`, `immediat`, `offre`) VALUES
-(3, 1, 1, NULL, 49, 1, 1),
-(4, 2, 1, NULL, 45980, 1, 0);
+(11, 1, 1, NULL, 49, 1, 1),
+(12, 2, 1, NULL, 45980, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -68,7 +68,14 @@ CREATE TABLE IF NOT EXISTS `acheteur` (
   `solde` float DEFAULT NULL,
   `plafond` float DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `acheteur`
+--
+
+INSERT INTO `acheteur` (`id`, `pseudo`, `email`, `password`, `nom`, `prenom`, `typeCarte`, `numero`, `expiration`, `codeSecurite`, `solde`, `plafond`) VALUES
+(1, 'toto', 'toto@ece.fr', 'toto', 'janot', 'clément', 'Visa', '4970101234567890', '08/20', '555', 150000, 10000);
 
 -- --------------------------------------------------------
 
@@ -118,6 +125,26 @@ INSERT INTO `enchere` (`id`, `objetId`, `vendeurId`, `prix`, `fin`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `immediat`
+--
+
+CREATE TABLE IF NOT EXISTS `immediat` (
+  `achatId` int(11) DEFAULT NULL,
+  `acheteurId` int(11) DEFAULT NULL,
+  KEY `achatId` (`achatId`),
+  KEY `acheteurId` (`acheteurId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `immediat`
+--
+
+INSERT INTO `immediat` (`achatId`, `acheteurId`) VALUES
+(12, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `objet`
 --
 
@@ -139,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `objet` (
 
 INSERT INTO `objet` (`id`, `titre`, `image1`, `image2`, `image3`, `video`, `description`, `categories`) VALUES
 (1, 'Pièce ancienne Française 100 Francs argent Panthéon 1985 rare', 'objet1(1).jpg', 'objet1(2).jpg', 'objet1(3).jpg', '', 'Valeur faciale : 100 Francs\r\nMillésime : 1983\r\nMétal : Argent 900 ‰\r\nDiamètre : 31 mm\r\nPoids : 15 g\r\nTranche : Lisse\r\nEmission : 5 000 972 ex.\r\n100 Francs Argent Panthéon - France 1983', 'Ferraille ou Trésor'),
-(2, 'Montre Breitling Navitimer 1 B01 ', 'objet2(1).jpg', '', '', '', 'chronograph cadran noir bracelet or rouge 43 mm', 'Accessoire VIP'),
+(2, 'Montre Breitling Navitimer 1 B01', 'objet2(1).jpg', '', '', '', 'chronograph cadran noir bracelet or rouge 43 mm', 'Accessoire VIP'),
 (3, 'Statue bronze Femme en prière', 'objet3(1).jpg', '', '', '', '90 cm POUR extèrieur', 'Bon pour le Musée');
 
 -- --------------------------------------------------------
@@ -149,16 +176,21 @@ INSERT INTO `objet` (`id`, `titre`, `image1`, `image2`, `image3`, `video`, `desc
 --
 
 CREATE TABLE IF NOT EXISTS `offre` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
   `acheteurId` int(11) DEFAULT NULL,
   `achatId` int(11) DEFAULT NULL,
-  `prixAcheteur` float DEFAULT NULL,
+  `prixAcheteur` float NOT NULL,
   `prixVendeur` float NOT NULL,
   `nbNegoc` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
   KEY `acheteurId` (`acheteurId`),
   KEY `achatId` (`achatId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `offre`
+--
+
+INSERT INTO `offre` (`acheteurId`, `achatId`, `prixAcheteur`, `prixVendeur`, `nbNegoc`) VALUES
+(1, 11, 45, 49, 1);
 
 -- --------------------------------------------------------
 
@@ -167,14 +199,19 @@ CREATE TABLE IF NOT EXISTS `offre` (
 --
 
 CREATE TABLE IF NOT EXISTS `prixmax` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
   `enchereId` int(11) DEFAULT NULL,
   `acheteurId` int(11) DEFAULT NULL,
   `prixMax` float DEFAULT NULL,
-  PRIMARY KEY (`id`),
   KEY `enchereId` (`enchereId`),
   KEY `acheteurId` (`acheteurId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `prixmax`
+--
+
+INSERT INTO `prixmax` (`enchereId`, `acheteurId`, `prixMax`) VALUES
+(1, 1, 9000);
 
 -- --------------------------------------------------------
 
@@ -228,11 +265,18 @@ ALTER TABLE `enchere`
   ADD CONSTRAINT `enchere_ibfk_1` FOREIGN KEY (`objetId`) REFERENCES `objet` (`id`);
 
 --
+-- Constraints for table `immediat`
+--
+ALTER TABLE `immediat`
+  ADD CONSTRAINT `immediat_ibfk_2` FOREIGN KEY (`acheteurId`) REFERENCES `acheteur` (`id`),
+  ADD CONSTRAINT `immediat_ibfk_1` FOREIGN KEY (`achatId`) REFERENCES `achat` (`id`);
+
+--
 -- Constraints for table `offre`
 --
 ALTER TABLE `offre`
-  ADD CONSTRAINT `offre_ibfk_2` FOREIGN KEY (`achatId`) REFERENCES `achat` (`id`),
-  ADD CONSTRAINT `offre_ibfk_1` FOREIGN KEY (`acheteurId`) REFERENCES `acheteur` (`id`);
+  ADD CONSTRAINT `offre_ibfk_1` FOREIGN KEY (`acheteurId`) REFERENCES `acheteur` (`id`),
+  ADD CONSTRAINT `offre_ibfk_2` FOREIGN KEY (`achatId`) REFERENCES `achat` (`id`);
 
 --
 -- Constraints for table `prixmax`

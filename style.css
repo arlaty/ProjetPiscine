@@ -51,7 +51,6 @@ header nav button{
     border-radius: 0px 10px 10px 0px;
 }
 
-
 nav li{
     display: inline;
     padding: 0;
@@ -75,7 +74,7 @@ header .ligne1{
 }
 
 header .ligne1 a{
-    font-size: 26px;
+    font-size: 25px;
 }
 
 header .ligne2{
@@ -94,6 +93,11 @@ header .ligne2 li:nth-child(3){
 header .ligne2 li:nth-child(2){
     margin-left: 2.5em;
 }
+
+header .ligne1 img{
+    width: 28px;
+}
+
 /*CSS pour le footer*/
 
 footer { 
@@ -211,19 +215,15 @@ footer .Contact{
 }
 
 .tableObjet{
-    display: table-row;
-    width: 100%;
-}
-
-.tablerow{
     display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 /*Article*/
 .objet{
-    width: 17vw;
-    padding: 1vw 3vw;
-    margin: 1.5vw 3vw;
+    padding: 0.69375em 1.15625em;
+    margin: 1em 0.95em;
     border:1px solid #000000;
     text-decoration: none;
     color: #000000;
@@ -235,7 +235,7 @@ footer .Contact{
 }
 
 .objet img {
-    width: 11vw; 
+    width: 6.6875em; 
 }
 .objet p{
     text-decoration: none;
@@ -244,7 +244,8 @@ footer .Contact{
 }
 
 .objet .titre{
-    height: 36px;
+    max-width: 10em;
+    height: 72px;
 }
 
 .objet .prix{
@@ -479,11 +480,6 @@ footer .Contact{
   border: 4px solid #71ABDB;
   font-size: 20px;
 }
-.compteAcheteur{
-    display:none;
-}
-
-
 
 /*FIN Mon Compte*/
 
@@ -647,18 +643,6 @@ footer .Contact{
         padding: 2.775em;        
     }
 
-    .objet{
-        width: 10em;
-        padding: 0.69375em 1.15625em;
-        margin: 1em 2.5vw;
-    }
-
-    .objet img {
-        width: 6.6875em; 
-    }
-    .objet .titre{
-        height: 72px;
-    }
     .pageArticle .article .text a{
         font-size: 11px;
         width: 11em;
@@ -692,9 +676,6 @@ footer .Contact{
         padding: 1.25em;
     }
 
-    .objet{
-        margin: 1em 0.95em;
-    }
     .pageArticle .article{
         width: 37em;
         padding: 1.7em;   
