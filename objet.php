@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $db_handle =new mysqli('localhost','root','','ebay ece');
     mysqli_set_charset($db_handle, 'utf8');
 ?>
@@ -39,7 +40,6 @@
 <body>
   <?php include("./modules/header.php"); ?>
   <div class="pageArticle">
-    <a href="#" class="return"><- Retour en aux articles</a>
     <?php
       if (isset($_GET['id'])){
         $sql = "SELECT * FROM objet WHERE id=".$_GET['id'];
@@ -48,6 +48,7 @@
           echo "<h2>L'article demandé n'existe pas</h2>";
         }
         else{
+          $link
           while($data = mysqli_fetch_assoc($result)){?>
             <div class='article'>
               <h4><?php echo $data['titre']?></h4>
@@ -64,10 +65,10 @@
                     </ul> 
                   </div>
                   <div class="sousImages">
-                      <a href='#' class='img1'><img src="images/<?php echo $data['image1']?>"></a>
+                      <a class='img1'><img src="images/<?php echo $data['image1']?>"></a>
                       <?php
-                      if($data['image2']!="")echo"<a href='#' class='img2'><img src='images/".$data['image2']."'></a>";
-                      if($data['image3']!="")echo"<a href='#' class='img3'><img src='images/".$data['image3']."'></a>";
+                      if($data['image2']!="")echo"<a class='img2'><img src='images/".$data['image2']."'></a>";
+                      if($data['image3']!="")echo"<a class='img3'><img src='images/".$data['image3']."'></a>";
                       ?>
                   </div>
                 </div>

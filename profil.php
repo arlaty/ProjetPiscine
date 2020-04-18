@@ -1,4 +1,8 @@
- 
+<?php
+    session_start();
+    $db_handle =new mysqli('localhost','root','','ebay ece');
+	mysqli_set_charset($db_handle, 'utf8');
+?>
 <!DOCTYPE html>
 <html >
 <head lang="en">
@@ -9,7 +13,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
     <title>Mon ebay</title>
 </head>
 <body>

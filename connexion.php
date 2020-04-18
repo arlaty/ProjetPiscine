@@ -74,7 +74,7 @@
 	    	<hr color="black" width="80%">
 	    	<br><br>
 
-	    	<form action="" method="post">
+	    	<form action="traitementCo.php" method="post">
 	    		<table>
 		    		<tr>
 		    			<td>Identifiant / E-mail :<br></td>
@@ -98,8 +98,8 @@
 			<h1>S'inscrire</h1>
 	    	<hr color="black" width="80%">
 	    	<br><br>
-
-	    	<form>
+			<?php if(isset($_GET['issues'])) echo "<p>L'utilisateur existe déjà</p>"?>
+	    	<form action="traitementInscri.php" method="post">
 	    		<table>
 					<tr>
 						<td>Nom :</td>
