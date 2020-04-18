@@ -60,18 +60,7 @@
                         <div class="titreDescR">
                             <p>Titre : Pièce ancienne Francaise, 100 Francs, en argent, Panthéon, 1985, rare.</p>
                             <p class="monPanierReference">Référence : 123456789</p>
-                            <button type="button" name="supprimer" class="suprPanier">Supprimer</button>
-                        </div>
-                        <div class="monPanierPrixArticle">
-                            <p>12€</p>
-                        </div>
-                    </div>
-                    <div class="articleFin"> 
-                        <img src="images/objet1(1).jpg" width="100px">
-                        <div class="titreDescR">
-                            <p>Titre : Pièce ancienne Francaise, 100 Francs, en argent, Panthéon, 1985, rare.</p>
-                            <p class="monPanierReference">Référence : 123456789</p>
-                            <button type="button" name="supprimer" class="suprPanier">Supprimer</button>
+                            <a href="#" class="suprPanier">Supprimer</a>
                         </div>
                         <div class="monPanierPrixArticle">
                             <p>12€</p>
