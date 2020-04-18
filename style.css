@@ -401,6 +401,8 @@ footer .Contact{
 
 /*FIN Formulaire connexion/inscription*/
 
+/*========================================================================================*/
+
 /*Mon compte*/
 
 .monCompte {
@@ -483,9 +485,26 @@ footer .Contact{
     display:none;
 }
 
-
-
 /*FIN Mon Compte*/
+
+/*========================================================================================*/ 
+
+/*Page ajout article*/
+
+.ajout-img .btn-ajout {
+  background-color: white;
+  border: 2px solid #71ABDB;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 30px;
+  cursor: pointer;
+}
+
+/*FIN page ajout article*/
 
 /*========================================================================================*/
 /*css pour la page panier */
