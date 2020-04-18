@@ -9,11 +9,13 @@
                 </form>
             </div>
             <div>
-                <a href="connexion.php">Mon Ebay 
+                <a href="<?php if (isset($_SESSION['id'])){echo "profil.php";}
+                               else {echo "connexion.php";}?>">Mon Ebay 
                 <img src="./icon/login-32.png" alt="login"></a>
             </div>
             <div>
-                <a href="panier.php">Mon panier 
+                <a href="<?php if (isset($_SESSION['id'])){echo "panier.php";}
+                               else {echo "connexion.php";}?>">Mon panier 
                 <img src="./icon/cart-32.png" alt="cart"></a>
             </div>
         </div>
@@ -21,7 +23,7 @@
             <ul>
                 <li><a href="vitrine.php?main=Catego">Catégories</a></li>
                 <li><a href="vitrine.php?main=Achat">Achats</a></li>
-                <li><a href="connexion.php">Vendre</a></li>
+                <?php if (!isset($_SESSION['id'])){echo "<li><a href='connexion.php'>Vendre</a></li>";}?>
             </ul>
         </div>
     </nav>

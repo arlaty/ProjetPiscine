@@ -513,8 +513,8 @@ footer .Contact{
     text-decoration: underline;
     text-decoration-color: #71ABDB;
     font-size: 25px;
-
 } 
+
 /*Affichage d'un article dans le panier pour la catégorie achat immédiat*/
 .articlePanier{
     display: inline-flex;
@@ -549,21 +549,18 @@ footer .Contact{
 .monPanierDev{
     display: flex;
     justify-content: center;
-    
+    padding-bottom: 1em;
 }
 
 .encheres{
-    width: 500px;
-    padding: 0px 10px 0px 10px;
+    width: 550px;
+    padding: 0em 1.5em;
     border-right: 1px solid #C8C9CA;
-    
-    
-    
 }
 
 .meilleuresOffres{
-    padding: 0px 10px 0px 10px;
-    width: 500px;
+    width: 550px;
+    padding: 0em 1.5em; 
     border-left:  1px solid #C8C9CA;
     margin-left: 5px;
 }
@@ -584,7 +581,6 @@ footer .Contact{
 }
 /*Bouton finaliser l'achat*/
 .finaliserAchat{ 
-    
     background-color: #2F2F2F;
     border: 0.7px solid #71ABDB;
     color: #71ABDB;
