@@ -402,6 +402,8 @@ footer .Contact{
 
 /*FIN Formulaire connexion/inscription*/
 
+/*========================================================================================*/
+
 /*Mon compte*/
 
 .monCompte {
@@ -482,6 +484,87 @@ footer .Contact{
 }
 
 /*FIN Mon Compte*/
+
+/*========================================================================================*/ 
+
+/*Page ajout article*/
+
+.ajout-content{
+    margin:40px;
+}
+
+.ajout-img{
+    margin-left: 40px;
+}
+
+h2{
+ text-align:center;
+}
+.button {
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width:200px;
+  height:200px;
+  float:left;
+}
+
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #71ABDB;
+  margin:0;
+  padding-top:0px;
+}
+.button1:hover {
+  background-color: #71ABDB;
+  color: white;
+}
+
+
+.infos{
+    margin:20px;
+    margin-left:30%;
+}
+
+form button{
+    margin-left : 150px;
+    background-color: white;
+    border: 2px solid #71ABDB;
+    font-size: 20px;
+}
+
+#overlay-ajout {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+#text-ajout{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+#overlay-ajout button{
+    margin: 40px;
+    margin-left: 40%;
+    background-color: white;
+    border: 2px solid #71ABDB;
+    font-size: 20px;
+}
+
+/*FIN page ajout article*/
 
 /*========================================================================================*/
 /*css pour la page panier */
@@ -611,6 +694,59 @@ footer .Contact{
 /*FIN Mon Panier*/
 
 /*==================================================================================*/
+
+/*FINALICATION DE L'ACHAT*/
+.FinalisationDeAchat{
+    text-align: center;
+}
+
+.FinalisationDeAchat h1, h3{
+    color: #71ABDB;
+}
+.blocGaucheFA{
+    text-align: left;
+    width: 800px;
+    
+    padding-left: 20px;
+    margin: auto;
+}
+.blocDroitFA{
+    width: 800px;
+    margin: auto;
+    padding: 0px 50px 0px 50px;
+}
+.infoFinalisationAchat {
+    text-align: left;
+    width:700px;
+    
+    margin: auto;
+}
+.infoFinalisationAchat form input, select{
+   margin-left: 30px;
+   text-align: left;
+}
+.infoFinalisationAchat form{
+    display: flex;
+    justify-content: center;
+}
+
+.articleFin{
+    display: inline-flex;
+    align-items: flex-start;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.BoutonPayerLaCommande{
+background-color: gray;
+color: #71ABDB;
+border: #71ABDB
+width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+ border: 3px solid #71ABDB;
+ border-radius: 5px;
+}
+/*FIN DE FINALISATION DE L'ACHAT*/
 
 /*Responsive*/ 
 
