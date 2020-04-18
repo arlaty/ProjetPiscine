@@ -597,6 +597,7 @@ footer .Contact{
 
 /*Autres boutons de la page*/
 .suprPanier {
+    text-decoration: none;
     width: 120px;
     height: 25px;
     background-color: #71ABDB;
@@ -605,9 +606,10 @@ footer .Contact{
     text-align: center;
     font-size: 16.5px;
     margin: auto;
-   margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 .suprPanier:hover{
+    text-decoration: none;
     opacity: 0.8;
 }
 /*FIN Mon Panier*/

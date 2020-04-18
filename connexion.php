@@ -55,7 +55,7 @@
 	    	<hr color="black" width="80%">
 	    	<br><br>
 
-	    	<form action="traitementCo.php" method="post">
+	    	<form action="traitement/connexion.php" method="post">
 	    		<table>
 		    		<tr>
 		    			<td>Identifiant / E-mail :<br></td>
