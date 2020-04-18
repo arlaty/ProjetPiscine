@@ -19,13 +19,32 @@
 
 		function onAcheteur() {
 			$('.form-acheteur').css('display', '');
+
+			formAcheteurUnfilled();
 			offBtn();
 
 		}
 		function offAcheteur() {
 			$('.form-acheteur').css('display', 'none');
+
+			formAcheteurFilled();
 			onBtn();
 		}
+		function formAcheteurFilled(){
+			document.getElementById("carte").value= "Visa";
+			document.getElementById("tit").value= "1";
+			document.getElementById("num").value= "1";
+			document.getElementById("exp").value= "1111/11";
+			document.getElementById("crypt").value= "1";
+		}
+		function formAcheteurUnfilled(){
+			document.getElementById("carte").value= "";
+			document.getElementById("tit").value= "";
+			document.getElementById("num").value= "";
+			document.getElementById("exp").value= "";
+			document.getElementById("crypt").value= "";
+		}
+
 
 		function etatBtn() {
 		  if(document.getElementById("check").checked){
@@ -55,7 +74,7 @@
 	    	<hr color="black" width="80%">
 	    	<br><br>
 
-	    	<form action="traitementCo.php" method="post">
+	    	<form action="traitement/connexion.php" method="post">
 	    		<table>
 		    		<tr>
 		    			<td>Identifiant / E-mail :<br></td>
@@ -114,7 +133,7 @@
 					<tr class="form-acheteur">
 						<td><br>Type de carte :</td>
 						<td>
-							<select name="carte" size="1">
+							<select name="carte" id="carte" size="1">
 								<option>Visa</option>
 								<option>MasterCard</option>
 								<option>American Express</option>
@@ -124,19 +143,19 @@
 					</tr>
 					<tr class="form-acheteur">
 						<td>Titulaire de la carte :</td>
-						<td><input type="text" name="tit" required></td>
+						<td><input type="text" id="tit" name="tit" required></td>
 					</tr>
 					<tr class="form-acheteur">
 						<td>Numéro :</td>
-						<td><input type="number" name="num" step="1" min="00000000000000000" max="99999999999999999" required></td>
+						<td><input type="number" id="num" name="num" step="1" min="00000000000000000" max="99999999999999999" required></td>
 					</tr>
 					<tr class="form-acheteur">
 						<td>Date d'expiration :</td>
-						<td><input type="month" name="exp" required></td>
+						<td><input type="month" id="exp" name="exp" required></td>
 					</tr>
 					<tr class="form-acheteur">
 						<td>Cryptogramme :</td>
-						<td><input type="number" name="crypt" step="1" min="000" max="999" required></td>
+						<td><input type="number" id="crypt" name="crypt" step="1" min="000" max="999" required></td>
 					</tr>
 					<tr>
 						<td><br>Identifiant :</td>

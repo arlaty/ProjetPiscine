@@ -1,7 +1,6 @@
 <?php
     session_start();
-    $db_handle =new mysqli('localhost','root','','ebay ece');
-    mysqli_set_charset($db_handle, 'utf8');
+    include("traitement/connexionBase.php");
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +47,6 @@
           echo "<h2>L'article demandé n'existe pas</h2>";
         }
         else{
-          $link
           while($data = mysqli_fetch_assoc($result)){?>
             <div class='article'>
               <h4><?php echo $data['titre']?></h4>
@@ -81,11 +79,20 @@
                     while($data2 = mysqli_fetch_assoc($result2)){
                       echo "<p class='prix'> Prix : ".$data2['prix']."€</p><div class='button'>";
                       if ($data2['immediat']==1){
-                        echo"<a href='#'>Passer à l'achat</a>
-                        <a href='#'>Ajouter au panier</a>";
+                        echo"<a href='";
+                        if (isset($_SESSION['id'])){echo "#";}
+                        else {echo "connexion.php";}
+                        echo"'>Passer à l'achat</a>
+                        <a href='";
+                        if (isset($_SESSION['id'])){echo "#";}
+                        else {echo "connexion.php";}
+                        echo"'>Ajouter au panier</a>";
                       }
                       if ($data2['offre']==1){
-                        echo "<a href='#'>Négocier</a>";
+                        echo "<a href='";
+                        if (isset($_SESSION['id'])){echo "#";}
+                        else {echo "connexion.php";}
+                        echo"'>Négocier</a>";
                       }
                     }
                     $today = date("Y-m-d H:i:s");
@@ -93,7 +100,10 @@
                     $result2=mysqli_query($db_handle,$sql);
                     while($data2 = mysqli_fetch_assoc($result2)){
                       echo "<p class='prix'> Prix : ".$data2['prix']."€</p><div class='button'>";
-                      echo"<a href='#'>Enchérir</a>";
+                      echo"<a href='";
+                      if (isset($_SESSION['id'])){echo "#";}
+                      else {echo "connexion.php";}
+                      echo"'>Enchérir</a>";
                     }
                   ?>
                   </div>
