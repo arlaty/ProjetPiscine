@@ -1,7 +1,6 @@
 <?php
     session_start();
-    $db_handle =new mysqli('localhost','root','','ebay ece');
-    mysqli_set_charset($db_handle, 'utf8');
+    include("traitement/connexionBase.php");
 ?>
 
 <!DOCTYPE html>
@@ -18,127 +17,136 @@
     <title>ECE ebay</title>
 </head>
 <body>
-    <?php 
-        include("./modules/header.php"); 
-        if (!isset($_SESSION['id'])){
-            echo"<h1 style='padding:4em;text-align:center;'>Mauvaise requète</h1>";
-        }
-        else {
-            ?>
-            <!-- Lien permettant de revenir à la page précédente -->
-            <h3 class="monPanierHeader" style="padding:1em;">Mon panier</h3><br>
-            <!-- Partie des achats immédits -->
-            <div class="achatsImmediats">
-                <h5 class="ssTitreCPanier">Achats immédiats</h5>
-                <br>
-                <div class="articlePanier"> 
-                    <img src="images/objet1(1).jpg" width="100px">
-                    <div class="titreDescR">
-                        <p>Titre : Pièce ancienne Francaise, 100 Francs, en argent, Panthéon, 1985, rare.</p>
-                        <p class="monPanierReference">Référence : 123456789</p>
-                        <button type="button" name="voir" class="suprPanier">Voir l'article</button>
-                        <button type="button" name="supprimer" class="suprPanier">Supprimer</button>
-                    </div>
-                    <div class="monPanierPrixArticle">
-                        <p>12€</p>
-                    </div>
-                </div> 
-                <div class="articlePanier"> 
-                    <img src="images/objet1(1).jpg" width="100px">
-                    <div class="titreDescR">
-                        <p>Titre : Pièce ancienne Francaise, 100 Francs, en argent, Panthéon, 1985, rare.</p>
-                        <p class="monPanierReference">Référence : 123456789</p>
-                        <button type="button" name="voir" class="suprPanier">Voir l'article</button>
-                        <button type="button" name="supprimer" class="suprPanier">Supprimer</button>
-                    </div>
-                    <div class="monPanierPrixArticle">
-                        <p>12€</p>
-                    </div>
-                </div>  
-            </div>
-            <hr width="25%"  color="black"><!-- Permet de faire une ligne horizontale pour séparer les articles du total --> 
-            <!-- Total des achats immédiats -->
-            <div class="TotalAchatImmediat">
-                <div >
-                    <p>Objet (1)</p>
-                </div>
-                <div class="prixTotalAI">
-                    <p>400€</p>
-                </div>
-            </div>
-            <button type="button" name="achat" class="finaliserAchat">Finaliser l'achat</button><br><br>
-            <hr width="75%"  color="#C8C9CA">
-            <!-- div qui regroupe les enchères et les meilleures offre qui permet de les afficher sur le même ligne -->
-            <div class="monPanierDev">
-                <!-- div qui comprend l'ensemble des enchères de l'acheteur -->
-                <div class="encheres">
-                    <h5 class="ssTitreCPanier">Enchères</h5>
-                    <br>
-                    <div class="articlePanier">
-                        <img src="images/objet1(1).jpg" width="100px">
-                        <div class="titreDescR">
-                            <p>Titre : Pièce ancienne Francaise, 100 Francs, en argent, Panthéon, 1985, rare.</p>
-                            <p class="monPanierReference">Référence : 123456789</p>
-                            <div class="tpsRestant">
-                                <p class="infoenchere" style="font-weight: bold">Temps restant : </p>
-                                <p class="infoenchere" > 1j 15h </p>
-                            </div>
-                            <div class="infoResultatEnchere">
-                                <p class="infoenchere"style="font-weight: bold">Résultat : </p>
-                                <p class="infoenchere"> 11 enchères </p>
-                            </div>
-                            <button type="button" name="voir" class="suprPanier">Voir l'article</button>
-                            <button type="button" name="offre1" class="suprPanier" style="width: 150px;">Faire une offre</button>
-                        </div>
-                        <div class="monPanierPrixArticle">
-                            <p>12€</p>
-                        </div>
-                    </div>  
-                    <div class="articlePanier">
-                        <img src="images/objet1(1).jpg" width="100px">
-                        <div class="titreDescR">
-                            <p>Titre : Pièce ancienne Francaise, 100 Francs, en argent, Panthéon, 1985, rare.</p>
-                            <p class="monPanierReference">Référence : 123456789</p>
-                            <div class="tpsRestant">
-                                <p class="infoenchere" style="font-weight: bold">Temps restant : </p>
-                                <p class="infoenchere" > 1j 15h </p>
-                            </div>
-                            <div class="infoResultatEnchere">
-                                <p class="infoenchere"style="font-weight: bold">Résultat : </p>
-                                <p class="infoenchere"> 11 enchères </p>
-                            </div>
-                            <button type="button" name="voir" class="suprPanier">Voir l'article</button>
-                            <button type="button" name="offre1" class="suprPanier" style="width: 150px;">Faire une offre</button>
-                        </div>
-                        <div class="monPanierPrixArticle">
-                            <p>12€</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- div qui comprend l'ensemble des meilleures Offres de l'acheteur -->
-                <div class="meilleuresOffres">
-                    <h5 class="ssTitreCPanier">Meilleures Offres</h5>
-                    <br>
-                    <div class="articlePanier">
-                        <img src="images/objet1(1).jpg" width="100px">
-                        <div class="titreDescR">
-                            <p>Titre : Pièce ancienne Francaise, 100 Francs, en argent, Panthéon, 1985, rare.</p>
-                            <p class="monPanierReference">Référence : 123456789</p>
-                            <p class="infoenchere"> 4 offres réalisées </p>
-                            <button type="button" name="voir" class="suprPanier">Voir l'article</button>
-                            <button type="button" name="offre1" class="suprPanier" style="width: 150px;">Faire une offre</button>
-                        </div>
-                        <div class="monPanierPrixArticle">
-                            <p>12€</p>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                </div>
-            </div>
+    <?php include("./modules/header.php"); 
+    if (!isset($_SESSION['id'])){
+        echo"<h1 style='padding:4em;text-align:center;'>Mauvaise requète</h1>";
+    }
+    else {?>
+        <h3 class="monPanierHeader" style="padding:1em;">Mon panier</h3><br>
+        <!-- Partie des achats immédits -->
+        <div class="achatsImmediats">
+            <h5 class="ssTitreCPanier">Achats immédiats</h5>
             <br>
             <?php
-        }
-        include("./modules/footer.php"); ?>
+                $total=0;
+                foreach ($_SESSION['panier']['immediat'] as $key => $value) {
+                    $sql = "SELECT `objetId`, `prix` FROM achat WHERE id=".$value;
+                    $result=mysqli_query($db_handle,$sql);
+                    while($data = mysqli_fetch_assoc($result)){
+                        echo "<div class='articlePanier'>";
+                        $sql = "SELECT `titre`, `image1`FROM `objet` WHERE `id`=".$data['objetId'];
+                        $result2=mysqli_query($db_handle,$sql);
+                        while($data2 = mysqli_fetch_assoc($result2)){
+                            echo "<img src='images/".$data2['image1']."' width='100px'>";
+                            echo "<div class='titreDescR'>
+                            <p>Titre : ".$data2['titre']."</p>";
+                            echo "<p class='monPanierReference'>Référence : ".$data['objetId']."</p>";
+                        }
+                        echo "<a href='objet.php?id=".$data['objetId']."' class='suprPanier'>Voir l'article</a>";
+                        echo "<a href='#' class='suprPanier'>Supprimer</a>";
+                        echo "</div>";
+                        echo "<div class='monPanierPrixArticle'>";
+                        echo "<p>".$data['prix']."</p>";
+                        echo "</div>";
+                        echo "</div>";
+                        $total+=$data['prix'];
+                    }
+                }
+            ?>
+        </div>
+        <hr width="25%"  color="black"><!-- Permet de faire une ligne horizontale pour séparer les articles du total --> 
+        <!-- Total des achats immédiats -->
+        <div class="TotalAchatImmediat">
+            <div >
+                <p>Objet (<?php echo sizeof($_SESSION['panier']['immediat']);?>)</p>
+            </div>
+            <div class="prixTotalAI">
+                <p><?php echo $total."€";?></p>
+            </div>
+        </div>
+        <button type="button" name="achat" class="finaliserAchat">Finaliser l'achat</button><br><br>
+        <hr width="75%"  color="#C8C9CA">
+        <!-- div qui regroupe les enchères et les meilleures offre qui permet de les afficher sur le même ligne -->
+        <div class="monPanierDev">
+            <!-- div qui comprend l'ensemble des enchères de l'acheteur -->
+            <div class="encheres">
+                <h5 class="ssTitreCPanier">Enchères</h5>
+                <br>
+                <?php
+                    foreach ($_SESSION['panier']['enchere'] as $key => $value) {
+                        $sql = "SELECT `objetId`, `prix`,fin FROM enchere WHERE id=".$value;
+                        $result=mysqli_query($db_handle,$sql);
+                        while($data = mysqli_fetch_assoc($result)){
+                            echo "<div class='articlePanier'>";
+                            $sql = "SELECT `titre`, `image1`FROM `objet` WHERE `id`=".$data['objetId'];
+                            $result2=mysqli_query($db_handle,$sql);
+                            while($data2 = mysqli_fetch_assoc($result2)){
+                                echo "<img src='images/".$data2['image1']."' width='100px'>";
+                                echo "<div class='titreDescR'>
+                                <p>Titre : ".$data2['titre']."</p>";
+                                echo "<p class='monPanierReference'>Référence : ".$data['objetId']."</p>";
+                            }
+                            echo "<div class='tpsRestant'>";
+                            echo "<p class='infoenchere' style='font-weight: bold'>Temps restant : </p>";
+                            $today = new DateTime("now");
+                            $fin= new DateTime($data['fin']);
+                            $diff= date_diff($fin,$today);
+                            echo "<p class='infoenchere' > ".$diff->format("%a j %h h")." </p>";
+                            echo "</div>";
+                            echo "<div class='infoResultatEnchere'>";
+                            echo "<p class='infoenchere'style='font-weight: bold'>Nb participant : </p>";
+                            $sql = "SELECT prixMax FROM prixmax WHERE enchereId=".$value;
+                            echo "<p class='infoenchere'>".mysqli_num_rows(mysqli_query($db_handle,$sql))."</p>";
+                            echo "</div>";
+                            echo "<a href='objet.php?id=".$data['objetId']."' class='suprPanier'>Voir l'article</a>";
+                            echo "<a href='' class='suprPanier'>Supprimer</a>";
+                            echo "</div>";
+                            echo "<div class='monPanierPrixArticle'>";
+                            echo "<p>".$data['prix']."</p>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                    }
+                ?>
+            </div>
+            <!-- div qui comprend l'ensemble des meilleures Offres de l'acheteur -->
+            <div class="meilleuresOffres">
+                <h5 class="ssTitreCPanier">Meilleures Offres</h5>
+                <br>
+                <?php
+                    foreach ($_SESSION['panier']['offre'] as $key => $value) {
+                        $sql = "SELECT `objetId`, `prix` FROM achat WHERE id=".$value;
+                        $result=mysqli_query($db_handle,$sql);
+                        while($data = mysqli_fetch_assoc($result)){
+                            echo "<div class='articlePanier'>";
+                            $sql = "SELECT `titre`, `image1`FROM `objet` WHERE `id`=".$data['objetId'];
+                            $result2=mysqli_query($db_handle,$sql);
+                            while($data2 = mysqli_fetch_assoc($result2)){
+                                echo "<img src='images/".$data2['image1']."' width='100px'>";
+                                echo "<div class='titreDescR'>
+                                <p>Titre : ".$data2['titre']."</p>";
+                                echo "<p class='monPanierReference'>Référence : ".$data['objetId']."</p>";
+                            }
+                            $sql = "SELECT nbNegoc FROM offre WHERE achatId=".$value." AND acheteurId=".$_SESSION['id'];
+                            $result3=mysqli_query($db_handle,$sql);
+                            while($data3 = mysqli_fetch_assoc($result3)){
+                                echo "<p class='infoenchere'> ".$data3['nbNegoc']." offres réalisées </p>";
+                            }
+                            echo "<a href='objet.php?id=".$data['objetId']."' class='suprPanier'>Voir l'article</a>";
+                            echo "<a href='#' class='suprPanier'>Supprimer</a>";
+                            echo "</div>";
+                            echo "<div class='monPanierPrixArticle'>";
+                            echo "<p>".$data['prix']."</p>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                    }
+                ?>
+            </div>
+        </div>
+        <br>
+        <?php
+    }
+    include("./modules/footer.php"); ?>
 </body>
 </html>

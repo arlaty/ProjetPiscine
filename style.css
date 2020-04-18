@@ -616,6 +616,7 @@ footer .Contact{
 
 /*Autres boutons de la page*/
 .suprPanier {
+    text-decoration: none;
     width: 120px;
     height: 25px;
     background-color: #71ABDB;
@@ -624,14 +625,68 @@ footer .Contact{
     text-align: center;
     font-size: 16.5px;
     margin: auto;
-   margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 .suprPanier:hover{
+    text-decoration: none;
     opacity: 0.8;
 }
 /*FIN Mon Panier*/
 
 /*==================================================================================*/
+
+/*FINALICATION DE L'ACHAT*/
+.FinalisationDeAchat{
+    text-align: center;
+}
+
+.FinalisationDeAchat h1, h3{
+    color: #71ABDB;
+}
+.blocGaucheFA{
+    text-align: left;
+    width: 800px;
+    
+    padding-left: 20px;
+    margin: auto;
+}
+.blocDroitFA{
+    width: 800px;
+    margin: auto;
+    padding: 0px 50px 0px 50px;
+}
+.infoFinalisationAchat {
+    text-align: left;
+    width:700px;
+    
+    margin: auto;
+}
+.infoFinalisationAchat form input, select{
+   margin-left: 30px;
+   text-align: left;
+}
+.infoFinalisationAchat form{
+    display: flex;
+    justify-content: center;
+}
+
+.articleFin{
+    display: inline-flex;
+    align-items: flex-start;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.BoutonPayerLaCommande{
+background-color: gray;
+color: #71ABDB;
+border: #71ABDB
+width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+ border: 3px solid #71ABDB;
+ border-radius: 5px;
+}
+/*FIN DE FINALISATION DE L'ACHAT*/
 
 /*Responsive*/ 
 
