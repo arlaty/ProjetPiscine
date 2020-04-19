@@ -82,7 +82,7 @@
 		    		</tr>
 		    		<tr>
 		    			<td>Mot de passe  :<br></td>
-		    			<td><input type='text' name='mdp' required></td>
+		    			<td><input type='password' name='mdp' required></td>
 		    		</tr>
 		    		<tr>
 						<td colspan='2' align='center'>
