@@ -497,6 +497,16 @@ footer .Contact{
     border-left: 1px solid #ccc;
 }
 
+.monCompte h1{
+    font-size: 30px;
+    color: #71ABDB;
+}
+
+.monCompte h2{
+    font-size: 25px;
+    padding: 1.25em;
+}
+
 /*FIN Mon Compte*/
 
 /*========================================================================================*/ 

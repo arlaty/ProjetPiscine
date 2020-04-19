@@ -55,7 +55,7 @@
         </div>
         <div class="ligne2">
             <ul>
-                <li><a href="vitrine.php?main=Catego">Catégories</a></li>
+                <li><a href="vitrine.php?main=Categories">Catégories</a></li>
                 <li><a href="vitrine.php?main=Achat">Achats</a></li>
                 <?php
                     if (!isset($_SESSION['id'])){

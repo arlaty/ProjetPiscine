@@ -1,7 +1,28 @@
 <?php
     session_start();
     include("traitement/connexionBase.php");
-    
+    $filtreCategories = array(
+        'Ferraille ou Trésor' => 1,
+        'Bon pour le Musée' => 1,
+        'Accessoire VIP' => 1,
+    );
+    $filtreAchat = array(
+        'achat' => array('immediat' => 1,
+                            'selector' => 'OR',
+                            'offre' => 1),
+        'enchere' => 1,
+    );
+    if (isset($_GET['main'])){
+        if ($_GET['main']=="Categories"){
+            $main="categories";
+        }
+        if ($_GET['main']=="Achat"){
+            $main="achat";
+        }
+    }
+    else {
+        $main="";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -20,112 +41,168 @@
 <body>
     <?php include("./modules/header.php"); ?>
     <div class="vitrine">
-        <?php search($db_handle);?>
+        <?php search($db_handle,$main,$filtreCategories,$filtreAchat);?>
     </div>
     <?php include("./modules/footer.php"); ?>
 </body>
 </html>
 
 <?php
-    function search($db_handle){
-        $today = date("Y-m-d H:i:s");
-        if (isset($_GET['main'])){
-            if ($_GET['main']=="Catego"){?>
-                <h1>Ferrailles et Trésors:</h1>
-                <div class="tableObjet">
-                    <?php searchObjetParCategories($db_handle,"Ferraille ou Trésor");?>
-                </div>
-                <h1>Bon pour le musée:</h1>
-                <div class="tableObjet">
-                    <?php searchObjetParCategories($db_handle,"Bon pour le Musée");?>
-                </div>
-                <h1>Accessoires VIP:</h1>
-                <div class="tableObjet">
-                    <?php searchObjetParCategories($db_handle,"Accessoire VIP");?>
-                </div><?php
+    function search($db_handle,$main,$filtreCategories,$filtreAchat){
+        if ($main!=""){
+            if ($main=="categories"){
+                searchObjetParCategories($db_handle,$filtreCategories,$filtreAchat);
             }
-            else if ($_GET['main']=="Achat"){?>
-                <h1>Articles en vente immédiate:</h1>
-                <div class="tableObjet">
-                    <?php searchObjetParAchat($db_handle,"achat WHERE immediat=1");?>
-                </div>
-                <h1>Articles en vente à la meilleure offre:</h1>
-                <div class="tableObjet">
-                    <?php searchObjetParAchat($db_handle,"achat WHERE offre=1");?>
-                </div>
-                <h1>Articles en vente enchere:</h1>
-                <div class="tableObjet">
-                    <?php searchObjetParAchat($db_handle,"enchere WHERE fin>'$today'");?>
-                </div><?php
-            }
-            else {$i=0;?>
-                <div class="tableObjet">
-                    <?php searchObjetParAchat($db_handle,"achat WHERE immediat=1 OR offre=1");?>
-                    <?php searchObjetParAchat($db_handle,"enchere WHERE fin>'$today'");?>
-                </div><?php
+            if ($main=="achat"){
+                searchObjetParAchat($db_handle,$filtreCategories,$filtreAchat);
             }
         }
-        else {$i=0;?>
-            <div class="tableObjet">
-                <?php searchObjetParAchat($db_handle,"achat WHERE immediat=1 OR offre=1");?>
-                <?php searchObjetParAchat($db_handle,"enchere WHERE fin>'$today'");?>
-            </div><?php
+        else {
+            echo "<div class='tableObjet'>";
+            searchObjet($db_handle,$filtreCategories,$filtreAchat);
+            echo "</div>";
         }
     }
 
-	function searchObjetParAchat($db_handle,$typeAchat){
-        $sql = "SELECT `objetId`, `prix` FROM ".$typeAchat;
-        $result=mysqli_query($db_handle,$sql);
-        $i=0;
-        while($data = mysqli_fetch_assoc($result)){
-            echo "<a href='objet.php?id=".$data['objetId']."' class='objet'>";
-            $sql = "SELECT `titre`, `image1`FROM `objet` WHERE `id`=".$data['objetId'];
-            $result2=mysqli_query($db_handle,$sql);
-            while($data2 = mysqli_fetch_assoc($result2)){
-                echo "<img src='images/".$data2['image1']."'>";
-                echo "<p class='titre'>".$data2['titre']."</p>";
+    function searchObjet($db_handle,$filtreCategories,$filtreAchat){
+        foreach ($filtreCategories as $key => $value) {
+            if ($value==1)
+            {
+                $sql = "SELECT id, titre, image1 FROM objet WHERE categories LIKE '%$key%'";
+                $result=mysqli_query($db_handle,$sql);
+                $i=0;
+                while($data = mysqli_fetch_assoc($result)){
+                    $id=$data['id'];
+                    foreach ($filtreAchat as $key2 => $value2) {
+                        $sql = requeteAchat($key2,$value2)." AND objetId=".$data['id'];
+                        $result2=mysqli_query($db_handle,$sql);
+                        while($data2 = mysqli_fetch_assoc($result2)){
+                            displayobjet($data['id'],$data['image1'],$data['titre'],$data2['prix']);
+                            $i++;
+                        }
+                    }
+                }
+                if ($i==0)
+                {
+                    echo "<h2>Nous n'avons pas d'objets à vendre</h2>";
+                }
             }
-            echo "<p class='prix'>".$data['prix']."€</p>";
-            echo "</a>";
-            $i++;
         }
-        if (($i==0)&&(isset($_GET['main'])))
-        {
-            echo "<h2>Nous n'avons pas d'objets à vendre</h2>";
+    }
+
+    function searchObjetParCategories($db_handle,$filtreCategories,$filtreAchat){
+        foreach ($filtreCategories as $key => $value) {
+            if ($value==1)
+            {
+                echo "<h1>".$key.":</h1>";
+                echo "<div class='tableObjet'>";
+                $sql = "SELECT id, titre, image1 FROM objet WHERE categories LIKE '%$key%'";
+                $result=mysqli_query($db_handle,$sql);
+                $i=0;
+                while($data = mysqli_fetch_assoc($result)){
+                    $id=$data['id'];
+                    foreach ($filtreAchat as $key2 => $value2) {
+                        $sql = requeteAchat($key2,$value2)." AND objetId=".$data['id'];
+                        $result2=mysqli_query($db_handle,$sql);
+                        while($data2 = mysqli_fetch_assoc($result2)){
+                            displayobjet($data['id'],$data['image1'],$data['titre'],$data2['prix']);
+                            $i++;
+                        }
+                    }
+                }
+                if ($i==0)
+                {
+                    echo "<h2>Nous n'avons pas d'objets à vendre</h2>";
+                }
+                echo "</div>";
+            }
+        }
+    }
+
+    function searchObjetParAchat($db_handle,$filtreCategories,$filtreAchat){
+        foreach ($filtreAchat as $key => $value) {
+            if (gettype($value)=="integer"){
+                echo "<h1>Articles en vente enchere:</h1>";
+                echo "<div class='tableObjet'>";
+                $sql = requeteAchat($key,$value);
+                $result=mysqli_query($db_handle,$sql);
+                $i=0;
+                while($data = mysqli_fetch_assoc($result)){
+                    foreach ($filtreCategories as $key2 => $value2) {
+                        if ($value2==1){
+                            $sql = "SELECT titre,image1 FROM objet WHERE id=".$data['objetId']." AND categories LIKE '$key2'";
+                            $result2=mysqli_query($db_handle,$sql);
+                            while($data2 = mysqli_fetch_assoc($result2)){
+                                displayobjet($data['objetId'],$data2['image1'],$data2['titre'],$data['prix']);
+                                $i++;
+                            }
+                        }
+                    }
+                }
+                if ($i==0)
+                {
+                    echo "<h2>Nous n'avons pas d'objets à vendre</h2>";
+                }
+                echo "</div>";
+            }
+            else {
+                foreach ($filtreAchat[$key] as $key3 => $value3) {
+                    if (gettype($value3)=="integer"){
+                        if ($key3=="offre"){
+                            echo "<h1>Articles en vente à la meilleure offre:</h1>";
+                            $sql = "SELECT prix,objetId FROM achat WHERE offre=".$value['offre'];
+                        }
+                        else {
+                            echo "<h1>Articles en vente immédiate:</h1>";
+                            $sql = "SELECT prix,objetId FROM achat WHERE immediat=".$value['immediat'];
+                        }
+                        echo "<div class='tableObjet'>";
+                        $result=mysqli_query($db_handle,$sql);
+                        $i=0;
+                        while($data = mysqli_fetch_assoc($result)){
+                            foreach ($filtreCategories as $key2 => $value2) {
+                                if ($value2==1){
+                                    $sql = "SELECT titre,image1 FROM objet WHERE id=".$data['objetId']." AND categories LIKE '$key2'";
+                                    $result2=mysqli_query($db_handle,$sql);
+                                    while($data2 = mysqli_fetch_assoc($result2)){
+                                        displayobjet($data['objetId'],$data2['image1'],$data2['titre'],$data['prix']);
+                                        $i++;
+                                    }
+                                }
+                            }
+                        }
+                        if ($i==0)
+                        {
+                            echo "<h2>Nous n'avons pas d'objets à vendre</h2>";
+                        }
+                        echo "</div>";
+                    }
+                }
+            } 
         }
     }
     
-    function searchObjetParCategories($db_handle,$typeCatego){
-        $today = date("Y-m-d H:i:s");
-        $sql = "SELECT id, titre, image1 FROM objet WHERE categories LIKE '%$typeCatego%'";
-        $result=mysqli_query($db_handle,$sql);
-        $i=0;
-        while($data = mysqli_fetch_assoc($result)){
-            $id=$data['id'];
-            $sql = "SELECT prix FROM achat WHERE (immediat=1 OR offre=1) AND objetId='$id'";
-            $result2=mysqli_query($db_handle,$sql);
-            while($data2 = mysqli_fetch_assoc($result2)){
-                echo "<a href='objet.php?id=".$data['id']."' class='objet'>";
-                echo "<img src='images/".$data['image1']."'>";
-                echo "<p class='titre'>".$data['titre']."</p>";
-                echo "<p class='prix'>".$data2['prix']."€</p>";
-                echo "</a>";
-                $i++;
+    function requeteAchat($key,$value){
+        if (gettype($value)=="integer"){
+            $today = date("Y-m-d H:i:s");
+            if ($value==1){
+                $sql = "SELECT prix,objetId FROM enchere WHERE fin>'$today'";
             }
-            $sql = "SELECT prix FROM enchere WHERE fin>'$today' AND objetId='$id'";
-            $result2=mysqli_query($db_handle,$sql);
-            while($data2 = mysqli_fetch_assoc($result2)){
-                echo "<a href='objet.php?id=".$data['id']."' class='objet'>";
-                echo "<img src='images/".$data['image1']."'>";
-                echo "<p class='titre'>".$data['titre']."</p>";
-                echo "<p class='prix'>".$data2['prix']."€</p>";
-                echo "</a>";
-                $i++;
+            else {
+                $sql = "SELECT prix,objetId FROM enchere WHERE fin<='$today'";
             }
         }
-        if (($i==0)&&(isset($_GET['main'])))
-        {
-            echo "<h2>Nous n'avons pas d'objets à vendre</h2>";
+        else {
+            $sql = "SELECT prix,objetId FROM achat WHERE (immediat=".$value['immediat']." ".$value['selector']." offre=".$value['offre'].")";
         }
-	}
+        return $sql;
+    }
+
+    function displayobjet($id,$image1,$titre,$prix){
+        echo "<a href='objet.php?id=".$id."' class='objet'>";
+        echo "<img src='images/".$image1."'>";
+        echo "<p class='titre'>".$titre."</p>";
+        echo "<p class='prix'>".$prix."€</p>";
+        echo "</a>";
+    }
 ?>
