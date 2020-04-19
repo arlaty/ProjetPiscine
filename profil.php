@@ -45,7 +45,13 @@
 						}
 					?>
 					</li>
-				</ul>	
+					<div id='nav-admin' style='display:none'>
+					<ul>
+						<li><button class="btn2 active2" id="btn2-hist">Historique de ventes personel</button></li>
+						<li><button class="btn2" id="btn2-encours">Ventes personnelles en cours</button></li>
+						<li><button class="btn2" id="btn2-articles">Articles personnels en vente</button></li>
+					</div>
+				</ul>			
 			</nav>
 			<script>
 				// Add active class to the current button (highlight it) --> https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_active_element
@@ -67,111 +73,318 @@
 						$contenu.css('display', 'none'); 
 						$current = $contenu.eq(0);  
 						$current.css('display', 'block'); 
+						off();
 					});		      
 					$('#btn-vendeurs').click(function () { 
 						$contenu.css('display', 'none'); 
 						$current = $contenu.eq(1); 
 						$current.css('display', 'block'); 
+						off();
 					});
 					$('#btn-hist').click(function () { 
 						$contenu.css('display', 'none'); 
 						$current = $contenu.eq(2); 
 						$current.css('display', 'block'); 
+						off();
 					});
 					$('#btn-encours').click(function () { 
 						$contenu.css('display', 'none'); 
 						$current = $contenu.eq(3); 
 						$current.css('display', 'block'); 
+						off();
 					});			      
 					$('#btn-articles').click(function () { 
 						$contenu.css('display', 'none'); 
 						$current = $contenu.eq(4); 
 						$current.css('display', 'block'); 
+						off();
 					});		      
 					$('#btn-admin').click(function () { 
 						$contenu.css('display', 'none'); 
 						$current = $contenu.eq(5); 
 						$current.css('display', 'block'); 
+						on();
 					});
 				});
+
+				// Add active class to the current button (highlight it) --> https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_active_element
+				var header2 = document.getElementById("nav-admin");
+				var btns2 = header2.getElementsByClassName("btn2");
+				for (var i = 0; i < btns2.length; i++) {
+					btns2[i].addEventListener("click", function() {
+						var current2 = document.getElementsByClassName("active2");
+						current2[0].className = current2[0].className.replace(" active2", "");
+						this.className += " active2";
+					});
+				}
+
+				/*Navigation à gauche*/
+				$(document).ready(function () {
+					$contenuperso = $('.contentperso .contenuperso');
+					$('#btn2-hist').click(function () { 
+						$contenuperso.css('display', 'none'); 
+						$current2 = $contenuperso.eq(0); 
+						$current2.css('display', 'block'); 
+					});
+					$('#btn2-encours').click(function () { 
+						$contenuperso.css('display', 'none'); 
+						$current2 = $contenuperso.eq(1); 
+						$current2.css('display', 'block'); 
+					});			      
+					$('#btn2-articles').click(function () { 
+						$contenuperso.css('display', 'none'); 
+						$current2 = $contenuperso.eq(2); 
+						$current2.css('display', 'block'); 
+
+					});
+				});
+
+				function on() {
+					document.getElementById("nav-admin").style.display = "block";
+				}
+
+				function off() {
+					document.getElementById("nav-admin").style.display = "none";
+				}
+				function onAjout(){
+					document.getElementById("ajout-vendeur").style.display = "block";
+					document.getElementById("vitrine-vendeur").style.display = "none";
+					document.getElementById("btn-ajout-vendeur").style.display = "none";
+				} 
+
+				function offAjout(){
+					document.getElementById("ajout-vendeur").style.display = "none";
+					document.getElementById("vitrine-vendeur").style.display = "block";
+					document.getElementById("btn-ajout-vendeur").style.display = "block";
+				} 
+				function onAjout(){
+					document.getElementById("ajout-vendeur").style.display = "block";
+					document.getElementById("vitrine-vendeur").style.display = "none";
+					document.getElementById("btn-ajout-vendeur").style.display = "none";
+				} 
+
+				function pageVendeur(){
+					document.getElementById("vitrine-vendeur").style.display = "none";
+					document.getElementById("btn-ajout-vendeur").style.display = "none";
+					document.getElementById("vendeur").style.display = "block";
+				} 
+				function offpageVendeur(){
+
+					document.getElementById("vitrine-vendeur").style.display = "block";
+					document.getElementById("btn-ajout-vendeur").style.display = "block";
+					document.getElementById("vendeur").style.display = "none";
+				} 
 			</script>
 			<div class='content'>
-				<div class='contenu' id='profil'>
-					<h3>Profil</h3>
-					<hr color='black' width='50%' align='left'>
-					<!--VENDEUR  ACHETEUR ADMIN-->
-					<form> <!--formulaire à initialiser au valeur du profil-->
-	    				<table>
-							<?php if ($_SESSION['type']!="acheteur"){
-								echo"<tr>";
-								echo"<td>Photo de profil :</td>";
-								echo"<td><input type='file' id='img-profil' name='img-file'></td>";
-								echo"<td>Fond d'écran :</td>";
-								echo"<td><input type='file' id='img-fond' name='img-file'></td>";
-								echo"</tr>";
-							}?>
-							<tr>
-								<td>Nom :</td>
-								<td><input type='text' name='nom' required></td>
-							</tr>
-							<tr>
-								<td>Prénom :</td>
-								<td><input type='text' name='prenom' required></td>
-							</tr>
-							<tr>
-								<td>E-mail :</td>
-								<td><input type='email' name='email' required></td>
-							</tr>
-							<tr>
-								<td>Adresse (ligne 1) :</td>
-								<td><input type='text' name='ad1' required></td>
-							</tr>
-							<tr>
-								<td>Adresse (ligne 2) :</td>
-								<td><input type='text' name='ad2'></td>
-							</tr>
-							<tr>
-								<td>Ville :</td>
-								<td><input type='text' name='ville' required></td>
-							</tr>
-							<tr>
-								<td>Code Postal :</td>
-								<td><input type='text' name='CP' required></td>
-							</tr>
-							<tr>
-								<td>Pays :</td>
-								<td><input type='text' name='pays' required></td>
-							</tr>
-							<tr>
-								<td>Numéro de téléphone :</td>
-								<td><input type='text' name='tel' required></td>
-							</tr>
-							<tr>
-								<td><br><br>Identifiant :</td>
-								<td><input type='text' name='identifiant' required></td>
-							</tr>
-							<tr>
-								<td>Mot de passe  :</td>
-								<td><input type='password' name='mdp1' required></td>
-							</tr>
-							<tr>
-								<td>Confirmer le mot de passe  :</td>
-								<td><input type='password' name='mdp1' required></td>
-							</tr>
-				    		<tr>
-								<td colspan='2' align='center'>
-									<br><button id='modifier' type='submit'>Modifier</button>
-								</td>
-							</tr>
-						</table>
-			    	</form>
+				<div class='contenu' id='profil' >
+					<?php
+					if ($_SESSION['type']=="acheteur"){
+						$sql = "SELECT * FROM vendeur WHERE id=".$_SESSION['id'];
+						$result = mysqli_query($db_handle,$sql);
+						while($data = mysqli_fetch_assoc($result)){?>
+							<h3>Profil</h3>
+							<hr color='black' width='60%' align='left'>
+							<form>
+								<table>
+									<tr>
+										<td>Nom :</td>
+										<td><input type='text' name='nom' value="<?php echo $data['nom']?>"required></td>
+									</tr>
+									<tr>
+										<td>Prénom :</td>
+										<td><input type='text' name='prenom' value="<?php echo $data['prenom']?>"required></td>
+									</tr>
+									<tr>
+										<td>E-mail :</td>
+										<td><input type='email' name='email' value="<?php echo $data['email']?>"required></td>
+									</tr>
+									<tr>
+										<td>Adresse (ligne 1) :</td>
+										<td><input type='text' name='ad1' required></td>
+									</tr>
+									<tr>
+										<td>Adresse (ligne 2) :</td>
+										<td><input type='text' name='ad2'></td>
+									</tr>
+									<tr>
+										<td>Ville :</td>
+										<td><input type='text' name='ville' required></td>
+									</tr>
+									<tr>
+										<td>Code Postal :</td>
+										<td><input type='text' name='CP' required></td>
+									</tr>
+									<tr>
+										<td>Pays :</td>
+										<td><input type='text' name='pays' required></td>
+									</tr>
+									<tr>
+										<td>Numéro de téléphone :</td>
+										<td><input type='text' name='tel' required></td>
+									</tr>
+									<tr>
+										<td><br>Identifiant :</td>
+										<td><input type='text' name='identifiant' value="<?php echo $data['pseudo']?>"required></td>
+									</tr>
+									<tr>
+										<td>Mot de passe  :</td>
+										<td><input type='password' name='mdp1' value="<?php echo $data['password']?>"required></td>
+									</tr>
+									<tr>
+										<td>Confirmer le mot de passe  :</td>
+										<td><input type='password' name='mdp1' value="<?php echo $data['password']?>" required></td>
+									</tr>
+									<tr>
+										<td colspan='2' align='center'>
+											<br><button id='modifier' type='submit'>Modifier</button>
+										</td>
+									</tr>
+								</table>
+							</form><?php
+						}
+					}
+					else {
+						$sql = "SELECT * FROM vendeur WHERE id=".$_SESSION['id'];
+						$result = mysqli_query($db_handle,$sql);
+						while($data = mysqli_fetch_assoc($result)){?>
+							<h3>Profil</h3>
+							<hr color='black' width='60%' align='left'>
+							<form action="traitement/modifVendeur.php" method="post">
+								<table>
+									<tr>
+										<td>Photo de profil :</td>
+										<td><input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+											<input type='file' id='img-profil' name='profil'></td>
+										<td>Fond d'écran :</td>
+										<td><input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+											<input type='file' id='img-fond' name='fond'></td>
+									</tr>
+									<tr>
+										<td>Nom :</td>
+										<td><input type='text' name='nom' value="<?php echo $data['nom']?>"required></td>
+									</tr>
+									<tr>
+										<td>Prénom :</td>
+										<td><input type='text' name='prenom' value="<?php echo $data['prenom']?>"required></td>
+									</tr>
+									<tr>
+										<td>E-mail :</td>
+										<td><input type='email' name='email' value="<?php echo $data['email']?>"required></td>
+									</tr>
+									<tr>
+										<td><br>Identifiant :</td>
+										<td><input type='text' name='identifiant' value="<?php echo $data['pseudo']?>"required></td>
+									</tr>
+									<tr>
+										<td>Mot de passe  :</td>
+										<td><input type='password' name='mdp1' value="<?php echo $data['password']?>"required></td>
+									</tr>
+									<tr>
+										<td colspan='2' align='center'>
+											<br><button id='modifier' type='submit'>Modifier</button>
+										</td>
+									</tr>
+								</table>
+							</form><?php
+						}
+					}
+					?>
 				</div>
-				<div class="contenu" id="vendeurs" style='display:none'>
-					<h3>Comptes Vendeurs</h3>
-					<hr color="black" width="50%" align="left">
-					<p><br>AFFICHER Tous les comptes VENDEURs.<br><br><br><br><br><br><br><br><br><br></p>
+
+				<div class='contenu' id='vendeurs' style='display:none'>
+					<h3>Comptes Vendeurs </h3>
+					<hr color='black' width='80%' align='left'>
+					<div id='btn-ajout-vendeur' onclick='onAjout()'>+ Ajouter un Vendeur</div>
+					<div id='vitrine-vendeur'>
+						<div onclick='pageVendeur()'>
+							<?php
+							$sql = "SELECT photo,nom,prenom FROM vendeur WHERE admin=0";
+							$result = mysqli_query($db_handle,$sql);
+							while($data = mysqli_fetch_assoc($result)){
+								echo"<a href='#' class='vendeur'>";
+								echo"<img src='images/".$data['photo']."' style='width:120px'>";
+								echo"<p class='nom'>".$data['nom']."</p>";
+								echo"<p class='prenom'>".$data['prenom']."</p>";
+								echo"</a>";
+							}
+							?>
+						</div>
+					</div>
+					<div id='ajout-vendeur' style='display:none'>
+						<form action='traitement/inscription.php' method='post'>
+				    		<table>
+								<tr>
+									<td>Nom :</td>
+									<td><input type='text' name='nom' required></td>
+								</tr>
+								<tr>
+									<td>Prénom :</td>
+									<td><input type='text' name='prenom' required></td>
+								</tr>
+								<tr>
+									<td>E-mail :</td>
+									<td><input type='email' name='email' required></td>
+								</tr>
+								<tr>
+									<td><br>Identifiant :</td>
+									<td><input type='text' name='identifiant' required></td>
+								</tr>
+								<tr>
+									<td>Mot de passe  :</td>
+									<td><input type='password' name='mdp1' required></td>
+								</tr>
+					    		<tr>
+									<td colspan='2' align='center'>
+										<br><button id='create' type='submit' onclick='offAjout()'>Créer un compte Vendeur</button>
+									</td>
+								</tr>
+							</table>
+				    	</form>
+					</div>
+
+					<div id='vendeur' style='display:none'>
+						<?php
+						$sql = "SELECT * FROM vendeur WHERE admin=0";
+						$result = mysqli_query($db_handle,$sql);
+						while($data = mysqli_fetch_assoc($result)){?>
+							<h3>Profil du Vendeur</h3>
+							<hr color='black' width='80%' align='left'>
+							<img src='images/<?php echo $data['photo'] ?>' style='width:120px'>
+							<form>
+								<table>
+									<tr>
+										<td>Nom :</td>
+										<td><input type='text' name='nom' value="<?php echo $data['nom']?>"required></td>
+									</tr>
+									<tr>
+										<td>Prénom :</td>
+										<td><input type='text' name='prenom' value="<?php echo $data['prenom']?>"required></td>
+									</tr>
+									<tr>
+										<td>E-mail :</td>
+										<td><input type='email' name='email' value="<?php echo $data['email']?>"required></td>
+									</tr>
+									<tr>
+										<td><br>Identifiant :</td>
+										<td><input type='text' name='identifiant' value="<?php echo $data['pseudo']?>"required></td>
+									</tr>
+									<tr>
+										<td>Mot de passe  :</td>
+										<td><input type='password' name='mdp1' value="<?php echo $data['password']?>"required></td>
+									</tr>
+									<tr>
+										<td colspan='2' align='center'>
+											<br><button id='modify' type='submit' onclick="offpageVendeur()">Modifier</button> <button id='delete' type='submit' onclick="offpageVendeur()">Supprimer</button>
+										</td>
+									</tr>
+								</table>
+							</form><?php
+						}
+						?>
+					</div>
+
 				</div>
-				<div class='contenu' id='historique' style='display:none'>
+				<div class='contenu' id='historique' style='display:none' >
 					<h3>
 					<?php if($_SESSION['type']=="acheteur"){echo"Historique d'achats";}
 						  else {echo"Historiques de vente</li>";}?>
@@ -186,66 +399,28 @@
 				</div>
 				<div class='contenu' id='articles' style='display:none'>
 					<h3>Tous les articles en ventes</h3>
-					<hr color="black" width="50%" align="left">
+					<hr color="black" width="80%" align="left">
 					<?php diplayObjet($db_handle,"panier","tout","articles");?>
 				</div>
-				<div class="contenu" id="ventes-admin" style='display:none'>
+				<div class='contenu' id='ventes-admin' style='display:none'>
 					<h3>Compte Admin</h3>
-					<hr color="black" width="50%" align="left">
-					<nav id="nav-admin">
-						<ul>
-							<li><button class="btn2 active2" id="btn2-hist">Historique de ventes personel</button></li>
-							<li><button class="btn2" id="btn2-encours">Ventes personnelles en cours</button></li>
-							<li><button class="btn2" id="btn2-articles">Articles personnels en vente</button></li>
-						</ul>	
-					</nav>
-					<script>
-						// Add active class to the current button (highlight it) --> https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_active_element
-						var header2 = document.getElementById("nav-admin");
-						var btns2 = header2.getElementsByClassName("btn2");
-						for (var i = 0; i < btns2.length; i++) {
-						btns2[i].addEventListener("click", function() {
-						var current2 = document.getElementsByClassName("active2");
-						current2[0].className = current2[0].className.replace(" active2", "");
-						this.className += " active2";
-						});
-						}
-
-						/*Navigation à gauche*/
-						$(document).ready(function () {
-							$contenuperso = $('.contentperso .contenuperso');
-							$('#btn2-hist').click(function () { 
-								$contenuperso.css('display', 'none'); 
-								$current2 = $contenuperso.eq(0); 
-								$current2.css('display', 'block'); 
-							});
-							$('#btn2-encours').click(function () { 
-								$contenuperso.css('display', 'none'); 
-								$current2 = $contenuperso.eq(1); 
-								$current2.css('display', 'block'); 
-							});			      
-							$('#btn2-articles').click(function () { 
-								$contenuperso.css('display', 'none'); 
-								$current2 = $contenuperso.eq(2); 
-								$current2.css('display', 'block'); 
-							});
-						});
-					</script>
-		            <div class="contentperso">
-						<div class="contenuperso" id="historique" >
+					<hr color='black' width='90%' align='left'>
+					
+		            <div class='contentperso'>
+						<div class='contenuperso' id='historique' >
 							<h3>Historique de ventes</h3>
-							<hr color="black" width="50%" align="left">
-							<p><br>AFFICHER LES ARTCICLES QUI ONT ETE VENDUS PAR l'admin.<br><br></p>
+							<hr color='black' width='80%' align='left'>
+							<?php diplayObjet($db_handle,"historique","perso","historique");?>
 						</div>
-						<div class="contenuperso" id="ventes-en-cours" style='display:none'>
+						<div class='contenuperso' id='ventes-en-cours' style='display:none'>
 							<h3>Ventes en cours</h3>
-							<hr color="black" width="80%" align="left">
-							<p><br>AFFICHER LES VENTES EN COURS de l'admin.<br><br></p>
+							<hr color='black' width='80%' align='left'>
+							<?php diplayObjet($db_handle,"panier","perso","ventes-en-cours");?>
 						</div>
-						<div class="contenuperso" id="articles" style='display:none'>
+						<div class='contenuperso' id='articles' style='display:none'>
 							<h3>Articles</h3>
-							<hr color="black" width="50%" align="left">
-							<p><br>AFFICHER LES ARTCICLES EN VENTES de l'admin.<br><br></p>
+							<hr color='black' width='80%' align='left'>
+							<?php diplayObjet($db_handle,"panier","perso","articles");?>
 						</div>
 					</div>
 				</div>
@@ -310,10 +485,10 @@
 
 <?php
 	function searchPersoVentesImmediates($db_handle,$typeDemande){
-		echo "<h1>Articles en vente à la meilleure offre:</h1>";
+		echo "<h1>Articles en vente immédiates:</h1>";
 		echo "<div class='tableObjet'>";
 		$i=0;
-		foreach ($_SESSION[$typeDemande]['enchere'] as $key => $value) {
+		foreach ($_SESSION[$typeDemande]['immediat'] as $key => $value) {
 			$sql = "SELECT `objetId`, `prix` FROM achat WHERE id=".$value;
 			$result=mysqli_query($db_handle,$sql);
 			while($data = mysqli_fetch_assoc($result)){
@@ -335,7 +510,7 @@
 		echo "<h1>Articles en vente à la meilleure offre:</h1>";
 		echo "<div class='tableObjet'>";
 		$i=0;
-		foreach ($_SESSION[$typeDemande]['enchere'] as $key => $value) {
+		foreach ($_SESSION[$typeDemande]['offre'] as $key => $value) {
 			$sql = "SELECT `objetId`, `prix` FROM achat WHERE id=".$value;
 			$result=mysqli_query($db_handle,$sql);
 			while($data = mysqli_fetch_assoc($result)){

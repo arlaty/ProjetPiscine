@@ -1,7 +1,13 @@
 <?php
     include("./connexionBase.php");
     $today = date("Y-m-d H:i:s");
-    $sql = "SELECT id FROM acheteur WHERE (email='".$_POST['i/e']."' OR pseudo='".$_POST['i/e']."') AND password='".$_POST['mdp']."'";
+    if (isset($_GET['identi']))
+    {
+        $sql = "SELECT id FROM acheteur WHERE pseudo='".$_GET['identi']."' AND password='".$_GET['mdp']."'";
+    }
+    else {
+        $sql = "SELECT id FROM acheteur WHERE (email='".$_POST['i/e']."' OR pseudo='".$_POST['i/e']."') AND password='".$_POST['mdp']."'";
+    }
     $result=mysqli_query($db_handle,$sql);
     while($data = mysqli_fetch_assoc($result)){
         session_start();
@@ -107,5 +113,10 @@
             }
         }
     }
-    header("Location: ../index.php");
+    if (isset($_SESSION['id'])){
+        header("Location: ../index.php");
+    }
+    else {
+        header("Location: ../connexion.php");
+    }
 ?>

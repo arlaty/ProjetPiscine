@@ -19,23 +19,27 @@
 
 		function onAcheteur() {
 			$('.form-acheteur').css('display', '');
-
 			formAcheteurUnfilled();
 			offBtn();
 
 		}
 		function offAcheteur() {
 			$('.form-acheteur').css('display', 'none');
-
 			formAcheteurFilled();
 			onBtn();
 		}
 		function formAcheteurFilled(){
 			document.getElementById("carte").value= "Visa";
 			document.getElementById("tit").value= "1";
-			document.getElementById("num").value= "1";
-			document.getElementById("exp").value= "1111/11";
-			document.getElementById("crypt").value= "1";
+			document.getElementById("num").value= "111";
+			document.getElementById("exp").value= "11/1111";
+			document.getElementById("crypt").value= "11111111111111111";
+			document.getElementById("ad1").value= "1";
+			document.getElementById("ad2").value= "1";
+			document.getElementById("ville").value= "1";
+			document.getElementById("CP").value= "1";
+			document.getElementById("pays").value= "1";
+			document.getElementById("tel").value= "1";
 		}
 		function formAcheteurUnfilled(){
 			document.getElementById("carte").value= "";
@@ -43,8 +47,13 @@
 			document.getElementById("num").value= "";
 			document.getElementById("exp").value= "";
 			document.getElementById("crypt").value= "";
+			document.getElementById("ad1").value= "";
+			document.getElementById("ad2").value= "";
+			document.getElementById("ville").value= "";
+			document.getElementById("CP").value= "";
+			document.getElementById("pays").value= "";
+			document.getElementById("tel").value= "";
 		}
-
 
 		function etatBtn() {
 		  if(document.getElementById("check").checked){
@@ -54,7 +63,6 @@
 		  	offBtn();
 		  }
 		}
-
 		function onBtn(){
 			document.getElementById("create").disabled = false;}
 		function offBtn(){
@@ -82,7 +90,7 @@
 		    		</tr>
 		    		<tr>
 		    			<td>Mot de passe  :<br></td>
-		    			<td><input type='text' name='mdp' required></td>
+		    			<td><input type='password' name='mdp' required></td>
 		    		</tr>
 		    		<tr>
 						<td colspan='2' align='center'>
@@ -99,7 +107,7 @@
 	    	<hr color='black' width='80%'>
 	    	<br><br>
 			<?php if(isset($_GET["issues"])) echo "<p>L'utilisateur existe déjà</p>"?>
-	    	<form action='traitementInscri.php' method='post'>
+	    	<form action='traitement/inscription.php' method='post'>
 	    		<table>
 					<tr>
 						<td>Nom :</td>
@@ -111,31 +119,7 @@
 					</tr>
 					<tr>
 						<td>E-mail :</td>
-						<td><input type='text' name='email' required></td>
-					</tr>
-					<tr>
-						<td>Adresse (ligne 1) :</td>
-						<td><input type='text' name='ad1' required></td>
-					</tr>
-					<tr>
-						<td>Adresse (ligne 2) :</td>
-						<td><input type='text' name='ad2'></td>
-					</tr>
-					<tr>
-						<td>Ville :</td>
-						<td><input type='text' name='ville' required></td>
-					</tr>
-					<tr>
-						<td>Code Postal :</td>
-						<td><input type='text' name='CP' required></td>
-					</tr>
-					<tr>
-						<td>Pays :</td>
-						<td><input type='text' name='pays' required></td>
-					</tr>
-					<tr>
-						<td>Numéro de téléphone :</td>
-						<td><input type='text' name='tel' required></td>
+						<td><input type='email' name='email' required></td>
 					</tr>
 					<tr>
 						<td><br>Type :</td>
@@ -156,10 +140,6 @@
 								<option>Paypal</option>
 							</select>
 						</td>
-					</tr>
-					<tr class='form-acheteur'>
-						<td>Titulaire de la carte :</td>
-						<td><input type='text' id='tit' name='tit' required></td>
 					</tr>
 					<tr class='form-acheteur'>
 						<td>Numéro :</td>
@@ -184,6 +164,30 @@
 					<tr>
 						<td>Confirmer le mot de passe  :</td>
 						<td><input type='password' name='mdp1' required></td>
+					</tr>
+					<tr class='form-acheteur'>
+						<td>Adresse (ligne 1) :</td>
+						<td><input type='text' id='ad1' name='ad1' required></td>
+					</tr>
+					<tr class='form-acheteur'>
+						<td>Adresse (ligne 2) :</td>
+						<td><input type='text' id='ad2' name='ad2'></td>
+					</tr>
+					<tr class='form-acheteur'>
+						<td>Ville :</td>
+						<td><input type='text' id='ville' name='ville' required></td>
+					</tr>
+					<tr class='form-acheteur'>
+						<td>Code Postal :</td>
+						<td><input type='text' id='CP' name='CP' required></td>
+					</tr>
+					<tr class='form-acheteur'>
+						<td>Pays :</td>
+						<td><input type='text' id='pays' name='pays' required></td>
+					</tr>
+					<tr class='form-acheteur'>
+						<td>Numéro de téléphone :</td>
+						<td><input type='text' id='tel' name='tel' required></td>
 					</tr>
 					<tr class='form-acheteur'>
 						<td>

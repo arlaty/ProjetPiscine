@@ -1,34 +1,52 @@
 <?php
     session_start();
     include("connexionBase.php");
-
-    $sql = "SELECT id FROM acheteur WHERE (email='".$_POST['i/e']."' OR pseudo='".$_POST['i/e']."') AND password='".$_POST['mdp']."'";
+    $identifiant = isset($_POST["identifiant"])? $_POST["identifiant"]: "";
+	$email = isset($_POST["email"])? $_POST["email"]: "";
+	$mdp1 = isset($_POST["mdp1"])? $_POST["mdp1"]: "";
+    $sql = "SELECT id FROM acheteur WHERE email='".$email."' OR pseudo='".$identifiant."'";
     $result=mysqli_query($db_handle,$sql);
     if (mysqli_num_rows($result)!=0){
-        header("Location: connexion.php?issues");
+        header("Location: ../connexion.php?issues");
     }
-    $sql = "SELECT id FROM vendeur WHERE (email='".$_POST['i/e']."' OR pseudo='".$_POST['i/e']."') AND password='".$_POST['mdp']."'";
+    $sql = "SELECT id FROM vendeur WHERE email='".$email."' OR pseudo='".$identifiant."'";
     $result=mysqli_query($db_handle,$sql);
     if (mysqli_num_rows($result)!=0){
-        header("Location: connexion.php?issues");
+        header("Location: ../connexion.php?issues");
     }
-
-    $sql = "SELECT id FROM acheteur WHERE (email='".$_POST['i/e']."' OR pseudo='".$_POST['i/e']."') AND password='".$_POST['mdp']."'";
-    $result=mysqli_query($db_handle,$sql);
-    while($data = mysqli_fetch_assoc($result)){
-        $_SESSION['id']=$data['id'];
-        $_SESSION['type']="acheteur";
-    }
-    $sql = "SELECT id,admin FROM vendeur WHERE (email='".$_POST['i/e']."' OR pseudo='".$_POST['i/e']."') AND password='".$_POST['mdp']."'";
-    $result=mysqli_query($db_handle,$sql);
-    while($data = mysqli_fetch_assoc($result)){
-        $_SESSION['id']=$data['id'];
-        if (!$data['admin']){
-            $_SESSION['type']="vendeur";
+	$nom = isset($_POST["nom"])? $_POST["nom"]: "";
+    $prenom = isset($_POST["prenom"])? $_POST["prenom"]: "";
+    if ($_POST['type']=="acheteur"){
+        $carte = isset($_POST["carte"])? $_POST["carte"]: "";
+        $num = isset($_POST["num"])? $_POST["num"]: "";
+        $exp = isset($_POST["exp"])? $_POST["exp"]: "";
+        $expiration =$date->format('m/d');
+        $crypt = isset($_POST["crypt"])? $_POST["crypt"]: "";
+        $sql= "INSERT INTO `acheteur`(`pseudo`, `email`, `password`, `nom`, `prenom`, `carte`, `numero`, `expiration`, `codeSecurite`, `solde`, `plafond`) 
+        VALUES ('$identifiant','$email','$mdp1','$nom','$prenom','$carte','$num','$expiration','$crypt',100000,10000)";
+        $result = mysqli_query($db_handle, $sql);
+        while($data = mysqli_fetch_assoc($result)){
+            $id= $data['id'];
         }
-        else {
-            $_SESSION['type']="admin";
-        }
+        $ad1 = isset($_POST["ad1"])? $_POST["ad1"]: "";
+        $ad2 = isset($_POST["ad2"])? $_POST["ad2"]: "";
+        $ville = isset($_POST["ville"])? $_POST["ville"]: "";
+        $CP = isset($_POST["CP"])? $_POST["CP"]: "";
+        $pays = isset($_POST["pays"])? $_POST["pays"]: "";
+        $tel = isset($_POST["tel"])? $_POST["tel"]: "";
+        $sql= "INSERT INTO `coordonneeslivraison`(`acheteurId`, `nom`, `prenom`, `adresse1`, `adresse2`, `ville`, `codePostal`, `pays`, `phone`) 
+        VALUES ('$id','$nom','$prenom','$ad1','$ad2','$ville','$CP','$pays','$tel')";
+        $result = mysqli_query($db_handle, $sql);
     }
-    header("Location: index.php");
+	else {
+        $sql="INSERT INTO `vendeur`(`admin`, `pseudo`, `email`, `password`, `prenom`, `nom`, `photo`, `fondPrefere`) 
+        VALUES (0,'$identifiant','$email','$mdp1','$nom','$prenom',null,null)";
+        $result = mysqli_query($db_handle, $sql);
+    }
+    if(isset($_SESSION['id'])){
+        header("Location: ../profil.php");
+    }
+    else {
+        header("Location: connexion.php?identi=".$identifiant."?mdp=".$mdp1);
+    }
 ?>
