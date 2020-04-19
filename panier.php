@@ -64,7 +64,7 @@
                 <p><?php echo $total."€";?></p>
             </div>
         </div>
-        <button type="button" name="achat" class="finaliserAchat">Finaliser l'achat</button><br><br>
+        <a href="paiement.php" class="finaliserAchat">Finaliser l'achat</a><br><br>
         <hr width="75%"  color="#C8C9CA">
         <!-- div qui regroupe les enchères et les meilleures offre qui permet de les afficher sur le même ligne -->
         <div class="monPanierDev">

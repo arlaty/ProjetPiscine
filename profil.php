@@ -132,6 +132,41 @@
 <?php
 	function diplayObjet($db_handle,$typeDemande){
 		?>
+		<h1>Achats immédiats</h1>
+		<div class="tableObjet"><?php
+		foreach ($_SESSION[$typeDemande]['immediat'] as $key => $value) {
+			$sql = "SELECT `objetId`, `prix` FROM achat WHERE id=".$value;
+			$result=mysqli_query($db_handle,$sql);
+			while($data = mysqli_fetch_assoc($result)){
+				echo "<div class='articlePanier'>";
+				$sql = "SELECT `titre`, `image1`FROM `objet` WHERE `id`=".$data['objetId'];
+				$result2=mysqli_query($db_handle,$sql);
+				while($data2 = mysqli_fetch_assoc($result2)){
+					echo "<img src='images/".$data2['image1']."' width='100px'>";
+					echo "<div class='titreDescR'>
+					<p>Titre : ".$data2['titre']."</p>";
+					echo "<p class='monPanierReference'>Référence : ".$data['objetId']."</p>";
+				}
+				echo "<a href='objet.php?id=".$data['objetId']."' class='suprPanier'>Voir l'article</a>";
+				echo "<a href='#' class='suprPanier'>Supprimer</a>";
+				echo "</div>";
+				echo "<div class='monPanierPrixArticle'>";
+				echo "<p>".$data['prix']."</p>";
+				echo "</div>";
+				echo "</div>";
+				$total+=$data['prix'];
+			}
+		}?>
+		</div>
+		<h1>Meilleures Offres</h1>
+		<div class="tableObjet">
+			<?php searchObjetParAchat($db_handle,"achat WHERE offre=1");?>
+		</div>
+		<h1>Enchères</h1>
+		<div class="tableObjet">
+			<?php searchObjetParAchat($db_handle,"enchere WHERE fin>'$today'");?>
+		</div><?php
+
         <div class="achatsImmediats">
             <h5 class="ssTitreCPanier">Achats immédiats</h5>
             <br>

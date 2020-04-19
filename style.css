@@ -500,7 +500,7 @@ footer .Contact{
 h2{
  text-align:center;
 }
-.button {
+.ajout-content .button {
   transition-duration: 0.4s;
   cursor: pointer;
   width:200px;
@@ -526,7 +526,7 @@ h2{
     margin-left:30%;
 }
 
-form button{
+.ajout-content form button{
     margin-left : 150px;
     background-color: white;
     border: 2px solid #71ABDB;
@@ -542,7 +542,7 @@ form button{
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.8);
   z-index: 2;
   cursor: pointer;
 }
@@ -665,6 +665,7 @@ form button{
     color: #71ABDB;
     text-align: center;
     border-radius: 10px;
+    width: 200px;
     font-size: 20px;
     margin: auto;
     display: block;
@@ -737,14 +738,14 @@ form button{
     margin-bottom: 10px;
 }
 .BoutonPayerLaCommande{
-background-color: gray;
-color: #71ABDB;
-border: #71ABDB
-width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
- border: 3px solid #71ABDB;
- border-radius: 5px;
+    background-color: gray;
+    color: #71ABDB;
+    border: #71ABDB;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 3px solid #71ABDB;
+    border-radius: 5px;
 }
 /*FIN DE FINALISATION DE L'ACHAT*/
 
