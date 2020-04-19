@@ -62,7 +62,7 @@
                         echo "<li><a href='connexion.php'>Vendre</a></li>";
                     }
                     else if ($_SESSION['type']!="acheteur"){
-                        echo "<li><a href='#'>Vendre</a></li>";
+                        echo "<li><a href='ajout.php'>Vendre</a></li>";
                     }
                     else {
                         echo "<li><a href='traitement/deconnexion.php'>Déconnexion 

@@ -1,6 +1,7 @@
 <?php
     session_start();
     include("traitement/connexionBase.php");
+    
 ?>
 
 <!DOCTYPE html>
@@ -46,40 +47,37 @@
             else if ($_GET['main']=="Achat"){?>
                 <h1>Articles en vente immédiate:</h1>
                 <div class="tableObjet">
-                    <?php searchObjetParAchat($db_handle,"achat WHERE immediat=1",0);?>
+                    <?php searchObjetParAchat($db_handle,"achat WHERE immediat=1");?>
                 </div>
                 <h1>Articles en vente à la meilleure offre:</h1>
                 <div class="tableObjet">
-                    <?php searchObjetParAchat($db_handle,"achat WHERE offre=1",0);?>
+                    <?php searchObjetParAchat($db_handle,"achat WHERE offre=1");?>
                 </div>
                 <h1>Articles en vente enchere:</h1>
                 <div class="tableObjet">
-                    <?php searchObjetParAchat($db_handle,"enchere WHERE fin>'$today'",0);?>
+                    <?php searchObjetParAchat($db_handle,"enchere WHERE fin>'$today'");?>
                 </div><?php
             }
             else {$i=0;?>
                 <div class="tableObjet">
-                    <?php $i=searchObjetParAchat($db_handle,"achat WHERE immediat=1 OR offre=1",$i);?>
-                    <?php $i=searchObjetParAchat($db_handle,"enchere WHERE fin>'$today'",$i);if (($i%4!=0)&&($i!=0)){echo "</div>";}?>
+                    <?php searchObjetParAchat($db_handle,"achat WHERE immediat=1 OR offre=1");?>
+                    <?php searchObjetParAchat($db_handle,"enchere WHERE fin>'$today'");?>
                 </div><?php
             }
         }
         else {$i=0;?>
             <div class="tableObjet">
-                <?php $i=searchObjetParAchat($db_handle,"achat WHERE immediat=1 OR offre=1",$i);?>
-                <?php $i=searchObjetParAchat($db_handle,"enchere WHERE fin>'$today'",$i);if (($i%4!=0)&&($i!=0)){echo "</div>";}?>
+                <?php searchObjetParAchat($db_handle,"achat WHERE immediat=1 OR offre=1");?>
+                <?php searchObjetParAchat($db_handle,"enchere WHERE fin>'$today'");?>
             </div><?php
         }
     }
 
-	function searchObjetParAchat($db_handle,$typeAchat,$i){
+	function searchObjetParAchat($db_handle,$typeAchat){
         $sql = "SELECT `objetId`, `prix` FROM ".$typeAchat;
         $result=mysqli_query($db_handle,$sql);
+        $i=0;
         while($data = mysqli_fetch_assoc($result)){
-            if ($i%4==0)
-            {
-                echo "<div class='tablerow'>";
-            }
             echo "<a href='objet.php?id=".$data['objetId']."' class='objet'>";
             $sql = "SELECT `titre`, `image1`FROM `objet` WHERE `id`=".$data['objetId'];
             $result2=mysqli_query($db_handle,$sql);
@@ -89,22 +87,12 @@
             }
             echo "<p class='prix'>".$data['prix']."€</p>";
             echo "</a>";
-            if ($i%4==3)
-            {
-                echo "</div>";
-            }
             $i++;
         }
-        if (($i%4!=3)&&($i!=0)&&(isset($_GET['main'])))
-        {
-            echo "</div>";
-        }
-
         if (($i==0)&&(isset($_GET['main'])))
         {
             echo "<h2>Nous n'avons pas d'objets à vendre</h2>";
         }
-        return $i;
     }
     
     function searchObjetParCategories($db_handle,$typeCatego){
@@ -113,10 +101,6 @@
         $result=mysqli_query($db_handle,$sql);
         $i=0;
         while($data = mysqli_fetch_assoc($result)){
-            if ($i%4==0)
-            {
-                echo "<div class='tablerow'>";
-            }
             $id=$data['id'];
             $sql = "SELECT prix FROM achat WHERE (immediat=1 OR offre=1) AND objetId='$id'";
             $result2=mysqli_query($db_handle,$sql);
@@ -126,10 +110,6 @@
                 echo "<p class='titre'>".$data['titre']."</p>";
                 echo "<p class='prix'>".$data2['prix']."€</p>";
                 echo "</a>";
-                if ($i%4==3)
-                {
-                    echo "</div>";
-                }
                 $i++;
             }
             $sql = "SELECT prix FROM enchere WHERE fin>'$today' AND objetId='$id'";
@@ -140,16 +120,8 @@
                 echo "<p class='titre'>".$data['titre']."</p>";
                 echo "<p class='prix'>".$data2['prix']."€</p>";
                 echo "</a>";
-                if ($i%4==3)
-                {
-                    echo "</div>";
-                }
                 $i++;
             }
-        }
-        if (($i%4!=3)&&($i!=0)&&(isset($_GET['main'])))
-        {
-            echo "</div>";
         }
         if (($i==0)&&(isset($_GET['main'])))
         {

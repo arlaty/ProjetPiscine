@@ -13,17 +13,22 @@
             'enchere' => array(),
         );
         $_SESSION['historique']= array(
-            'achat' => array(),
+            'immediat' => array(),
+            'offre' => array(),
             'enchere' => array(),
         );
-        $sql = "SELECT id,immediat,offre FROM achat WHERE acheteurId=".$data['id'];
-        $result2=mysqli_query($db_handle,$sql);
-        while($data2 = mysqli_fetch_assoc($result2)){
-            if ($data2['immediat']==0){
-                array_push($_SESSION['historique']['achat'],$data2['id']);
-            }
-            else{
-                array_push($_SESSION['panier']['immediat'],$data2['id']);
+        $sql = "SELECT achatId FROM immediat WHERE acheteurId=".$data['id'];
+        $result3=mysqli_query($db_handle,$sql);
+        while($data3 = mysqli_fetch_assoc($result3)){
+            $sql = "SELECT immediat FROM achat WHERE id=".$data3['achatId'];
+            $result2=mysqli_query($db_handle,$sql);
+            while($data2 = mysqli_fetch_assoc($result2)){
+                if ($data2['immediat']==0){
+                    array_push($_SESSION['historique']['immediat'],$data3['achatId']);
+                }
+                else{
+                    array_push($_SESSION['panier']['immediat'],$data3['achatId']);
+                }
             }
         }
         $sql = "SELECT achatId FROM offre WHERE acheteurId=".$data['id'];
@@ -33,7 +38,7 @@
             $result2=mysqli_query($db_handle,$sql);
             while($data2 = mysqli_fetch_assoc($result2)){
                 if ($data2['offre']==0){
-                    array_push($_SESSION['historique']['achat'],$data3['achatId']);
+                    array_push($_SESSION['historique']['offre'],$data3['achatId']);
                 }
                 else{
                     array_push($_SESSION['panier']['offre'],$data3['achatId']);
@@ -72,20 +77,23 @@
             'enchere' => array(),
         );
         $_SESSION['historique']= array(
-            'achat' => array(),
+            'immediat' => array(),
+            'offre' => array(),
             'enchere' => array(),
         );
-        $sql = "SELECT id,immediat,offre FROM achat WHERE acheteurId=".$data['id'];
+        $sql = "SELECT id,immediat,offre FROM achat WHERE vendeurId=".$data['id'];
         $result2=mysqli_query($db_handle,$sql);
         while($data2 = mysqli_fetch_assoc($result2)){
             if (($data2['immediat']==0)&&($data2['offre']==0)){
-                array_push($_SESSION['historique']['achat'],$data2['id']);
+                array_push($_SESSION['historique']['immediat'],$data2['id']);
             }
-            else if ($data2['immediat']==1){
-                array_push($_SESSION['panier']['immediat'],$data2['id']);
-            }
-            else{
-                array_push($_SESSION['panier']['offre'],$data2['id']);
+            else {
+                if ($data2['immediat']==1){
+                    array_push($_SESSION['panier']['immediat'],$data2['id']);
+                }
+                if ($data2['offre']==1){
+                    array_push($_SESSION['panier']['offre'],$data2['id']);
+                }
             }
         }
         $sql = "SELECT id,fin FROM enchere WHERE vendeurId=".$data['id'];
