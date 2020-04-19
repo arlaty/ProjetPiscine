@@ -18,8 +18,8 @@
 		}
 
 		function onAcheteur() {
-			$('.form-acheteur').css('display', '');
-			formAcheteurUnfilled();
+			$('.form-acheteur').css('display', 'block');
+			//formAcheteurUnfilled();
 			offBtn();
 
 		}
@@ -30,10 +30,9 @@
 		}
 		function formAcheteurFilled(){
 			document.getElementById("carte").value= "Visa";
-			document.getElementById("tit").value= "1";
-			document.getElementById("num").value= "111";
-			document.getElementById("exp").value= "11/1111";
-			document.getElementById("crypt").value= "11111111111111111";
+			document.getElementById("num").value= "1111111111111111";
+			document.getElementById("exp").value= "1111-11";
+			document.getElementById("crypt").value= "111";
 			document.getElementById("ad1").value= "1";
 			document.getElementById("ad2").value= "1";
 			document.getElementById("ville").value= "1";
@@ -43,7 +42,6 @@
 		}
 		function formAcheteurUnfilled(){
 			document.getElementById("carte").value= "";
-			document.getElementById("tit").value= "";
 			document.getElementById("num").value= "";
 			document.getElementById("exp").value= "";
 			document.getElementById("crypt").value= "";
@@ -143,7 +141,7 @@
 					</tr>
 					<tr class='form-acheteur'>
 						<td>Numéro :</td>
-						<td><input type='number' id='num' name='num'pattern='[0-9]{16}' required></td>
+						<td><input type='number' id='num' name='num' pattern='[0-9]{16}' required></td>
 					</tr>
 					<tr class='form-acheteur'>
 						<td>Date d'expiration :</td>
