@@ -111,7 +111,7 @@
 					</tr>
 					<tr>
 						<td>E-mail :</td>
-						<td><input type='text' name='email' required></td>
+						<td><input type='email' name='email' required></td>
 					</tr>
 					<tr>
 						<td>Adresse (ligne 1) :</td>
