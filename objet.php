@@ -132,16 +132,17 @@
                       echo "<p class='prix'> Prix : ".$prix."€</p><div class='button'>";
                       echo"<a href='";
                       if (isset($_SESSION['id'])){
+                        $type ="newEnchere";
+                        $fin = $data4['fin'];
+                        echo "#'";
+                        $id=$data4['id'];
                         if ($_SESSION['type']=="acheteur"){
-                          echo "#' id='myBtn'";
-                          $type ="newEnchere";
+                          echo" id='myBtn'";
                           foreach ($_SESSION['panier']['enchere'] as $key => $value) {
                             if ($value==$data4['id']){
                               $type = "enchere";
-                              $id=$data4['id'];
                             }
                           }
-                          $fin = $data4['fin'];
                         }
                       }
                       else {echo "connexion.php'";}

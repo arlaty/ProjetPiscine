@@ -41,5 +41,19 @@
         $sql="INSERT INTO `prixmax`(`enchereId`, `acheteurId`, `prixMax`) VALUES ('$id','$id_user','$prix')";
         array_push($_SESSION['panier']['enchere'],$id);
         $result = mysqli_query($db_handle, $sql);
+        $sql="SELECT * FROM `prixmax` WHERE enchereId='$id'";
+        $result2 = mysqli_query($db_handle, $sql);
+        while($data2 = mysqli_fetch_assoc($result)) {
+            $sql="SELECT * FROM `enchere` WHERE id='$id'";
+            $result3 = mysqli_query($db_handle, $sql);
+            while($data3 = mysqli_fetch_assoc($result)) {
+                if ($data2['prixMax']>$data3['prix']){
+                    $newprix=$data2['prix'];
+                    $achaId=$data2['acheteurId'];
+                    $sql="UPDATE `enchere` SET `prix`='$newprix',`acheteurId`='$achaId' WHERE 1";
+                    $result4 = mysqli_query($db_handle, $sql);
+                }
+            }
+        }
     }
 ?>
