@@ -110,10 +110,11 @@
                       }
                     }
                     $today = date("Y-m-d H:i:s");
-                    $sql = "SELECT `prix` FROM enchere WHERE fin>'$today' AND objetId=".$data['id'];
+                    $sql = "SELECT `objetId`, `prix`,fin FROM enchere WHERE objetId=".$data['id'];
                     $result4=mysqli_query($db_handle,$sql);
                     while($data4 = mysqli_fetch_assoc($result4)){
-                      $prix = $data2['prix'];
+                      $prix = $data4['prix'];
+                      $fin = $data4['fin'];
                       $type = "offre";
                       echo "<p class='prix'> Prix : ".$prix."€</p><div class='button'>";
                       echo"<a href='";
@@ -128,7 +129,7 @@
                         <div class="headerBoiteDeNego">
                           <span class="fermerNego">&times;</span>
                           <h2><?php if ($type=="offre"){echo "Négocier!";}
-                                else {echo "Enchérir";}?>
+                                else {echo "Enchérir!";}?>
                           </h2>
                         </div>
                         <div class="bodyBoiteDeNego">
@@ -139,15 +140,26 @@
                               <p><?php echo $data['titre']?></p>
                               <p class='monPanierReference'>Référence : <?php echo $data['id']?></p>
                               <?php
-                              if (isset($_SESSION['panier']['offre'][$data2['id']])){
-                                $sql = "SELECT * FROM offre WHERE achatId=".$_SESSION['panier']['offre'][$data2['id']]." AND acheteurId=".$_SESSION['id'];
-                                $result3=mysqli_query($db_handle,$sql);
-                                while($data3 = mysqli_fetch_assoc($result3)){
-                                  echo "<p class='infoenchere'> ".$data3['nbNegoc']." offres réalisées </p>";
+                              if ($type=="offre"){
+                                if (isset($_SESSION['panier']['offre'][$data2['id']])){
+                                  $sql = "SELECT * FROM offre WHERE achatId=".$_SESSION['panier']['offre'][$data2['id']]." AND acheteurId=".$_SESSION['id'];
+                                  $result3=mysqli_query($db_handle,$sql);
+                                  while($data3 = mysqli_fetch_assoc($result3)){
+                                    echo "<p class='infoenchere'> ".$data3['nbNegoc']." offres réalisées </p>";
+                                  }
+                                }
+                                else {
+                                  echo "<p class='infoenchere'> 0 offre réalisée </p>";
                                 }
                               }
                               else {
-                                echo "<p class='infoenchere'> 0 offre réalisée </p>";
+                                echo "<div class='tpsRestant'>";
+                                echo "<p class='infoenchere' style='font-weight: bold'>Temps restant : </p>";
+                                $today = new DateTime("now");
+                                $fin2= new DateTime($fin);
+                                $diff= date_diff($fin2,$today);
+                                echo "<p class='infoenchere' > ".$diff->format("%a j %h h")." </p>";
+                                echo "</div>";
                               }
                               ?>
                             </div>
@@ -163,11 +175,14 @@
                               ?>
                             </div>
                           </div>
-                          <form>
+                          <form action="traitement/offre.php" method="post">
                             <table>
                               <tr>
-                                <td>Mon Prix :</td>
-                                <td> <input type='text' name='<?php if($_SESSION['type']=="acheteur"){echo "prixAcheteur";}else{echo "prixVendeur";}?>'  placeholder="votre prix" autocomplete="test" required> €</td>
+                                <td>Mon Prix <?php if ($type=="enchere"){echo "max";}?>:</td>
+                                <td> <input type='text' name='<?php 
+                                if ($type=="offre"){if($_SESSION['type']=="acheteur"){echo "prixAcheteur";}else{echo "prixVendeur";}}
+                                else{ echo "prixMax";}
+                                ?>'  placeholder="votre prix" autocomplete="test" required> €</td>
                               </tr>
                               <tr>
                                 <td>Envoyer mon Offre :</td>
