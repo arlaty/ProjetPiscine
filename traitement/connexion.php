@@ -29,22 +29,12 @@
             $sql = "SELECT immediat FROM achat WHERE id=".$data3['achatId'];
             $result2=mysqli_query($db_handle,$sql);
             while($data2 = mysqli_fetch_assoc($result2)){
-                if ($data2['immediat']==0){
+                if (($data2['immediat']==0)&&($data2['offre']==0)){
                     array_push($_SESSION['historique']['immediat'],$data3['achatId']);
-                }
-                else{
-                    array_push($_SESSION['panier']['immediat'],$data3['achatId']);
-                }
-            }
-        }
-        $sql = "SELECT achatId FROM offre WHERE acheteurId=".$data['id'];
-        $result3=mysqli_query($db_handle,$sql);
-        while($data3 = mysqli_fetch_assoc($result3)){
-            $sql = "SELECT offre FROM achat WHERE id=".$data3['achatId'];
-            $result2=mysqli_query($db_handle,$sql);
-            while($data2 = mysqli_fetch_assoc($result2)){
-                if ($data2['offre']==0){
                     array_push($_SESSION['historique']['offre'],$data3['achatId']);
+                }
+                else if ($data2['offre']==0){
+                    array_push($_SESSION['panier']['immediat'],$data3['achatId']);
                 }
                 else{
                     array_push($_SESSION['panier']['offre'],$data3['achatId']);

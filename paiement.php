@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    include("traitement/connexionBase.php");
+?>
 <!DOCTYPE html>
 <html >
 <head lang="en">
@@ -59,98 +63,68 @@
         <h3>Récapitulatif des achats :</h3>
         <hr width="50%" color="gray">
         <div class="blocGaucheFA">
-            <div class="articleFin"> 
-                <img src="images/objet1(1).jpg" width="100px">
-                <div class="titreDescR">
-                    <p>Titre : Pièce ancienne Francaise, 100 Francs, en argent, Panthéon, 1985, rare.</p>
-                    <p class="monPanierReference">Référence : 123456789</p>
-                    <a href="#" class="suprPanier">Supprimer</a>
-                </div>
-                <div class="monPanierPrixArticle">
-                    <p>12€</p>
-                </div>
-            </div>
+            <?php
+                $total=0;
+                foreach ($_SESSION['panier']['immediat'] as $key => $value) {
+                    $sql = "SELECT `objetId`, `prix` FROM achat WHERE id=".$value;
+                    $result=mysqli_query($db_handle,$sql);
+                    while($data = mysqli_fetch_assoc($result)){
+                        echo "<div class='articleFin'>";
+                        $sql = "SELECT `titre`, `image1`FROM `objet` WHERE `id`=".$data['objetId'];
+                        $result2=mysqli_query($db_handle,$sql);
+                        while($data2 = mysqli_fetch_assoc($result2)){
+                            echo "<img src='images/".$data2['image1']."' width='100px'>";
+                            echo "<div class='titreDescR'>
+                            <p>Titre : ".$data2['titre']."</p>";
+                            echo "<p class='monPanierReference'>Référence : ".$data['objetId']."</p>";
+                        }
+                        echo "</div>";
+                        echo "<div class='monPanierPrixArticle'>";
+                        echo "<p>".$data['prix']."</p>";
+                        echo "</div>";
+                        echo "</div>";
+                        $total+=$data['prix'];
+                    }
+                }
+            ?>
         </div>
         <hr width="50%" color="gray">
         <div class="blocDroitFA">
-            <p style="float: left;">Objets (2)</p>
-            <p style="float: right;"> Total = 24€</p> 
+            <p style="float: left;">Objets (<?php echo sizeof($_SESSION['panier']['immediat']);?>)</p>
+            <p style="float: right;"> Total = <?php echo $total."€";?></p> 
         </div>
-        <h3><br><br>Lieu de livraison et mode de paiement:</h3>
+        <h3><br><br>Mode de paiement:</h3>
         <hr width="50%" color="gray">
         <div class="infoFinalisationAchat">
-
-            <form action="" method="post">
-                <table>
-                    <tr>
-                        <td>Adresse de livraison :</td>
-                        <td><br>
-                            <input type="radio" id="type1" name="type"  onclick="offAdresse()" >
-                            <label for="acheteur">Adresses enregistrées</label><br>
-                            <input type="radio" id="type2" name="type" onclick="onAdresse()" checked>
-                            <label for="vendeur">Nouvelle adrresse</label>
-                        </td>
-                    </tr>
-                    <tr class="adressesEnregistrées" style="display: none;">
-                        <td>Adresses enregistrées :</td><br>
-                        <td>
-                            <select name="adresses" size="1">
-                                <option>adresse 1</option>
-                                <option>adresse 2</option>
-                            </select>
-                        </td><br>
-                    </tr>
-                    <tr class="newAdresse">
-                        <td>Adresse (ligne 1) :</td>
-                        <td><input type="text" id="ad1" required></td>
-                    </tr>
-                    <tr class="newAdresse">
-                        <td>Adresse (ligne 2) :</td>
-                        <td><input type="text" id="ad2"></td>
-                    </tr>
-                    <tr class="newAdresse">
-                        <td>Ville :</td>
-                        <td><input type="text" id="ville" required></td>
-                    </tr>
-                    <tr class="newAdresse">
-                        <td>Code Postal:</td>
-                        <td><input type="text" id="cp" required required ></td>
-                    </tr>
-                    <tr class="newAdresse">
-                        <td>Pays ou région:</td>
-                        <td><input type="text" id="pr" required></td>
-                    </tr>
-                    <tr class="newAdresse">
-                        <td>Numéro de téléphone:</td>
-                        <td><input type="text" id="telephone" required pattern="[0-9]{10}"></td>
-                    </tr>
+            <form action="traitement/paiement" method="post">
+                <table>  
                     <tr>
                         <td>Titulaire de la carte :</td>
                         <td><input type="text" id="tit" required></td>
                     </tr>
                     <tr>
-                        <td>Type de carte :</td><br>
-                        <td>
-                            <select name="carte" size="1">
-                                <option>Visa</option>
-                                <option>MasterCard</option>
-                                <option>American Express</option>
-                                <option>Paypal</option>
-                            </select>
-                        </td><br>
-                    </tr>
-                    <tr>
-                        <td>Numéro :</td>
-                        <td><input type="text" required pattern="[0-9]{16}"></td>
-                    </tr>
-                    <tr>
-                        <td>Date d'expiration :</td>
-                        <td><input type="month" id="exp" required></td>
-                    </tr>
-                    <tr>
-                        <td>Cryptogramme :</td>
-                        <td><input type="password" id="crypt"required pattern="[0-9]{3,4}"></td>
-                    </tr>
+						<td><br>Type de carte :</td>
+						<td>
+							<select name='carte' id='carte' size='1'>
+								<option>Visa</option>
+								<option>MasterCard</option>
+								<option>American Express</option>
+								<option>Paypal</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Numéro :</td>
+						<td><input type='number' id='num' name='num' pattern='[0-9]{16}' required></td>
+					</tr>
+					<tr>
+						<td>Date d'expiration :</td>
+						<td><input type='month' id='exp' name='exp' required></td>
+					</tr>
+					<tr>
+						<td>Cryptogramme :</td>
+						<td><input type='number' id='crypt' name='crypt' pattern='[0-9]{3,4}' required></td>
+					</tr>
                     <tr>
                         <td colspan="2" align="center">
                             <br><input type="submit" id="myBtn" value="Finaliser l'achat" class="BoutonPayerLaCommande"><br>

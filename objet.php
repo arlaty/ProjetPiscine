@@ -203,6 +203,8 @@
                                     </tr>
                                   </table>
                                 </form>
+                                <a href=<?php echo"traitement/finOffre.php?suppr=&achatId=".$value."&acheteurId=".$data3['acheteurId'];?> class="suprPanier"> Refuser</a>
+                                <a href=<?php echo"traitement/finOffre.php?valider=&achatId=".$value."&acheteurId=".$data3['acheteurId'];?> class="suprPanier"> Accepter</a>
                                 <?php
                               }
                               else {
@@ -218,9 +220,8 @@
                                 $prix2=$data3['prixVendeur'];
                                 if ($nbNegoc==9){
                                   ?>
-                                  <form action="<?php echo"traitement/offre.php?id=".$id."&acheteur=".$data3['acheteurId']."&objetId=".$data['id'];?>" method="post">
-                                    
-                                  </form>
+                                    <a href=<?php echo"traitement/finOffre.php?suppr=&achatId=".$value."&acheteurId=".$data3['acheteurId'];?> class="suprPanier"> Refuser</a>
+                                    <a href=<?php echo"traitement/finOffre.php?valider=&achatId=".$value."&acheteurId=".$data3['acheteurId'];?> class="suprPanier"> Accepter</a>
                                  <?php
                                 }
                                 else if ($nbNegoc%2==1){
@@ -241,6 +242,8 @@
                                       </tr>
                                     </table>
                                   </form>
+                                  <a href=<?php echo"traitement/finOffre.php?suppr=&achatId=".$value."&acheteurId=".$data3['acheteurId'];?> class="suprPanier"> Refuser</a>
+                                  <a href=<?php echo"traitement/finOffre.php?valider=&achatId=".$value."&acheteurId=".$data3['acheteurId'];?> class="suprPanier"> Accepter</a>
                                   <?php
                                 }
                                 else {

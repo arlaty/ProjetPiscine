@@ -201,7 +201,7 @@
 							>
 							<h3>Profil</h3>
 							<hr color='black' width='60%' align='left'>
-							<form>
+							<form action="traitement/modifAcheteur.php" method="post">
 								<table>
 									<tr>
 										<td>Nom :</td>
@@ -215,71 +215,29 @@
 										<td>E-mail :</td>
 										<td><input type='email' name='email' value="<?php echo $data['email']?>"required></td>
 									</tr>
-									<tr>
-				                        <td>Adresse de livraison :</td>
-				                        <td><br>
-				                            <input type="radio" id="old" name="type"  onclick="offNewAdresse()" >
-				                            <label for="acheteur">Adresses enregistrées</label><br>
-				                            <input type="radio" id="new" name="type" onclick="onNewAdresse()" checked>
-				                            <label for="vendeur">Nouvelle adrresse</label>
-				                        </td>
-				                    </tr>
-				                    <tr class="adressesEnregistrees" style="display: none;">
-				                        <td>Adresses enregistrées :</td><br>
-				                        <td>
-				                            <select name="adresses" size="1">
-				                                <option>adresse 1</option>
-				                                <option>adresse 2</option>
-				                            </select>
-				                        </td><br>
-				                    </tr>
-				                    <tr class="newAdresse">
-				                        <td>Adresse (ligne 1) :</td>
-				                        <td><input type="text" id="ad1" required></td>
-				                    </tr>
-				                    <tr class="newAdresse">
-				                        <td>Adresse (ligne 2) :</td>
-				                        <td><input type="text" id="ad2"></td>
-				                    </tr>
-				                    <tr class="newAdresse">
-				                        <td>Ville :</td>
-				                        <td><input type="text" id="ville" required></td>
-				                    </tr>
-				                    <tr class="newAdresse">
-				                        <td>Code Postal:</td>
-				                        <td><input type="text" id="CP" required required ></td>
-				                    </tr>
-				                    <tr class="newAdresse">
-				                        <td>Pays ou région:</td>
-				                        <td><input type="text" id="pays" required></td>
-				                    </tr>
-				                    <tr class="newAdresse">
-				                        <td>Numéro de téléphone:</td>
-				                        <td><input type="text" id="tel" required pattern="[0-9]{10}"></td>
-				                    </tr>
-									<tr class="oldAdresse">
+									<tr >
 										<td>Adresse (ligne 1) :</td>
-										<td><input type='text' name='ad1' required></td>
+										<td><input type='text' name='ad1' value="<?php echo $data['adresse1']?>"required></td>
 									</tr>
-									<tr class="oldAdresse">
+									<tr>
 										<td>Adresse (ligne 2) :</td>
-										<td><input type='text' name='ad2'></td>
+										<td><input type='text' name='ad2' value="<?php echo $data['adresse2']?>"></td>
 									</tr>
-									<tr class="oldAdresse">
+									<tr>
 										<td>Ville :</td>
-										<td><input type='text' name='ville' required></td>
+										<td><input type='text' name='ville' value="<?php echo $data['ville']?>" required></td>
 									</tr>
-									<tr class="oldAdresse">
+									<tr>
 										<td>Code Postal :</td>
-										<td><input type='text' name='CP' required></td>
-									</tr class="oldAdresse">
+										<td><input type='text' name='CP' value="<?php echo $data['cp']?>"required></td>
+									</tr>
 									<tr>
 										<td>Pays :</td>
-										<td><input type='text' name='pays' required></td>
+										<td><input type='text' name='pays' value="<?php echo $data['pays']?>"required></td>
 									</tr>
-									<tr class="oldAdresse">
+									<tr>
 										<td>Numéro de téléphone :</td>
-										<td><input type='text' name='tel' required pattern="[0-9]{10}"></td>
+										<td><input type='text' name='tel' value="<?php echo $data['tel']?>"required pattern="[0-9]{10}"></td>
 									</tr>
 									<tr >
 										<td><br>Identifiant :</td>
