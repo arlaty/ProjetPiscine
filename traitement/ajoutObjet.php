@@ -16,7 +16,7 @@
     $prix = isset($_POST["prix"])? $_POST["prix"]: "";
     $video = isset($_POST["lien-video"])? $_POST["lien-video"]: "";
     $uploaddir = 'C:/wamp/www/ProjetPiscine/images/';
-    $sql="INSERT INTO `objet`(`titre`, `video`, `description`, `categories`) 
+    echo $sql="INSERT INTO `objet`(`titre`, `video`, `description`, `categories`) 
     VALUES ('$nom','$video','$description','$categorie')";
     $result = mysqli_query($db_handle, $sql);
     $sql="SELECT * FROM `objet` WHERE titre='$nom' AND video='$video' AND description='$description'";

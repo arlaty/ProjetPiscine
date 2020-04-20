@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2020 at 08:50 PM
+-- Generation Time: Apr 20, 2020 at 10:41 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -38,15 +38,16 @@ CREATE TABLE IF NOT EXISTS `achat` (
   KEY `objetId` (`objetId`),
   KEY `vendeurId` (`vendeurId`),
   KEY `acheteurId` (`acheteurId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `achat`
 --
 
 INSERT INTO `achat` (`id`, `objetId`, `vendeurId`, `acheteurId`, `prix`, `immediat`, `offre`) VALUES
-(11, 1, 1, NULL, 49, 1, 1),
-(12, 2, 1, NULL, 45980, 1, 0);
+(11, 1, 1, 1, 30, 0, 0),
+(12, 2, 1, NULL, 45980, 1, 0),
+(13, 62, 1, NULL, 4145, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `acheteur` (
 --
 
 INSERT INTO `acheteur` (`id`, `pseudo`, `email`, `password`, `nom`, `prenom`, `typeCarte`, `numero`, `expiration`, `codeSecurite`, `solde`, `plafond`, `adresse1`, `adresse2`, `ville`, `cp`, `pays`, `tel`) VALUES
-(1, 'toto', 'toto@ece.fr', 'toto', 'janot', 'clément', 'Visa', '4970101234567890', '09/26', '555', 150000, 10000, '', '', '', '', '', ''),
+(1, 'toto', 'toto@ece.fr', 'toto', 'janot', 'clément', '', '', '', '', 150000, 10000, '9 rue de France', '', 'Paris', '75010', 'France', '0398545412'),
 (4, 'jano', 'jean@ece.fr', 'jano', 'jean', 'dupond', 'MasterCard', '5412753456789123', '2020-04', '788', 100000, 10000, '', '', '', '', '', '');
 
 -- --------------------------------------------------------
@@ -127,7 +128,8 @@ CREATE TABLE IF NOT EXISTS `immediat` (
 --
 
 INSERT INTO `immediat` (`achatId`, `acheteurId`) VALUES
-(11, 1);
+(11, 1),
+(12, 1);
 
 -- --------------------------------------------------------
 
@@ -145,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `objet` (
   `description` text,
   `categories` enum('Ferraille ou Trésor','Bon pour le Musée','Accessoire VIP') DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=62 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
 
 --
 -- Dumping data for table `objet`
@@ -154,7 +156,8 @@ CREATE TABLE IF NOT EXISTS `objet` (
 INSERT INTO `objet` (`id`, `titre`, `image1`, `image2`, `image3`, `video`, `description`, `categories`) VALUES
 (1, 'Pièce ancienne Française 100 Francs argent Panthéon 1985 rare', 'objet1(1).jpg', 'objet1(2).jpg', 'objet1(3).jpg', '', 'Valeur faciale : 100 Francs\r\nMillésime : 1983\r\nMétal : Argent 900 ‰\r\nDiamètre : 31 mm\r\nPoids : 15 g\r\nTranche : Lisse\r\nEmission : 5 000 972 ex.\r\n100 Francs Argent Panthéon - France 1983', 'Ferraille ou Trésor'),
 (2, 'Montre Breitling Navitimer 1 B01', 'objet2(1).jpg', '', '', '', 'chronograph cadran noir bracelet or rouge 43 mm', 'Accessoire VIP'),
-(3, 'Statue bronze Femme en prière', 'objet3(1).jpg', '', '', '', '90 cm POUR extèrieur', 'Bon pour le Musée');
+(3, 'Statue bronze Femme en prière', 'objet3(1).jpg', '', '', '', '90 cm POUR extèrieur', 'Bon pour le Musée'),
+(62, 'dza', 'objet62(1).png', '', '', '', 'dza', 'Ferraille ou Trésor');
 
 -- --------------------------------------------------------
 
