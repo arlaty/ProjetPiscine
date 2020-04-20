@@ -115,9 +115,9 @@
                     while($data4 = mysqli_fetch_assoc($result4)){
                       $prix = $data4['prix'];
                       $fin = $data4['fin'];
-                      $type = "offre";
+                      $type = "enchere";
                       echo "<p class='prix'> Prix : ".$prix."€</p><div class='button'>";
-                      echo"<a href='";
+                      echo"<a id='myBtn' href='";
                       if (isset($_SESSION['id'])){echo "#";}
                       else {echo "connexion.php";}
                       echo"'>Enchérir</a>";
@@ -175,7 +175,7 @@
                               ?>
                             </div>
                           </div>
-                          <form action="traitement/offre.php" method="post">
+                          <form action="traitement/offre.php?" method="post">
                             <table>
                               <tr>
                                 <td>Mon Prix <?php if ($type=="enchere"){echo "max";}?>:</td>
