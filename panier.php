@@ -46,7 +46,7 @@
                         echo "<a href='traitement/supprimerPanier.php?id=".$value."' class='suprPanier'>Supprimer</a>";
                         echo "</div>";
                         echo "<div class='monPanierPrixArticle'>";
-                        echo "<p>".$data['prix']."</p>";
+                        echo "<p>".$data['prix']."&nbsp€</p>";
                         echo "</div>";
                         echo "</div>";
                         $total+=$data['prix'];
@@ -91,17 +91,17 @@
                             $today = new DateTime("now");
                             $fin= new DateTime($data['fin']);
                             $diff= date_diff($fin,$today);
-                            echo "<p class='infoenchere' > ".$diff->format("%a j %h h")." </p>";
+                            echo "<p class='infoenchere' > ".$diff->format("&nbsp%aj %hh")." </p>";
                             echo "</div>";
                             echo "<div class='infoResultatEnchere'>";
-                            echo "<p class='infoenchere'style='font-weight: bold'>Nb participant : </p>";
+                            echo "<p class='infoenchere'style='font-weight: bold'>Nb participant :&nbsp</p>";
                             $sql = "SELECT prixMax FROM prixmax WHERE enchereId=".$value;
                             echo "<p class='infoenchere'>".mysqli_num_rows(mysqli_query($db_handle,$sql))."</p>";
                             echo "</div>";
                             echo "<a href='objet.php?id=".$data['objetId']."' class='suprPanier'>Voir l'article</a>";
                             echo "</div>";
                             echo "<div class='monPanierPrixArticle'>";
-                            echo "<p>".$data['prix']."</p>";
+                            echo "<p>".$data['prix']."&nbsp€</p>";
                             echo "</div>";
                             echo "</div>";
                         }
@@ -134,7 +134,7 @@
                             echo "<a href='objet.php?id=".$data['objetId']."' class='suprPanier'>Voir l'article</a>";
                             echo "</div>";
                             echo "<div class='monPanierPrixArticle'>";
-                            echo "<p>".$data['prix']."</p>";
+                            echo "<p>".$data['prix']."&nbsp€</p>";
                             echo "</div>";
                             echo "</div>";
                         }
