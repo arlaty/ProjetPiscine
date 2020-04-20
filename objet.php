@@ -239,8 +239,6 @@
                                         <td> <input type='submit' name='offre' value="valider"></td>
                                       </tr>
                                     </table>
-                                    <a href="#" class="supPanier">Accepter</a>
-                                    <a href="#" class="supPanier">Refuser</a>
                                   </form>
                                   <?php
                                 }

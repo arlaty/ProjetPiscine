@@ -22,24 +22,25 @@
         <h2>Ajouter un article</h2>
         <hr color='black' width='50%' align='center'>
         <br><br>
-
         <div class='ajout-img' >
             <button class='button button1' onclick='on()'>Ajouter une image ou une video<br></button>
         </div>
-
-        <form>
-        <div id='overlay-ajout'>
-            <div id='text-ajout'>
-                Vous pouvez ajouter jusqu'à 3 photos et une video.<br><br>
-                Charger la ou les photos ici :
-                <input type='file' id='img-file' name='img-file' multiple><br><br>
-                Entrer le lien de la video ici :
-                <input type='text' id='lien-video' name='lien-video'>
-                <br><button onclick='off()'>Ajouter</button>
-            </div>
-        </div>
-            
-                <div class='infos' >
+        <form enctype="multipart/form-data" action="traitement/ajoutObjet.php" method="post">
+            <div id='overlay-ajout'>
+                <div id='text-ajout'>
+                    Vous pouvez ajouter jusqu'à 3 photos et une video.<br><br>
+                    Charger la photos 1 :
+                    <input type='file' id='img-file' name='img-file1'><br><br>
+                    Charger la photos 2 :
+                    <input type='file' id='img-file' name='img-file2'><br><br>
+                    Charger la photos 3 :
+                    <input type='file' id='img-file' name='img-file3'><br><br>
+                    Entrer le lien de la video ici :
+                    <input type='text' id='lien-video' name='lien-video'>
+                    <br><button onclick='off()'>Ajouter</button>
+                </div>
+            </div> 
+            <div class='infos' >
                 <table>
                     <tr>
                         <td>Nom de l'article :</td>
@@ -51,7 +52,7 @@
                     </tr>
                     <tr>
                         <td><br>Sélectionner une catégorie :</td>
-                         <td> <select name='cate' id='cate' size='1'>
+                            <td> <select name='cate' id='cate' size='1'>
                                 <option>Ferraille, trésors</option>
                                 <option>Bon pour le Musée</option>
                                 <option>Accessoire VIP</option>
@@ -77,9 +78,7 @@
                     </tr>
                 </table>
             </div>
-            </form>
-            
-       
+        </form>  
     </div>
 
     <script>
