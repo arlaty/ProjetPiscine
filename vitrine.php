@@ -16,8 +16,11 @@
         if ($_GET['main']=="Categories"){
             $main="categories";
         }
-        if ($_GET['main']=="Achat"){
+        else if ($_GET['main']=="Achat"){
             $main="achat";
+        }
+        else {
+            $main="";
         }
     }
     else {
