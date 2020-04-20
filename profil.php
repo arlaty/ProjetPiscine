@@ -174,6 +174,22 @@
 					document.getElementById("btn-ajout-vendeur").style.display = "block";
 					document.getElementById("vendeur").style.display = "none";
 				} 
+				function onNewAdresse() {
+		            $('.adressesEnregistrees').css('display', 'none');
+		            $('.oldAdresse').css('display', 'none');
+		            $('.newAdresse').css('display', '');
+		        }
+		        function offNewAdresse() {
+		            $('.newAdresse').css('display', 'none');
+		            $('.adressesEnregistrees').css('display', '');
+		            $('.oldAdresse').css('display', '');
+		            document.getElementById("ad1").required= false;
+		            document.getElementById("ad2").required=false;
+		            document.getElementById("ville").required=false;
+		            document.getElementById("CP").required= false;
+		            document.getElementById("pays").required=false;
+		            document.getElementById("tel").required=false;
+		        }
 			</script>
 			<div class='content'>
 				<div class='contenu' id='profil' 
@@ -200,30 +216,72 @@
 										<td><input type='email' name='email' value="<?php echo $data['email']?>"required></td>
 									</tr>
 									<tr>
+				                        <td>Adresse de livraison :</td>
+				                        <td><br>
+				                            <input type="radio" id="old" name="type"  onclick="offNewAdresse()" >
+				                            <label for="acheteur">Adresses enregistrées</label><br>
+				                            <input type="radio" id="new" name="type" onclick="onNewAdresse()" checked>
+				                            <label for="vendeur">Nouvelle adrresse</label>
+				                        </td>
+				                    </tr>
+				                    <tr class="adressesEnregistrees" style="display: none;">
+				                        <td>Adresses enregistrées :</td><br>
+				                        <td>
+				                            <select name="adresses" size="1">
+				                                <option>adresse 1</option>
+				                                <option>adresse 2</option>
+				                            </select>
+				                        </td><br>
+				                    </tr>
+				                    <tr class="newAdresse">
+				                        <td>Adresse (ligne 1) :</td>
+				                        <td><input type="text" id="ad1" required></td>
+				                    </tr>
+				                    <tr class="newAdresse">
+				                        <td>Adresse (ligne 2) :</td>
+				                        <td><input type="text" id="ad2"></td>
+				                    </tr>
+				                    <tr class="newAdresse">
+				                        <td>Ville :</td>
+				                        <td><input type="text" id="ville" required></td>
+				                    </tr>
+				                    <tr class="newAdresse">
+				                        <td>Code Postal:</td>
+				                        <td><input type="text" id="CP" required required ></td>
+				                    </tr>
+				                    <tr class="newAdresse">
+				                        <td>Pays ou région:</td>
+				                        <td><input type="text" id="pays" required></td>
+				                    </tr>
+				                    <tr class="newAdresse">
+				                        <td>Numéro de téléphone:</td>
+				                        <td><input type="text" id="tel" required pattern="[0-9]{10}"></td>
+				                    </tr>
+									<tr class="oldAdresse">
 										<td>Adresse (ligne 1) :</td>
 										<td><input type='text' name='ad1' required></td>
 									</tr>
-									<tr>
+									<tr class="oldAdresse">
 										<td>Adresse (ligne 2) :</td>
 										<td><input type='text' name='ad2'></td>
 									</tr>
-									<tr>
+									<tr class="oldAdresse">
 										<td>Ville :</td>
 										<td><input type='text' name='ville' required></td>
 									</tr>
-									<tr>
+									<tr class="oldAdresse">
 										<td>Code Postal :</td>
 										<td><input type='text' name='CP' required></td>
-									</tr>
+									</tr class="oldAdresse">
 									<tr>
 										<td>Pays :</td>
 										<td><input type='text' name='pays' required></td>
 									</tr>
-									<tr>
+									<tr class="oldAdresse">
 										<td>Numéro de téléphone :</td>
-										<td><input type='text' name='tel' required></td>
+										<td><input type='text' name='tel' required pattern="[0-9]{10}"></td>
 									</tr>
-									<tr>
+									<tr >
 										<td><br>Identifiant :</td>
 										<td><input type='text' name='identifiant' value="<?php echo $data['pseudo']?>"required></td>
 									</tr>
@@ -250,8 +308,9 @@
 						while($data = mysqli_fetch_assoc($result)){?>
 							style="background-image: url('images/<?php echo $data["fondPrefere"];?>");">
 							<h3>Profil</h3>
-							<img src="images/<?php echo $data["photo"];?>" alt="pp">
 							<hr color='black' width='60%' align='left'>
+							<img src="images/<?php echo $data["photo"];?>" alt="pp">
+							
 							<form enctype="multipart/form-data" action="traitement/modifVendeur.php" method="post">
 								<table>
 									<tr>

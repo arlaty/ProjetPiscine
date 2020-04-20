@@ -578,6 +578,11 @@ footer .Contact{
     font-size: 1vw;
 }
 
+#profil img, #vendeurs img {
+  max-height: 30vh;
+  max-width: 20vw;
+}
+
 .monCompte li button.active {
     background-color: #71ABDB;
     color: white;
