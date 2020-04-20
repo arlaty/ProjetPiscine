@@ -27,6 +27,12 @@
         function offAdresse() {
             $('.newAdresse').css('display', 'none');
             $('.adressesEnregistrées').css('display', '');
+            document.getElementById("ad1").required= false;
+            document.getElementById("ad2").required=false;
+            document.getElementById("ville").required=false;
+            document.getElementById("cp").required= false;
+            document.getElementById("pr").required=false;
+            document.getElementById("telephone").required=false;
             onBtn();
         }
 
@@ -85,7 +91,7 @@
                             <label for="vendeur">Nouvelle adrresse</label>
                         </td>
                     </tr>
-                    <tr class="adressesEnregistrées">
+                    <tr class="adressesEnregistrées" style="display: none;">
                         <td>Adresses enregistrées :</td><br>
                         <td>
                             <select name="adresses" size="1">
@@ -108,19 +114,19 @@
                     </tr>
                     <tr class="newAdresse">
                         <td>Code Postal:</td>
-                        <td><input type="text" name="cp" required required ></td>
+                        <td><input type="text" id="cp" required required ></td>
                     </tr>
                     <tr class="newAdresse">
                         <td>Pays ou région:</td>
-                        <td><input type="text" name="pr" required></td>
+                        <td><input type="text" id="pr" required></td>
                     </tr>
                     <tr class="newAdresse">
                         <td>Numéro de téléphone:</td>
-                        <td><input type="text" name="telephone" required pattern="[0-9]{10}"></td>
+                        <td><input type="text" id="telephone" required pattern="[0-9]{10}"></td>
                     </tr>
                     <tr>
                         <td>Titulaire de la carte :</td>
-                        <td><input type="text" name="tit" required></td>
+                        <td><input type="text" id="tit" required></td>
                     </tr>
                     <tr>
                         <td>Type de carte :</td><br>
@@ -139,11 +145,11 @@
                     </tr>
                     <tr>
                         <td>Date d'expiration :</td>
-                        <td><input type="month" name="exp" required></td>
+                        <td><input type="month" id="exp" required></td>
                     </tr>
                     <tr>
                         <td>Cryptogramme :</td>
-                        <td><input type="password" name="crypt"required pattern="[0-9]{3,4}"></td>
+                        <td><input type="password" id="crypt"required pattern="[0-9]{3,4}"></td>
                     </tr>
                     <tr>
                         <td colspan="2" align="center">

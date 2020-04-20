@@ -55,8 +55,22 @@
         </div>
         <div class="ligne2">
             <ul>
-                <li><a href="vitrine.php?main=Categories">Catégories</a></li>
-                <li><a href="vitrine.php?main=Achat">Achats</a></li>
+                <li class="subnav">
+                  <a href="vitrine.php?main=Catego"class="subnavbtn" >Catégories</a>
+                  <div class="subnav-content">
+                    <a href="#company">Ferraille ou Trésor</a>
+                    <a href="#team">Bon pour le Musée</a>
+                    <a href="#careers">Accessoire VIP</a>
+                  </div>
+                </li>
+                <li class="subnav">
+                  <a href="vitrine.php?main=Achat" class="subnavbtn" >Achats</a>
+                  <div class="subnav-content">
+                    <a href="#company">Achats Immédiats</a>
+                    <a href="#team">Enchères</a>
+                    <a href="#careers">Meilleures Offres</a>
+                  </div>
+                </li>
                 <?php
                     if (!isset($_SESSION['id'])){
                         echo "<li><a href='connexion.php'>Vendre</a></li>";

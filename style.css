@@ -99,6 +99,60 @@ header .ligne1 img{
     width: 28px;
 }
 
+/*Navigation catégories et achats*/
+.subnav {
+  float: left;
+  overflow: hidden;
+}
+.subnav li{
+  height: 100px;
+}
+
+.subnav .subnavbtn {
+color: #71ABDB;
+    text-decoration: none;
+    display: inline;
+    font-size: 23px;
+ 
+  border: none;
+ padding: 14px 16px;
+line-height: 670px
+  margin: 0;
+}
+
+ .subnav:hover .subnavbtn {
+  background-color: #71ABDB;
+  color: #2F2F2F
+}
+
+.subnav-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: #71ABDB;
+  width: 100%;
+  z-index: 1;
+
+}
+
+.subnav-content a {
+  float: left;
+  color: #2F2F2F;
+  text-decoration: none;
+  margin-right: 50px;
+
+}
+
+.subnav-content a:hover {
+  background-color: #71ABDB;
+  color: white;
+}
+
+.subnav:hover .subnav-content {
+  display: block;
+}
+/*----------------------------------------*/
+
 /*CSS pour le footer*/
 
 footer { 
