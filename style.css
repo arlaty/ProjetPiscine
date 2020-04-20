@@ -200,6 +200,9 @@ footer .Contact{
     margin-right: 90px;
     margin-bottom: 90px;
 }
+.divlogo{
+  margin-left: -70px;
+}
 
 /*CSS pour le carrousel de la page d'accueil*/
 
@@ -214,7 +217,7 @@ footer .Contact{
 }
 
 .carroussel a img{
-    margin: 11.9vw 1.5em;
+    margin-top: 11.9vw ;
 }
 
 /*CSS pour les catégories de la page d'accueil*/
@@ -406,12 +409,15 @@ footer .Contact{
   float: right;
   padding: 0;
   border: 1px solid #888;
-  width: 350px;
+  width: 400px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   -webkit-animation-name: animationBoitDeNego;
   -webkit-animation-duration: 0.4s;
   animation-name: animationBoitDeNego;
   animation-duration: 1.5s
+}
+.prixPropo{
+  width: 150px;
 }
 
 /* Add Animation */
@@ -448,7 +454,7 @@ footer .Contact{
 }
 
 .bodyBoiteDeNego {
-  height: 300px;
+  height: 400px;
   padding: 2px 16px;
 
 }
@@ -498,7 +504,7 @@ footer .Contact{
     color: black;
 }
 .row form label{
-    font-size: 12px;
+    font-size: 1.2vw;
 }
 
 .row h1{
@@ -519,9 +525,11 @@ footer .Contact{
   cursor: pointer;
 }
 
+.inscription h1, .connexion h1{
+    font-size: 2.9vw;
+}
 .inscription form, .connexion form{
-    display: flex;
-    justify-content: center;
+    font-size: 1.5vw;
 }
 .inscription .message, .connexion .message{
     border: 2px solid #71ABDB;
@@ -666,11 +674,12 @@ footer .Contact{
 /*Page ajout article*/
 
 .ajout-content{
-    margin:40px;
+    margin:5%;
 }
 
 .ajout-img{
-    margin-left: 40px;
+    margin-left: 5%;
+    font-size: 1.5vw;
 }
 
 h2{
@@ -679,8 +688,8 @@ h2{
 .ajout-content .button {
   transition-duration: 0.4s;
   cursor: pointer;
-  width:200px;
-  height:200px;
+  width:16vw;
+  height:16vw;
   float:left;
 }
 
@@ -698,7 +707,7 @@ h2{
 
 
 .infos{
-    margin:20px;
+    margin:5%px;
     margin-left:30%;
 }
 
@@ -706,7 +715,15 @@ h2{
     margin-left : 150px;
     background-color: white;
     border: 2px solid #71ABDB;
-    font-size: 20px;
+    font-size: 1.7vw;
+}
+
+.ajout-content h2{
+  font-size: 2.2vw;
+}
+
+.ajout-content form{
+    font-size: 1.4vw;
 }
 
 #overlay-ajout {
@@ -737,7 +754,6 @@ h2{
     margin-left: 40%;
     background-color: white;
     border: 2px solid #71ABDB;
-    font-size: 20px;
 }
 
 /*FIN page ajout article*/
@@ -776,7 +792,8 @@ h2{
     align-items: flex-start;
     font-size: 16px;
     border: 1px solid #71ABDB;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
 }
 .titreDescR{
     line-height: 15px;
@@ -858,11 +875,16 @@ h2{
     height: 25px;
     background-color: #71ABDB;
     border: 1px solid #2F2F2D;
-    color: #2F2F2F;
+    color: white;
     text-align: center;
     font-size: 16.5px;
     margin: auto;
     margin-bottom: 10px;
+    /*changement*/
+    font-weight: normal;
+    border-radius: 6px;
+    padding: 0px 5px 0px 5px;
+    margin-right: 10px;
 }
 .suprPanier:hover{
     text-decoration: none;

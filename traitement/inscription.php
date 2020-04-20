@@ -32,22 +32,14 @@
                 $num = isset($_POST["num"])? $_POST["num"]: "";
                 $exp = isset($_POST["exp"])? $_POST["exp"]: "";
                 $crypt = isset($_POST["crypt"])? $_POST["crypt"]: "";
-                $sql= "INSERT INTO `acheteur`(`pseudo`, `email`, `password`, `nom`, `prenom`, `typeCarte`, `numero`, `expiration`, `codeSecurite`, `solde`, `plafond`) 
-                VALUES ('$identifiant','$email','$mdp1','$prenom','$nom','$carte','$num','$exp','$crypt',100000,10000)";
-                $result = mysqli_query($db_handle, $sql);
-                $sql = "SELECT id FROM acheteur WHERE email='".$email."'";
-                $result = mysqli_query($db_handle, $sql);
-                while($data = mysqli_fetch_assoc($result)){
-                    $id= $data['id'];
-                }
                 $ad1 = isset($_POST["ad1"])? $_POST["ad1"]: "";
                 $ad2 = isset($_POST["ad2"])? $_POST["ad2"]: "";
                 $ville = isset($_POST["ville"])? $_POST["ville"]: "";
                 $CP = isset($_POST["CP"])? $_POST["CP"]: "";
                 $pays = isset($_POST["pays"])? $_POST["pays"]: "";
                 $tel = isset($_POST["tel"])? $_POST["tel"]: "";
-                $sql= "INSERT INTO `coordonneeslivraison`(`acheteurId`, `nom`, `prenom`, `adresse1`, `adresse2`, `ville`, `codePostal`, `pays`, `phone`) 
-                VALUES ('$id','$nom','$prenom','$ad1','$ad2','$ville','$CP','$pays','$tel')";
+                $sql= "INSERT INTO `acheteur`(`pseudo`, `email`, `password`, `nom`, `prenom`, `typeCarte`, `numero`, `expiration`, `codeSecurite`, `solde`, `plafond`, `adresse1`, `adresse2`, `ville`, `cp`, `pays`, `tel`) 
+                VALUES ('$identifiant','$email','$mdp1','$prenom','$nom','$carte','$num','$exp','$crypt',100000,10000,'$ad1','$ad2','$ville','$CP','$pays','$tel')";
                 $result = mysqli_query($db_handle, $sql);
             }
             else {
