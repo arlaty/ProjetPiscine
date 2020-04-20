@@ -114,7 +114,7 @@
                     while($data4 = mysqli_fetch_assoc($result4)){
                       $prix = $data2['prix'];
                       echo "<p class='prix'> Prix : ".$prix."€</p><div class='button'>";
-                      echo"<a href='";
+                      echo"<a id='myBtn' href='";
                       if (isset($_SESSION['id'])){echo "#";}
                       else {echo "connexion.php";}
                       echo"'>Enchérir</a>";
