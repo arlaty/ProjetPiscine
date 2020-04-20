@@ -27,6 +27,12 @@
         function offAdresse() {
             $('.newAdresse').css('display', 'none');
             $('.adressesEnregistrées').css('display', '');
+            document.getElementById("ad1").required= false;
+            document.getElementById("ad2").required=false;
+            document.getElementById("ville").required=false;
+            document.getElementById("cp").required= false;
+            document.getElementById("pr").required=false;
+            document.getElementById("telephone").required=false;
             onBtn();
         }
 
@@ -85,7 +91,7 @@
                             <label for="vendeur">Nouvelle adrresse</label>
                         </td>
                     </tr>
-                    <tr class="adressesEnregistrées">
+                    <tr class="adressesEnregistrées" style="display: none;">
                         <td>Adresses enregistrées :</td><br>
                         <td>
                             <select name="adresses" size="1">
@@ -108,19 +114,19 @@
                     </tr>
                     <tr class="newAdresse">
                         <td>Code Postal:</td>
-                        <td><input type="text" name="cp" required required ></td>
+                        <td><input type="text" id="cp" required required ></td>
                     </tr>
                     <tr class="newAdresse">
                         <td>Pays ou région:</td>
-                        <td><input type="text" name="pr" required></td>
+                        <td><input type="text" id="pr" required></td>
                     </tr>
                     <tr class="newAdresse">
                         <td>Numéro de téléphone:</td>
-                        <td><input type="text" name="telephone" required pattern="[0-9]{10}"></td>
+                        <td><input type="text" id="telephone" required pattern="[0-9]{10}"></td>
                     </tr>
                     <tr>
                         <td>Titulaire de la carte :</td>
-                        <td><input type="text" name="tit" required></td>
+                        <td><input type="text" id="tit" required></td>
                     </tr>
                     <tr>
                         <td>Type de carte :</td><br>
@@ -139,15 +145,15 @@
                     </tr>
                     <tr>
                         <td>Date d'expiration :</td>
-                        <td><input type="month" name="exp" required></td>
+                        <td><input type="month" id="exp" required></td>
                     </tr>
                     <tr>
                         <td>Cryptogramme :</td>
-                        <td><input type="password" name="crypt"required pattern="[0-9]{3,4}"></td>
+                        <td><input type="password" id="crypt"required pattern="[0-9]{3,4}"></td>
                     </tr>
                     <tr>
                         <td colspan="2" align="center">
-                            <br><input type="submit" id="fin" value="Finaliser l'achat" class="BoutonPayerLaCommande"><br>
+                            <br><input type="submit" id="myBtn" value="Finaliser l'achat" class="BoutonPayerLaCommande"><br>
                         </td>
                     </tr>
                 </table>
@@ -155,6 +161,57 @@
             </form>
         </div>
     </div>
+    <!-- fenetre qui previent si oui ou non le payement est validé -->
+    <!-- paiement -->
+
+ <!-- The Modal -->
+ <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="contenuPopup">
+        <div class="headerPopup">
+            <span class="close">&times;</span>
+            <h4 class="refusP">Paiement non aboutit !</h4>
+
+        </div>
+        <div class="bodyPopup">
+            <p class="refusP">Désolé, nous n'avons pas pu traiter votre demande.</p>
+            <p class="refusP" id="refus">Vos coordonnées bancaires semblent érronées.</p>
+            <p class="refusP">Si ce message apparait plusisuers fois, contactez-nous et nous ferons nottre possible pour vous aider.</p>
+        </div>
+        <div class="footerPopup">
+            <h4 class="refusP">Ressaisissez vos coordonnées bancaires</h4>
+        </div>
+    </div>
+
+</div>
+    <script type="text/javascript">
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
     <?php include("./modules/footer.php"); ?>
 </body>
 </html>

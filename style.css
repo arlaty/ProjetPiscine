@@ -99,6 +99,60 @@ header .ligne1 img{
     width: 28px;
 }
 
+/*Navigation catégories et achats*/
+.subnav {
+  float: left;
+  overflow: hidden;
+}
+.subnav li{
+  height: 100px;
+}
+
+.subnav .subnavbtn {
+color: #71ABDB;
+    text-decoration: none;
+    display: inline;
+    font-size: 23px;
+ 
+  border: none;
+ padding: 14px 16px;
+line-height: 670px
+  margin: 0;
+}
+
+ .subnav:hover .subnavbtn {
+  background-color: #71ABDB;
+  color: #2F2F2F
+}
+
+.subnav-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: #71ABDB;
+  width: 100%;
+  z-index: 1;
+
+}
+
+.subnav-content a {
+  float: left;
+  color: #2F2F2F;
+  text-decoration: none;
+  margin-right: 50px;
+
+}
+
+.subnav-content a:hover {
+  background-color: #71ABDB;
+  color: white;
+}
+
+.subnav:hover .subnav-content {
+  display: block;
+}
+/*----------------------------------------*/
+
 /*CSS pour le footer*/
 
 footer { 
@@ -298,6 +352,12 @@ footer .Contact{
 
 .pageArticle .article .image .sousImages img{
     width: 40px;
+    border: 1px solid black; 
+    margin-right: 5px;   
+}
+.pageArticle .article .image .sousImages iframe{
+    width: 40px;
+    height: 40px;
     border: 1px solid black;    
 }
 
@@ -325,6 +385,85 @@ footer .Contact{
 .pageArticle .prix{
     font-weight: bold;
 }
+
+/* Fenetre de négociation */
+.negociationPopup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.BoiteDeNego {
+  position: relative;
+  background-color: #fefefe;
+  float: right;
+  padding: 0;
+  border: 1px solid #888;
+  width: 350px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animationBoitDeNego;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animationBoitDeNego;
+  animation-duration: 1.5s
+}
+
+/* Add Animation */
+@-webkit-keyframes animationBoitDeNego {
+  from {right:-300px; opacity:0} 
+  to {right:0; opacity:1}
+}
+
+@keyframes animationBoitDeNego {
+  from {right:-300px; opacity:0}
+  to {right:0; opacity:1}
+}
+
+/* The Close Button */
+.fermerNego {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.fermerNegoe:hover,
+.fermerNego:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.headerBoiteDeNego {
+  padding: 2px 16px;
+  background-color: #71ABDB;
+
+  color: white;
+}
+
+.bodyBoiteDeNego {
+  height: 300px;
+  padding: 2px 16px;
+
+}
+
+.footerBoiteDeNego {
+  padding: 2px 16px;
+  background-color: #2F2F2F;
+  color: white;
+}
+.negociationPopup .BoiteDeNego .headerBoiteDeNego h2{
+  text-align: center;
+}
+/*=======================================================*/
 
 /*Formulaire connexion/inscription*/
 .en-tete{
@@ -774,6 +913,82 @@ h2{
     border: 3px solid #71ABDB;
     border-radius: 5px;
 }
+
+/* ====Mise en place de l'overlay derrière le popup====*/
+.modal {
+  display: none; /* cacher pas defaut*/
+  padding-top: 100px; /* position du popup*/
+  width: 100%; /* toute la largeur */
+  height: 100%; /* toute la longueur */
+  overflow: auto; /* possibilité que l'on puisse scroller à l'interieur du popup */
+  background-color: rgba(113,171,219,0.6); /* couleur avec opacité */
+}
+
+/* Modal Content */
+.contenuPopup{
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  text-align: center;
+}
+
+/* Annimation pour l'arrivée du popup */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/*Design de la croix pour quitter le popup*/
+.close {
+  color: white;
+  text-align: right;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.headerPopup{
+    background-color: #2F2F2F;
+    color: white;
+    padding: 5px 10px 0px 10px;
+}
+.headerPopup .footerPopup h2{
+    text-align: center;
+}
+
+.bodyPopup #valider{
+    color: green;
+    font-weight: bold;
+}
+.bodyPopup #refus{
+    color: red;
+    font-weight: bold;
+}
+.footerPopup{
+    background-color: #2F2F2F;
+    color: white;
+    padding: 0px 10px 5px 10px;
+
+}
+
 /*FIN DE FINALISATION DE L'ACHAT*/
 
 /*Responsive*/ 
