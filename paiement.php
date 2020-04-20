@@ -96,11 +96,11 @@
         <h3><br><br>Mode de paiement:</h3>
         <hr width="50%" color="gray">
         <div class="infoFinalisationAchat">
-            <form action=<?php echo"traitement/paiement?total=".$total;?> method="post">
+            <form action=<?php echo"traitement/paiement.php?total=".$total;?> method="post">
                 <table>  
                     <tr>
                         <td>Titulaire de la carte :</td>
-                        <td><input type="text" id="tit" required></td>
+                        <td><input type="text" id="tit" name='tit' required></td>
                     </tr>
                     <tr>
 						<td><br>Type de carte :</td>
