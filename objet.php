@@ -204,7 +204,7 @@
                                   </table>
                                 </form>
                                 <a href='<?php echo"traitement/finOffre.php?suppr=&achatId=".$value."&acheteurId=".$data3['acheteurId'];?>' class="suprPanier"> Refuser</a>
-                                <a href='<?php echo"traitement/finOffre.php?valider=&achatId=".$value."&acheteurId=".$data3['acheteurId'];?>'' class="suprPanier"> Accepter</a>
+                                <a href='<?php echo"traitement/finOffre.php?valider=&achatId=".$value."&acheteurId=".$data3['acheteurId'];?>' class="suprPanier"> Accepter</a>
                                 <?php
                               }
                               else {
