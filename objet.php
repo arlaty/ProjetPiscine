@@ -134,28 +134,25 @@
 
 <!-- The Modal -->
 <div id="myModal" class="negociationPopup">
-
   <!-- Modal content -->
   <div class="BoiteDeNego">
-
     <div class="headerBoiteDeNego">
       <span class="fermerNego">&times;</span>
       <h2>Negocier !</h2>
     </div>
     <div class="bodyBoiteDeNego">
       <p>Article concerné :</p>
-       
-                <div class='articlePanier'>
-                  <img src='images/objet2(1).jpg' width='100px'>
-                  <div class='titreDescR'>
-                    <p>Pièce ancienne Française 100 Francs argent Panthéon 1985 rare</p>
-                    <p class='monPanierReference'>Référence :6789876</p>
-                    <p class='infoenchere'> 3 offres réalisées </p>
-                  </div>
-                <div class='monPanierPrixArticle'>
-                <p>12</p>
-              </div>
-              </div>
+      <div class='articlePanier'>
+        <img src='images/objet2(1).jpg' width='100px'>
+        <div class='titreDescR'>
+          <p>Pièce ancienne Française 100 Francs argent Panthéon 1985 rare</p>
+          <p class='monPanierReference'>Référence :6789876</p>
+          <p class='infoenchere'> 3 offres réalisées </p>
+        </div>
+        <div class='monPanierPrixArticle'>
+          <p>12</p>
+        </div>
+      </div>
       <form>
         <table>
           <tr>

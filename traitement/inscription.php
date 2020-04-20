@@ -8,20 +8,20 @@
     $result=mysqli_query($db_handle,$sql);
     if (mysqli_num_rows($result)!=0){
         if(isset($_SESSION['id'])){
-            //header("Location: ../profil.php?issues");
+            header("Location: ../profil.php?issues");
         }
         else {
-            //header("Location: ../connexion.php?issues");
+            header("Location: ../connexion.php?issues");
         }
     }else {
         $sql = "SELECT id FROM vendeur WHERE email='".$email."' OR pseudo='".$identifiant."'";
         $result=mysqli_query($db_handle,$sql);
         if (mysqli_num_rows($result)!=0){
             if(isset($_SESSION['id'])){
-                //header("Location: ../profil.php?issues");
+                header("Location: ../profil.php?issues");
             }
             else {
-                //header("Location: ../connexion.php?issues");
+                header("Location: ../connexion.php?issues");
             }
         }
         else {
@@ -32,8 +32,10 @@
                 $num = isset($_POST["num"])? $_POST["num"]: "";
                 $exp = isset($_POST["exp"])? $_POST["exp"]: "";
                 $crypt = isset($_POST["crypt"])? $_POST["crypt"]: "";
-                $sql= "INSERT INTO `acheteur`(`pseudo`, `email`, `password`, `nom`, `prenom`, `carte`, `numero`, `expiration`, `codeSecurite`, `solde`, `plafond`) 
+                $sql= "INSERT INTO `acheteur`(`pseudo`, `email`, `password`, `nom`, `prenom`, `typeCarte`, `numero`, `expiration`, `codeSecurite`, `solde`, `plafond`) 
                 VALUES ('$identifiant','$email','$mdp1','$prenom','$nom','$carte','$num','$exp','$crypt',100000,10000)";
+                $result = mysqli_query($db_handle, $sql);
+                $sql = "SELECT id FROM acheteur WHERE email='".$email."'";
                 $result = mysqli_query($db_handle, $sql);
                 while($data = mysqli_fetch_assoc($result)){
                     $id= $data['id'];
@@ -54,10 +56,10 @@
                 $result = mysqli_query($db_handle, $sql);
             }
             if(isset($_SESSION['id'])){
-                //header("Location: ../profil.php");
+                header("Location: ../profil.php");
             }
             else {
-                //header("Location: connexion.php?identi=".$identifiant."?mdp=".$mdp1);
+                header("Location: connexion.php?identi=".$identifiant."&mdp=".$mdp1);
             }
         }
     }

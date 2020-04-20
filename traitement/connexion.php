@@ -66,7 +66,13 @@
             }
         }
     }
-    $sql = "SELECT id,admin FROM vendeur WHERE (email='".$_POST['i/e']."' OR pseudo='".$_POST['i/e']."') AND password='".$_POST['mdp']."'";
+    if (isset($_GET['identi']))
+    {
+        $sql = "SELECT id,admin FROM vendeur WHERE pseudo='".$_GET['identi']."' AND password='".$_GET['mdp']."'";
+    }
+    else {
+        $sql = "SELECT id,admin FROM vendeur WHERE (email='".$_POST['i/e']."' OR pseudo='".$_POST['i/e']."') AND password='".$_POST['mdp']."'";
+    }
     $result=mysqli_query($db_handle,$sql);
     while($data = mysqli_fetch_assoc($result)){
         session_start();
