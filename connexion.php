@@ -79,7 +79,7 @@
 	    	<h1>S'identifier</h1>
 	    	<hr color='black' width='80%'>
 	    	<br><br>
-			<?php if(isset($_GET["issues"])) echo "<p>L'utilisateur existe déjà</p>"?>
+			<?php if(isset($_GET["issues"])) echo "<p>Identifiant ou mot de passe incorrect</p>"?>
 	    	<form action='traitement/connexion.php' method='post'>
 	    		<table>
 		    		<tr>
