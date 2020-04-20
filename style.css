@@ -217,7 +217,7 @@ footer .Contact{
 }
 
 .carroussel a img{
-    margin: 11.9vw 1.5em;
+    margin-top: 11.9vw ;
 }
 
 /*CSS pour les catégories de la page d'accueil*/
@@ -504,7 +504,7 @@ footer .Contact{
     color: black;
 }
 .row form label{
-    font-size: 12px;
+    font-size: 1.2vw;
 }
 
 .row h1{
@@ -525,9 +525,11 @@ footer .Contact{
   cursor: pointer;
 }
 
+.inscription h1, .connexion h1{
+    font-size: 2.9vw;
+}
 .inscription form, .connexion form{
-    display: flex;
-    justify-content: center;
+    font-size: 1.5vw;
 }
 .inscription .message, .connexion .message{
     border: 2px solid #71ABDB;
@@ -672,11 +674,12 @@ footer .Contact{
 /*Page ajout article*/
 
 .ajout-content{
-    margin:40px;
+    margin:5%;
 }
 
 .ajout-img{
-    margin-left: 40px;
+    margin-left: 5%;
+    font-size: 1.5vw;
 }
 
 h2{
@@ -685,8 +688,8 @@ h2{
 .ajout-content .button {
   transition-duration: 0.4s;
   cursor: pointer;
-  width:200px;
-  height:200px;
+  width:16vw;
+  height:16vw;
   float:left;
 }
 
@@ -704,7 +707,7 @@ h2{
 
 
 .infos{
-    margin:20px;
+    margin:5%px;
     margin-left:30%;
 }
 
@@ -712,7 +715,15 @@ h2{
     margin-left : 150px;
     background-color: white;
     border: 2px solid #71ABDB;
-    font-size: 20px;
+    font-size: 1.7vw;
+}
+
+.ajout-content h2{
+  font-size: 2.2vw;
+}
+
+.ajout-content form{
+    font-size: 1.4vw;
 }
 
 #overlay-ajout {
@@ -743,7 +754,6 @@ h2{
     margin-left: 40%;
     background-color: white;
     border: 2px solid #71ABDB;
-    font-size: 20px;
 }
 
 /*FIN page ajout article*/
