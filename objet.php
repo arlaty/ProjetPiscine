@@ -102,6 +102,7 @@
                         echo"'>Ajouter au panier</a>";
                       }
                       if ($data2['offre']==1){
+                        $type = "offre";
                         echo "<a id='myBtn' href='";
                         if (isset($_SESSION['id'])){echo "#";}
                         else {echo "connexion.php";}
@@ -113,6 +114,7 @@
                     $result4=mysqli_query($db_handle,$sql);
                     while($data4 = mysqli_fetch_assoc($result4)){
                       $prix = $data2['prix'];
+                      $type = "offre";
                       echo "<p class='prix'> Prix : ".$prix."€</p><div class='button'>";
                       echo"<a id='myBtn' href='";
                       if (isset($_SESSION['id'])){echo "#";}
@@ -125,7 +127,9 @@
                       <div class="BoiteDeNego">
                         <div class="headerBoiteDeNego">
                           <span class="fermerNego">&times;</span>
-                          <h2>Négocier !</h2>
+                          <h2><?php if ($type=="offre"){echo "Négocier!";}
+                                else {echo "Enchérir";}?>
+                          </h2>
                         </div>
                         <div class="bodyBoiteDeNego">
                           <p>Article concerné :</p>
@@ -150,12 +154,8 @@
                             <div class='monPanierPrixArticle'>
                               <?php
                               if (isset($_SESSION['panier']['offre'][$data2['id']])){
-                                if ($_SESSION['type']=="acheteur"){
-                                  echo "<p> ".$data3['prixVendeur']." €</p>";
-                                }
-                                else {
-                                  echo "<p> ".$data3['prixAcheteur']." €</p>";
-                                }
+                                if ($_SESSION['type']=="acheteur"){echo "<p> ".$data3['prixVendeur']." €</p>";}
+                                else {echo "<p> ".$data3['prixAcheteur']." €</p>";}
                               }
                               else {
                                 echo "<p> ".$prix." €</p>";
@@ -167,7 +167,7 @@
                             <table>
                               <tr>
                                 <td>Mon Prix :</td>
-                                <td> <input type='text' name='<?php if($_SESSION['type']=="acheteur"){echo "prixAcheteur";}else{echo "prixVendeur"}?>'  placeholder="votre prix" autocomplete="test" required> €</td>
+                                <td> <input type='text' name='<?php if($_SESSION['type']=="acheteur"){echo "prixAcheteur";}else{echo "prixVendeur";}?>'  placeholder="votre prix" autocomplete="test" required> €</td>
                               </tr>
                               <tr>
                                 <td>Envoyer mon Offre :</td>
@@ -194,10 +194,6 @@
       }
     ?>
   </div>
-
-
-
-
 <script>
 // Get the modal
 var modal = document.getElementById("myModal");
