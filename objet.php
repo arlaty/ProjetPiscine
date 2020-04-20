@@ -87,7 +87,8 @@
                     $sql = "SELECT id,`prix`,immediat,offre FROM achat WHERE (immediat=1 OR offre=1) AND objetId=".$data['id'];
                     $result2=mysqli_query($db_handle,$sql);
                     while($data2 = mysqli_fetch_assoc($result2)){
-                      echo "<p class='prix'> Prix : ".$data2['prix']."€</p><div class='button'>";
+                      $prix = $data2['prix'];
+                      echo "<p class='prix'> Prix : ".$prix."€</p><div class='button'>";
                       if ($data2['immediat']==1){
                         echo"<a href='";
                         if (isset($_SESSION['id'])){if ($_SESSION['type']=="acheteur"){echo "traitement/ajoutPanier.php?final&id=".$data2['id']."&idObjet=".$data['id'];}
@@ -109,15 +110,78 @@
                     }
                     $today = date("Y-m-d H:i:s");
                     $sql = "SELECT `prix` FROM enchere WHERE fin>'$today' AND objetId=".$data['id'];
-                    $result2=mysqli_query($db_handle,$sql);
-                    while($data2 = mysqli_fetch_assoc($result2)){
-                      echo "<p class='prix'> Prix : ".$data2['prix']."€</p><div class='button'>";
+                    $result4=mysqli_query($db_handle,$sql);
+                    while($data4 = mysqli_fetch_assoc($result4)){
+                      $prix = $data2['prix'];
+                      echo "<p class='prix'> Prix : ".$prix."€</p><div class='button'>";
                       echo"<a href='";
                       if (isset($_SESSION['id'])){echo "#";}
                       else {echo "connexion.php";}
                       echo"'>Enchérir</a>";
                     }
-                  ?>
+                    ?>
+                    <div id="myModal" class="negociationPopup">
+                      <!-- Modal content -->
+                      <div class="BoiteDeNego">
+                        <div class="headerBoiteDeNego">
+                          <span class="fermerNego">&times;</span>
+                          <h2>Négocier !</h2>
+                        </div>
+                        <div class="bodyBoiteDeNego">
+                          <p>Article concerné :</p>
+                          <div class='articlePanier'>
+                            <img src="images/<?php echo $data['image1']?>" width='100px'>
+                            <div class='titreDescR'>
+                              <p><?php echo $data['titre']?></p>
+                              <p class='monPanierReference'>Référence : <?php echo $data['id']?></p>
+                              <?php
+                              if (isset($_SESSION['panier']['offre'][$data2['id']])){
+                                $sql = "SELECT * FROM offre WHERE achatId=".$_SESSION['panier']['offre'][$data2['id']]." AND acheteurId=".$_SESSION['id'];
+                                $result3=mysqli_query($db_handle,$sql);
+                                while($data3 = mysqli_fetch_assoc($result3)){
+                                  echo "<p class='infoenchere'> ".$data3['nbNegoc']." offres réalisées </p>";
+                                }
+                              }
+                              else {
+                                echo "<p class='infoenchere'> 0 offre réalisée </p>";
+                              }
+                              ?>
+                            </div>
+                            <div class='monPanierPrixArticle'>
+                              <?php
+                              if (isset($_SESSION['panier']['offre'][$data2['id']])){
+                                if ($_SESSION['type']=="acheteur"){
+                                  echo "<p> ".$data3['prixVendeur']." €</p>";
+                                }
+                                else {
+                                  echo "<p> ".$data3['prixAcheteur']." €</p>";
+                                }
+                              }
+                              else {
+                                echo "<p> ".$prix." €</p>";
+                              }
+                              ?>
+                            </div>
+                          </div>
+                          <form>
+                            <table>
+                              <tr>
+                                <td>Mon Prix :</td>
+                                <td> <input type='text' name='<?php if($_SESSION['type']=="acheteur"){echo "prixAcheteur";}else{echo "prixVendeur"}?>'  placeholder="votre prix" autocomplete="test" required> €</td>
+                              </tr>
+                              <tr>
+                                <td>Envoyer mon Offre :</td>
+                                <td> <input type='submit' name='offre' value="valider"></td>
+                              </tr>
+                            </table>
+                          </form>
+                        </div>
+                        <div class="footerBoiteDeNego">
+                          <img src="icon/logo.png" width="100" style="display: block; margin-left: auto;
+                        margin-right: auto;">
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -132,50 +196,7 @@
   </div>
 
 
-<!-- The Modal -->
-<div id="myModal" class="negociationPopup">
 
-  <!-- Modal content -->
-  <div class="BoiteDeNego">
-
-    <div class="headerBoiteDeNego">
-      <span class="fermerNego">&times;</span>
-      <h2>Negocier !</h2>
-    </div>
-    <div class="bodyBoiteDeNego">
-      <p>Article concerné :</p>
-       
-                <div class='articlePanier'>
-                  <img src='images/objet2(1).jpg' width='100px'>
-                  <div class='titreDescR'>
-                    <p>Pièce ancienne Française 100 Francs argent Panthéon 1985 rare</p>
-                    <p class='monPanierReference'>Référence :6789876</p>
-                    <p class='infoenchere'> 3 offres réalisées </p>
-                  </div>
-                <div class='monPanierPrixArticle'>
-                <p>12</p>
-              </div>
-              </div>
-      <form>
-        <table>
-          <tr>
-            <td>Mon Prix :</td>
-            <td> <input type='text' name='nom'  placeholder="votre prix" autocomplete="test" required> €</td>
-          </tr>
-          <tr>
-            <td>Envoyer mon Offre :</td>
-            <td> <input type='submit' name='offre' value="valider"></td>
-          </tr>
-        </table>
-      </form>
-    </div>
-    <div class="footerBoiteDeNego">
-      <img src="icon/logo.png" width="100" style="display: block; margin-left: auto;
-    margin-right: auto;">
-    </div>
-  </div>
-
-</div>
 
 <script>
 // Get the modal
