@@ -16,21 +16,29 @@
   <script type="text/javascript">
     $(document).ready(function () {
       $img = $('#carrousel img');
+      $videotest = $('#carrousel iframe');
 
       $('.img1').click(function () {
         $img.css('display', 'none');
+        $videotest.css('display','none');
         $currentImg = $img.eq(0);
         $currentImg.css('display', 'block');
       });
       $('.img2').click(function () {
         $img.css('display', 'none');
+        $videotest.css('display','none');
         $currentImg = $img.eq(1);
         $currentImg.css('display', 'block');
       });
       $('.img3').click(function () {
         $img.css('display', 'none');
+        $videotest.css('display','none');
         $currentImg = $img.eq(2); 
         $currentImg.css('display', 'block'); 
+      });
+      $('.video1').click(function () {
+        $img.css('display', 'none');
+        $videotest.css('display', 'block'); 
       });
     });
   </script>
@@ -59,6 +67,7 @@
                       <?php
                         if($data['image2']!="")echo"<li><img src='images/".$data['image2']."' style='display: none;'></li>";
                         if($data['image3']!="")echo"<li><img src='images/".$data['image3']."' style='display: none;'></li>";
+                        if($data['video']!="")echo"<li><iframe src='".$data['video']."' style='display: none;'></iframe></li>";
                       ?>
                     </ul> 
                   </div>
@@ -67,6 +76,7 @@
                       <?php
                       if($data['image2']!="")echo"<a class='img2'><img src='images/".$data['image2']."'></a>";
                       if($data['image3']!="")echo"<a class='img3'><img src='images/".$data['image3']."'></a>";
+                      if($data['video']!="")echo"<a class='video1'><iframe src='".$data['video']."'></iframe></a>";
                       ?>
                   </div>
                 </div>

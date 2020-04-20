@@ -352,6 +352,12 @@ footer .Contact{
 
 .pageArticle .article .image .sousImages img{
     width: 40px;
+    border: 1px solid black; 
+    margin-right: 5px;   
+}
+.pageArticle .article .image .sousImages iframe{
+    width: 40px;
+    height: 40px;
     border: 1px solid black;    
 }
 
