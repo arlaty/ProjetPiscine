@@ -523,6 +523,12 @@ footer .Contact{
     display: flex;
     justify-content: center;
 }
+.inscription .message, .connexion .message{
+    border: 2px solid #71ABDB;
+    text-align: center;
+    font-weight: bold;
+    padding: 8px 16px 8px;
+}
 
 #text{
   position: absolute;
@@ -537,6 +543,7 @@ footer .Contact{
     color: #71ABDB;
     cursor: pointer;
 }
+
 
 /*FIN Formulaire connexion/inscription*/
 
