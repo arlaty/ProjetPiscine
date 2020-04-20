@@ -528,7 +528,7 @@
 			echo "<h2>Nous n'avons pas d'objets à vendre</h2>";
 		}
 		echo "</div>";
-		echo "<h1>Articles en vente enchere:</h1>";
+		echo "<h1>Articles en vente aux enchères:</h1>";
         echo "<div class='tableObjet'>";
 		foreach ($_SESSION[$typeDemande]['enchere'] as $key => $value) {
 			$sql = "SELECT `objetId`, `prix`,fin FROM enchere WHERE id=".$value;

@@ -125,7 +125,7 @@
     function searchObjetParAchat($db_handle,$filtreCategories,$filtreAchat){
         foreach ($filtreAchat as $key => $value) {
             if (gettype($value)=="integer"){
-                echo "<h1>Articles en vente enchere:</h1>";
+                echo "<h1>Articles en vente aux enchères:</h1>";
                 echo "<div class='tableObjet'>";
                 $sql = requeteAchat($key,$value);
                 $result=mysqli_query($db_handle,$sql);

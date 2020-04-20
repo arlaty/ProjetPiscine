@@ -56,7 +56,7 @@
         <div class="ligne2">
             <ul>
                 <li class="subnav">
-                  <a href="vitrine.php?main=Catego"class="subnavbtn" >Catégories</a>
+                  <a href="vitrine.php?main=Categories"class="subnavbtn" >Catégories</a>
                   <div class="subnav-content">
                     <a href="#company">Ferraille ou Trésor</a>
                     <a href="#team">Bon pour le Musée</a>
