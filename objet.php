@@ -167,10 +167,10 @@
                               <?php
                               if (isset($_SESSION['panier']['offre'][$data2['id']])){
                                 if ($_SESSION['type']=="acheteur"){echo "<p> ".$data3['prixVendeur']." €</p>";}
-                                else {echo "<p> ".$data3['prixAcheteur']." €</p>";}
+                                else {echo "<p> ".$data3['prixAcheteur']."&nbsp€</p>";}
                               }
                               else {
-                                echo "<p> ".$prix." €</p>";
+                                echo "<p> ".$prix."&nbsp€</p>";
                               }
                               ?>
                             </div>
@@ -179,7 +179,7 @@
                             <table>
                               <tr>
                                 <td>Mon Prix <?php if ($type=="enchere"){echo "max";}?>:</td>
-                                <td> <input type='text' name='<?php 
+                                <td> <input class='prixPropo'type='text' name='<?php 
                                 if ($type=="offre"){if($_SESSION['type']=="acheteur"){echo "prixAcheteur";}else{echo "prixVendeur";}}
                                 else{ echo "prixMax";}
                                 ?>'  placeholder="votre prix" autocomplete="test" required> €</td>

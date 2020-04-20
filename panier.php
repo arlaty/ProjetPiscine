@@ -46,7 +46,7 @@
                         echo "<a href='traitement/supprimerPanier.php?id=".$value."' class='suprPanier'>Supprimer</a>";
                         echo "</div>";
                         echo "<div class='monPanierPrixArticle'>";
-                        echo "<p>".$data['prix']."</p>";
+                        echo "<p>".$data['prix']."&nbsp€</p>";
                         echo "</div>";
                         echo "</div>";
                         $total+=$data['prix'];
@@ -101,7 +101,7 @@
                             echo "<a href='objet.php?id=".$data['objetId']."' class='suprPanier'>Voir l'article</a>";
                             echo "</div>";
                             echo "<div class='monPanierPrixArticle'>";
-                            echo "<p>".$data['prix']."</p>";
+                            echo "<p>".$data['prix']."&nbsp€</p>";
                             echo "</div>";
                             echo "</div>";
                         }
@@ -134,7 +134,7 @@
                             echo "<a href='objet.php?id=".$data['objetId']."' class='suprPanier'>Voir l'article</a>";
                             echo "</div>";
                             echo "<div class='monPanierPrixArticle'>";
-                            echo "<p>".$data['prix']."</p>";
+                            echo "<p>".$data['prix']."&nbsp€</p>";
                             echo "</div>";
                             echo "</div>";
                         }
