@@ -91,10 +91,10 @@
                             $today = new DateTime("now");
                             $fin= new DateTime($data['fin']);
                             $diff= date_diff($fin,$today);
-                            echo "<p class='infoenchere' > ".$diff->format("%a j %h h")." </p>";
+                            echo "<p class='infoenchere' > ".$diff->format("&nbsp%aj %hh")." </p>";
                             echo "</div>";
                             echo "<div class='infoResultatEnchere'>";
-                            echo "<p class='infoenchere'style='font-weight: bold'>Nb participant : </p>";
+                            echo "<p class='infoenchere'style='font-weight: bold'>Nb participant :&nbsp</p>";
                             $sql = "SELECT prixMax FROM prixmax WHERE enchereId=".$value;
                             echo "<p class='infoenchere'>".mysqli_num_rows(mysqli_query($db_handle,$sql))."</p>";
                             echo "</div>";
