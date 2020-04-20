@@ -89,7 +89,7 @@
                         echo"'>Ajouter au panier</a>";
                       }
                       if ($data2['offre']==1){
-                        echo "<a href='";
+                        echo "<a id='myBtn' href='";
                         if (isset($_SESSION['id'])){echo "#";}
                         else {echo "connexion.php";}
                         echo"'>Négocier</a>";
@@ -118,6 +118,80 @@
       }
     ?>
   </div>
+
+
+<!-- The Modal -->
+<div id="myModal" class="negociationPopup">
+
+  <!-- Modal content -->
+  <div class="BoiteDeNego">
+
+    <div class="headerBoiteDeNego">
+      <span class="fermerNego">&times;</span>
+      <h2>Negocier !</h2>
+    </div>
+    <div class="bodyBoiteDeNego">
+      <p>Article concerné :</p>
+       
+                <div class='articlePanier'>
+                  <img src='images/objet2(1).jpg' width='100px'>
+                  <div class='titreDescR'>
+                    <p>Pièce ancienne Française 100 Francs argent Panthéon 1985 rare</p>
+                    <p class='monPanierReference'>Référence :6789876</p>
+                    <p class='infoenchere'> 3 offres réalisées </p>
+                  </div>
+                <div class='monPanierPrixArticle'>
+                <p>12</p>
+              </div>
+              </div>
+      <form>
+        <table>
+          <tr>
+            <td>Mon Prix :</td>
+            <td> <input type='text' name='nom'  placeholder="votre prix" autocomplete="test" required> €</td>
+          </tr>
+          <tr>
+            <td>Envoyer mon Offre :</td>
+            <td> <input type='submit' name='offre' value="valider"></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="footerBoiteDeNego">
+      <img src="icon/logo.png" width="100" style="display: block; margin-left: auto;
+    margin-right: auto;">
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("fermerNego")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
   <?php include("./modules/footer.php"); ?>
 </body>
 </html>

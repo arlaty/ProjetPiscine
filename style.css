@@ -380,6 +380,85 @@ footer .Contact{
     font-weight: bold;
 }
 
+/* Fenetre de négociation */
+.negociationPopup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.BoiteDeNego {
+  position: relative;
+  background-color: #fefefe;
+  float: right;
+  padding: 0;
+  border: 1px solid #888;
+  width: 350px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animationBoitDeNego;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animationBoitDeNego;
+  animation-duration: 1.5s
+}
+
+/* Add Animation */
+@-webkit-keyframes animationBoitDeNego {
+  from {right:-300px; opacity:0} 
+  to {right:0; opacity:1}
+}
+
+@keyframes animationBoitDeNego {
+  from {right:-300px; opacity:0}
+  to {right:0; opacity:1}
+}
+
+/* The Close Button */
+.fermerNego {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.fermerNegoe:hover,
+.fermerNego:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.headerBoiteDeNego {
+  padding: 2px 16px;
+  background-color: #71ABDB;
+
+  color: white;
+}
+
+.bodyBoiteDeNego {
+  height: 300px;
+  padding: 2px 16px;
+
+}
+
+.footerBoiteDeNego {
+  padding: 2px 16px;
+  background-color: #2F2F2F;
+  color: white;
+}
+.negociationPopup .BoiteDeNego .headerBoiteDeNego h2{
+  text-align: center;
+}
+/*=======================================================*/
+
 /*Formulaire connexion/inscription*/
 .en-tete{
     background: #2f2f2f;
