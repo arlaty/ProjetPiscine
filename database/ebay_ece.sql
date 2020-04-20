@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2020 at 07:13 PM
+-- Generation Time: Apr 20, 2020 at 05:45 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `achat` (
   KEY `objetId` (`objetId`),
   KEY `vendeurId` (`vendeurId`),
   KEY `acheteurId` (`acheteurId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `achat`
@@ -67,36 +67,22 @@ CREATE TABLE IF NOT EXISTS `acheteur` (
   `codeSecurite` varchar(255) DEFAULT NULL,
   `solde` float DEFAULT NULL,
   `plafond` float DEFAULT NULL,
+  `adresse1` varchar(255) NOT NULL,
+  `adresse2` varchar(255) NOT NULL,
+  `ville` varchar(255) NOT NULL,
+  `cp` varchar(255) NOT NULL,
+  `pays` varchar(255) NOT NULL,
+  `tel` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `acheteur`
 --
 
-INSERT INTO `acheteur` (`id`, `pseudo`, `email`, `password`, `nom`, `prenom`, `typeCarte`, `numero`, `expiration`, `codeSecurite`, `solde`, `plafond`) VALUES
-(1, 'toto', 'toto@ece.fr', 'toto', 'janot', 'clément', 'Visa', '4970101234567890', '08/20', '555', 150000, 10000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `coordonneeslivraison`
---
-
-CREATE TABLE IF NOT EXISTS `coordonneeslivraison` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `acheteurId` int(11) DEFAULT NULL,
-  `nom` varchar(255) DEFAULT NULL,
-  `prenom` varchar(255) DEFAULT NULL,
-  `adresse1` varchar(255) DEFAULT NULL,
-  `adresse2` varchar(255) DEFAULT NULL,
-  `ville` varchar(255) DEFAULT NULL,
-  `codePostal` varchar(255) DEFAULT NULL,
-  `pays` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `acheteurId` (`acheteurId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+INSERT INTO `acheteur` (`id`, `pseudo`, `email`, `password`, `nom`, `prenom`, `typeCarte`, `numero`, `expiration`, `codeSecurite`, `solde`, `plafond`, `adresse1`, `adresse2`, `ville`, `cp`, `pays`, `tel`) VALUES
+(1, 'toto', 'toto@ece.fr', 'toto', 'janot', 'clément', 'Visa', '4970101234567890', '09/26', '555', 150000, 10000, '', '', '', '', '', ''),
+(4, 'jano', 'jean@ece.fr', 'jano', 'jean', 'dupond', 'MasterCard', '5412753456789123', '2020-04', '788', 100000, 10000, '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -140,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `immediat` (
 --
 
 INSERT INTO `immediat` (`achatId`, `acheteurId`) VALUES
-(12, 1);
+(11, 1);
 
 -- --------------------------------------------------------
 
@@ -190,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `offre` (
 --
 
 INSERT INTO `offre` (`acheteurId`, `achatId`, `prixAcheteur`, `prixVendeur`, `nbNegoc`) VALUES
-(1, 11, 45, 49, 1);
+(1, 11, 30, 50, 3);
 
 -- --------------------------------------------------------
 
@@ -230,14 +216,16 @@ CREATE TABLE IF NOT EXISTS `vendeur` (
   `photo` varchar(255) DEFAULT NULL,
   `fondPrefere` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `vendeur`
 --
 
 INSERT INTO `vendeur` (`id`, `admin`, `pseudo`, `email`, `password`, `prenom`, `nom`, `photo`, `fondPrefere`) VALUES
-(1, 1, 'titi', 'titi@ece.fr', 'titi', 'alexis', 'freidel', 'vendeur1pp.jpg', 'vendeur1fe.jpg');
+(1, 1, 'titi', 'titi@ece.fr', 'titi', 'alexis', 'freidel', 'vendeur1pp.jpg', 'vendeur1fe.jpg'),
+(5, 0, 'baba', 'baptiste@ece.fr', 'baba', 'baptiste', 'durand', 'vendeur5pp.png', 'vendeur5fe.png'),
+(30, 0, 'uber', 'hubert@ece.fr', 'uber', 'hubert', 'dupond', NULL, NULL);
 
 --
 -- Constraints for dumped tables
@@ -247,29 +235,23 @@ INSERT INTO `vendeur` (`id`, `admin`, `pseudo`, `email`, `password`, `prenom`, `
 -- Constraints for table `achat`
 --
 ALTER TABLE `achat`
-  ADD CONSTRAINT `achat_ibfk_3` FOREIGN KEY (`acheteurId`) REFERENCES `acheteur` (`id`),
   ADD CONSTRAINT `achat_ibfk_1` FOREIGN KEY (`objetId`) REFERENCES `objet` (`id`),
-  ADD CONSTRAINT `achat_ibfk_2` FOREIGN KEY (`vendeurId`) REFERENCES `vendeur` (`id`);
-
---
--- Constraints for table `coordonneeslivraison`
---
-ALTER TABLE `coordonneeslivraison`
-  ADD CONSTRAINT `coordonneeslivraison_ibfk_1` FOREIGN KEY (`acheteurId`) REFERENCES `acheteur` (`id`);
+  ADD CONSTRAINT `achat_ibfk_2` FOREIGN KEY (`vendeurId`) REFERENCES `vendeur` (`id`),
+  ADD CONSTRAINT `achat_ibfk_3` FOREIGN KEY (`acheteurId`) REFERENCES `acheteur` (`id`);
 
 --
 -- Constraints for table `enchere`
 --
 ALTER TABLE `enchere`
-  ADD CONSTRAINT `enchere_ibfk_2` FOREIGN KEY (`vendeurId`) REFERENCES `vendeur` (`id`),
-  ADD CONSTRAINT `enchere_ibfk_1` FOREIGN KEY (`objetId`) REFERENCES `objet` (`id`);
+  ADD CONSTRAINT `enchere_ibfk_1` FOREIGN KEY (`objetId`) REFERENCES `objet` (`id`),
+  ADD CONSTRAINT `enchere_ibfk_2` FOREIGN KEY (`vendeurId`) REFERENCES `vendeur` (`id`);
 
 --
 -- Constraints for table `immediat`
 --
 ALTER TABLE `immediat`
-  ADD CONSTRAINT `immediat_ibfk_2` FOREIGN KEY (`acheteurId`) REFERENCES `acheteur` (`id`),
-  ADD CONSTRAINT `immediat_ibfk_1` FOREIGN KEY (`achatId`) REFERENCES `achat` (`id`);
+  ADD CONSTRAINT `immediat_ibfk_1` FOREIGN KEY (`achatId`) REFERENCES `achat` (`id`),
+  ADD CONSTRAINT `immediat_ibfk_2` FOREIGN KEY (`acheteurId`) REFERENCES `acheteur` (`id`);
 
 --
 -- Constraints for table `offre`
@@ -282,8 +264,8 @@ ALTER TABLE `offre`
 -- Constraints for table `prixmax`
 --
 ALTER TABLE `prixmax`
-  ADD CONSTRAINT `prixmax_ibfk_2` FOREIGN KEY (`acheteurId`) REFERENCES `acheteur` (`id`),
-  ADD CONSTRAINT `prixmax_ibfk_1` FOREIGN KEY (`enchereId`) REFERENCES `enchere` (`id`);
+  ADD CONSTRAINT `prixmax_ibfk_1` FOREIGN KEY (`enchereId`) REFERENCES `enchere` (`id`),
+  ADD CONSTRAINT `prixmax_ibfk_2` FOREIGN KEY (`acheteurId`) REFERENCES `acheteur` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

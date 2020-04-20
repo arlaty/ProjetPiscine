@@ -83,44 +83,26 @@
             <form action="" method="post">
                 <table>
                     <tr>
-                        <td>Adresse de livraison :</td>
-                        <td><br>
-                            <input type="radio" id="type1" name="type"  onclick="offAdresse()" >
-                            <label for="acheteur">Adresses enregistrées</label><br>
-                            <input type="radio" id="type2" name="type" onclick="onAdresse()" checked>
-                            <label for="vendeur">Nouvelle adrresse</label>
-                        </td>
-                    </tr>
-                    <tr class="adressesEnregistrées" style="display: none;">
-                        <td>Adresses enregistrées :</td><br>
-                        <td>
-                            <select name="adresses" size="1">
-                                <option>adresse 1</option>
-                                <option>adresse 2</option>
-                            </select>
-                        </td><br>
-                    </tr>
-                    <tr class="newAdresse">
                         <td>Adresse (ligne 1) :</td>
                         <td><input type="text" id="ad1" required></td>
                     </tr>
-                    <tr class="newAdresse">
+                    <tr>
                         <td>Adresse (ligne 2) :</td>
                         <td><input type="text" id="ad2"></td>
                     </tr>
-                    <tr class="newAdresse">
+                    <tr>
                         <td>Ville :</td>
                         <td><input type="text" id="ville" required></td>
                     </tr>
-                    <tr class="newAdresse">
+                    <tr>
                         <td>Code Postal:</td>
                         <td><input type="text" id="cp" required required ></td>
                     </tr>
-                    <tr class="newAdresse">
+                    <tr>
                         <td>Pays ou région:</td>
                         <td><input type="text" id="pr" required></td>
                     </tr>
-                    <tr class="newAdresse">
+                    <tr>
                         <td>Numéro de téléphone:</td>
                         <td><input type="text" id="telephone" required pattern="[0-9]{10}"></td>
                     </tr>
