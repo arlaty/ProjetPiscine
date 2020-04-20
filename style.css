@@ -109,19 +109,18 @@ header .ligne1 img{
 }
 
 .subnav .subnavbtn {
-color: #71ABDB;
+    color: #71ABDB;
     text-decoration: none;
     display: inline;
     font-size: 23px;
- 
-  border: none;
- padding: 14px 16px;
-  margin: 0;
+    border: none;
+    padding: 14px 16px;
+    margin: 0;
 }
 
  .subnav:hover .subnavbtn {
-  background-color: #71ABDB;
-  color: #2F2F2F
+    background-color: #71ABDB;
+    color: #2F2F2F;
 }
 
 .subnav-content {

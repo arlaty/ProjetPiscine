@@ -43,7 +43,7 @@
                             echo "<p class='monPanierReference'>Référence : ".$data['objetId']."</p>";
                         }
                         echo "<a href='objet.php?id=".$data['objetId']."' class='suprPanier'>Voir l'article</a>";
-                        echo "<a href='#' class='suprPanier'>Supprimer</a>";
+                        echo "<a href='traitement/supprimerPanier.php?id=".$value."' class='suprPanier'>Supprimer</a>";
                         echo "</div>";
                         echo "<div class='monPanierPrixArticle'>";
                         echo "<p>".$data['prix']."</p>";
@@ -99,7 +99,6 @@
                             echo "<p class='infoenchere'>".mysqli_num_rows(mysqli_query($db_handle,$sql))."</p>";
                             echo "</div>";
                             echo "<a href='objet.php?id=".$data['objetId']."' class='suprPanier'>Voir l'article</a>";
-                            echo "<a href='' class='suprPanier'>Supprimer</a>";
                             echo "</div>";
                             echo "<div class='monPanierPrixArticle'>";
                             echo "<p>".$data['prix']."</p>";
@@ -133,7 +132,6 @@
                                 echo "<p class='infoenchere'> ".$data3['nbNegoc']." offres réalisées </p>";
                             }
                             echo "<a href='objet.php?id=".$data['objetId']."' class='suprPanier'>Voir l'article</a>";
-                            echo "<a href='#' class='suprPanier'>Supprimer</a>";
                             echo "</div>";
                             echo "<div class='monPanierPrixArticle'>";
                             echo "<p>".$data['prix']."</p>";

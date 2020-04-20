@@ -18,8 +18,8 @@
 		}
 
 		function onAcheteur() {
-			$('.form-acheteur').css('display', 'block');
-			//formAcheteurUnfilled();
+			$('.form-acheteur').css('display', '');
+			formAcheteurUnfilled();
 			offBtn();
 
 		}
@@ -79,7 +79,7 @@
 	    	<h1>S'identifier</h1>
 	    	<hr color='black' width='80%'>
 	    	<br><br>
-
+			<?php if(isset($_GET["issues"])) echo "<p>L'utilisateur existe déjà</p>"?>
 	    	<form action='traitement/connexion.php' method='post'>
 	    		<table>
 		    		<tr>
@@ -97,7 +97,6 @@
 					</tr>
 				</table>
 	    	</form>
-
 		</div>
 
 		<div class='inscription' id='col'>
@@ -118,6 +117,18 @@
 					<tr>
 						<td>E-mail :</td>
 						<td><input type='email' name='email' required></td>
+					</tr>
+					<tr>
+						<td><br>Identifiant :</td>
+						<td><input type='text' name='identifiant' required></td>
+					</tr>
+					<tr>
+						<td>Mot de passe  :</td>
+						<td><input type='password' name='mdp1' required></td>
+					</tr>
+					<tr>
+						<td>Confirmer le mot de passe  :</td>
+						<td><input type='password' name='mdp1' required></td>
 					</tr>
 					<tr>
 						<td><br>Type :</td>
@@ -151,18 +162,6 @@
 						<td>Cryptogramme :</td>
 						<td><input type='number' id='crypt' name='crypt' pattern='[0-9]{3,4}' required></td>
 					</tr>
-					<tr>
-						<td><br>Identifiant :</td>
-						<td><input type='text' name='identifiant' required></td>
-					</tr>
-					<tr>
-						<td>Mot de passe  :</td>
-						<td><input type='password' name='mdp1' required></td>
-					</tr>
-					<tr>
-						<td>Confirmer le mot de passe  :</td>
-						<td><input type='password' name='mdp1' required></td>
-					</tr>
 					<tr class='form-acheteur'>
 						<td>Adresse (ligne 1) :</td>
 						<td><input type='text' id='ad1' name='ad1' required></td>
@@ -194,15 +193,14 @@
 								<div class='clause' onclick='on()'>CLAUSE *</div>
 							</div> 
 						</td>
-						<td><input id='check' type='checkbox' name='accepter' onclick='etatBtn()' required></td>
+						<td><input id='check' type='checkbox' name='accepter' onclick='etatBtn()'></td>
 					</tr>
 		    		<tr>
 						<td colspan='2' align='center'>
-							<br><button id='create' type='submit' disabled>Créer un compte</button>
+							<br><input type='submit' id='create' value= "Créer un compte" disabled>
 						</td>
 					</tr>
 				</table>
-
 	    	</form>
 
 	    	<!--Pop up Clause d'offre-->

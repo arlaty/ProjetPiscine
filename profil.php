@@ -176,12 +176,13 @@
 				} 
 			</script>
 			<div class='content'>
-				<div class='contenu' id='profil' >
+				<div class='contenu' id='profil' 
 					<?php
 					if ($_SESSION['type']=="acheteur"){
-						$sql = "SELECT * FROM vendeur WHERE id=".$_SESSION['id'];
+						$sql = "SELECT * FROM acheteur WHERE id=".$_SESSION['id'];
 						$result = mysqli_query($db_handle,$sql);
 						while($data = mysqli_fetch_assoc($result)){?>
+							>
 							<h3>Profil</h3>
 							<hr color='black' width='60%' align='left'>
 							<form>
@@ -247,17 +248,17 @@
 						$sql = "SELECT * FROM vendeur WHERE id=".$_SESSION['id'];
 						$result = mysqli_query($db_handle,$sql);
 						while($data = mysqli_fetch_assoc($result)){?>
+							style="background-image: url('images/<?php echo $data["fondPrefere"];?>");">
 							<h3>Profil</h3>
+							<img src="images/<?php echo $data["photo"];?>" alt="pp">
 							<hr color='black' width='60%' align='left'>
-							<form action="traitement/modifVendeur.php" method="post">
+							<form enctype="multipart/form-data" action="traitement/modifVendeur.php" method="post">
 								<table>
 									<tr>
 										<td>Photo de profil :</td>
-										<td><input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-											<input type='file' id='img-profil' name='profil'></td>
+										<td><input type='file' id='img-profil' name='profil'></td>
 										<td>Fond d'écran :</td>
-										<td><input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-											<input type='file' id='img-fond' name='fond'></td>
+										<td><input type='file' id='img-fond' name='fond'></td>
 									</tr>
 									<tr>
 										<td>Nom :</td>
@@ -302,7 +303,7 @@
 							$result = mysqli_query($db_handle,$sql);
 							while($data = mysqli_fetch_assoc($result)){
 								echo"<a href='#' class='vendeur'>";
-								echo"<img src='images/".$data['photo']."' style='width:120px'>";
+								echo"<img src='images/".$data['photo']."'>";
 								echo"<p class='nom'>".$data['nom']."</p>";
 								echo"<p class='prenom'>".$data['prenom']."</p>";
 								echo"</a>";
@@ -527,7 +528,7 @@
 			echo "<h2>Nous n'avons pas d'objets à vendre</h2>";
 		}
 		echo "</div>";
-		echo "<h1>Articles en vente enchere:</h1>";
+		echo "<h1>Articles en vente aux enchères:</h1>";
         echo "<div class='tableObjet'>";
 		foreach ($_SESSION[$typeDemande]['enchere'] as $key => $value) {
 			$sql = "SELECT `objetId`, `prix`,fin FROM enchere WHERE id=".$value;

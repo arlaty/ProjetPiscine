@@ -84,17 +84,19 @@
                   <p>Description :</p>
                   <p><?php echo $data['description']?></p>
                   <?php
-                    $sql = "SELECT `prix`,immediat,offre FROM achat WHERE (immediat=1 OR offre=1) AND objetId=".$data['id'];
+                    $sql = "SELECT id,`prix`,immediat,offre FROM achat WHERE (immediat=1 OR offre=1) AND objetId=".$data['id'];
                     $result2=mysqli_query($db_handle,$sql);
                     while($data2 = mysqli_fetch_assoc($result2)){
                       echo "<p class='prix'> Prix : ".$data2['prix']."€</p><div class='button'>";
                       if ($data2['immediat']==1){
                         echo"<a href='";
-                        if (isset($_SESSION['id'])){echo "#";}
+                        if (isset($_SESSION['id'])){if ($_SESSION['type']=="acheteur"){echo "traitement/ajoutPanier.php?final&id=".$data2['id']."&idObjet=".$data['id'];}
+                        else {echo "#";}}
                         else {echo "connexion.php";}
                         echo"'>Passer à l'achat</a>
                         <a href='";
-                        if (isset($_SESSION['id'])){echo "#";}
+                        if (isset($_SESSION['id'])){if ($_SESSION['type']=="acheteur"){echo "traitement/ajoutPanier.php?id=".$data2['id']."&idObjet=".$data['id'];}
+                        else {echo "#";}}
                         else {echo "connexion.php";}
                         echo"'>Ajouter au panier</a>";
                       }
