@@ -153,7 +153,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" align="center">
-                            <br><input type="submit" id="fin" value="Finaliser l'achat" class="BoutonPayerLaCommande"><br>
+                            <br><input type="submit" id="myBtn" value="Finaliser l'achat" class="BoutonPayerLaCommande"><br>
                         </td>
                     </tr>
                 </table>
@@ -161,6 +161,65 @@
             </form>
         </div>
     </div>
+    <!-- fenetre qui previent si oui ou non le payement est validé -->
+    <!-- paiement -->
+
+ <!-- The Modal -->
+ <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="contenuPopup">
+        <div class="headerPopup">
+            <span class="close">&times;</span>
+            <h2 class="validerP">Félicitation!!</h2>
+            <h4 class="refusP">Paiement non aboutit !</h4>
+
+        </div>
+        <div class="bodyPopup">
+            <p class="validerP" Id="valider">Votre paiement est cofirmé.</p>
+            <p class="validerP">Merci de nous avoir fait confiance.</p>
+            <p class="validerP">Votre commande arrivera tres prochainement</p>
+            <p class="validerP">Coordialement EbayECEC</p>
+            <p class="refusP">Désolé, nous n'avons pas pu traiter votre demande.</p>
+            <p class="refusP" id="refus">Vos coordonnées bancaires semblent érronées.</p>
+            <p class="refusP">Si ce message apparait plusisuers fois, <a href="#">contactez-nous</a> et nous ferons nottre possible pour vous aider.</p>
+        </div>
+        <div class="footerPopup">
+            <h2 class="validerP"> Revenez vite nous voir ! !</h2>
+            <h4 class="refusP">Ressaisissez vos coordonnées bancaires</h4>
+        </div>
+    </div>
+
+</div>
+            <script type="text/javascript">
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+    //$('.validerP').css('display', 'none');
+    $('.refusP').css('display', 'none');
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
     <?php include("./modules/footer.php"); ?>
 </body>
 </html>

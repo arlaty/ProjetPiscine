@@ -828,6 +828,82 @@ h2{
     border: 3px solid #71ABDB;
     border-radius: 5px;
 }
+
+/* ====Mise en place de l'overlay derrière le popup====*/
+.modal {
+  display: none; /* cacher pas defaut*/
+  padding-top: 100px; /* position du popup*/
+  width: 100%; /* toute la largeur */
+  height: 100%; /* toute la longueur */
+  overflow: auto; /* possibilité que l'on puisse scroller à l'interieur du popup */
+  background-color: rgba(113,171,219,0.6); /* couleur avec opacité */
+}
+
+/* Modal Content */
+.contenuPopup{
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  text-align: center;
+}
+
+/* Annimation pour l'arrivée du popup */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/*Design de la croix pour quitter le popup*/
+.close {
+  color: white;
+  text-align: right;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.headerPopup{
+    background-color: #2F2F2F;
+    color: white;
+    padding: 5px 10px 0px 10px;
+}
+.headerPopup .footerPopup h2{
+    text-align: center;
+}
+
+.bodyPopup #valider{
+    color: green;
+    font-weight: bold;
+}
+.bodyPopup #refus{
+    color: red;
+    font-weight: bold;
+}
+.footerPopup{
+    background-color: #2F2F2F;
+    color: white;
+    padding: 0px 10px 5px 10px;
+
+}
+
 /*FIN DE FINALISATION DE L'ACHAT*/
 
 /*Responsive*/ 
