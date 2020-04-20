@@ -20,11 +20,10 @@
         <a href="#" class="prev"><img src="./icon/arrow-left.png" alt="arrow prev"></a>
         <div id="carrousel" >   
             <ul>
-                <li><img src="Images/promo1.jpg"/></li>
-                <li><img src="Images/promo2.jpg"/></li>
-                <li><img src="Images/promo3.jpg"/></li>
-                <li><img src="Images/promo4.jpg"/></li>
-                <li><img src="Images/promo5.jpg"/></li>
+                <li><img src="Images/carrousel1.png"/></li>
+                <li><img src="Images/carrousel2.png"/></li>
+                <li><img src="Images/carrousel3.png"/></li>
+            
             </ul>
         </div>
         <a href="#" class="next"><img src="./icon/arrow-right.png" alt="arrow next"></a>
