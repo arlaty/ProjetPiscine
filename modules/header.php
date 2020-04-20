@@ -58,18 +58,13 @@
                 <li class="subnav">
                   <a href="vitrine.php?main=Categories"class="subnavbtn" >Catégories</a>
                   <div class="subnav-content">
-                    <a href="#company">Ferraille ou Trésor</a>
-                    <a href="#team">Bon pour le Musée</a>
-                    <a href="#careers">Accessoire VIP</a>
+                    <a href="vitrine.php?main=Categories&Ferraille=e">Ferraille ou Trésor</a>
+                    <a href="vitrine.php?main=Categories&Musee=e">Bon pour le Musée</a>
+                    <a href="vitrine.php?main=Categories&VIP=e">Accessoire VIP</a>
                   </div>
                 </li>
                 <li class="subnav">
                   <a href="vitrine.php?main=Achat" class="subnavbtn" >Achats</a>
-                  <div class="subnav-content">
-                    <a href="#company">Achats Immédiats</a>
-                    <a href="#team">Enchères</a>
-                    <a href="#careers">Meilleures Offres</a>
-                  </div>
                 </li>
                 <?php
                     if (!isset($_SESSION['id'])){

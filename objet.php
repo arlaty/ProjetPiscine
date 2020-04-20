@@ -103,24 +103,49 @@
                       }
                       if ($data2['offre']==1){
                         $type = "offre";
-                        echo "<a id='myBtn' href='";
-                        if (isset($_SESSION['id'])){echo "#";}
-                        else {echo "connexion.php";}
-                        echo"'>Négocier</a>";
+                        $id =$data2['id'];
+                        foreach ($_SESSION['panier']['offre'] as $key => $value) {
+                          if ($value==$id){
+                            $sql = "SELECT * FROM offre WHERE achatId=".$value." AND acheteurId=".$_SESSION['id'];
+                            $result3=mysqli_query($db_handle,$sql);
+                            while($data3 = mysqli_fetch_assoc($result3)){
+                              $nbNegoc=$data3['nbNegoc'];
+                              if ($_SESSION['type']=="acheteur"){$prix=$data3['prixVendeur'];$prix2=$data3['prixAcheteur'];}
+                              else {$prix=$data3['prixVendeur'];}
+                            }
+                          }
+                          else {
+                            $nbNegoc=0;
+                          }
+                          echo "<a id='myBtn' href='";
+                          if (isset($_SESSION['id'])){echo "#";}
+                          else {echo "connexion.php";}
+                          echo"'>Négocier</a>";
+                        }
                       }
                     }
                     $today = date("Y-m-d H:i:s");
-                    $sql = "SELECT `objetId`, `prix`,fin FROM enchere WHERE objetId=".$data['id'];
+                    $sql = "SELECT * FROM enchere WHERE objetId=".$data['id'];
                     $result4=mysqli_query($db_handle,$sql);
                     while($data4 = mysqli_fetch_assoc($result4)){
                       $prix = $data4['prix'];
-                      $fin = $data4['fin'];
-                      $type = "enchere";
                       echo "<p class='prix'> Prix : ".$prix."€</p><div class='button'>";
-                      echo"<a id='myBtn' href='";
-                      if (isset($_SESSION['id'])){echo "#";}
-                      else {echo "connexion.php";}
-                      echo"'>Enchérir</a>";
+                      echo"<a href='";
+                      if (isset($_SESSION['id'])){
+                        if ($_SESSION['type']=="acheteur"){
+                          echo "#' id='myBtn'";
+                          $type ="newEnchere";
+                          foreach ($_SESSION['panier']['enchere'] as $key => $value) {
+                            if ($value==$data4['id']){
+                              $type = "enchere";
+                              $id=$data4['id'];
+                            }
+                          }
+                          $fin = $data4['fin'];
+                        }
+                      }
+                      else {echo "connexion.php'";}
+                      echo">Enchérir</a>";
                     }
                     ?>
                     <div id="myModal" class="negociationPopup">
@@ -141,16 +166,7 @@
                               <p class='monPanierReference'>Référence : <?php echo $data['id']?></p>
                               <?php
                               if ($type=="offre"){
-                                if (isset($_SESSION['panier']['offre'][$data2['id']])){
-                                  $sql = "SELECT * FROM offre WHERE achatId=".$_SESSION['panier']['offre'][$data2['id']]." AND acheteurId=".$_SESSION['id'];
-                                  $result3=mysqli_query($db_handle,$sql);
-                                  while($data3 = mysqli_fetch_assoc($result3)){
-                                    echo "<p class='infoenchere'> ".$data3['nbNegoc']." offres réalisées </p>";
-                                  }
-                                }
-                                else {
-                                  echo "<p class='infoenchere'> 0 offre réalisée </p>";
-                                }
+                                echo "<p class='infoenchere'> ".$nbNegoc." offre réalisée </p>";
                               }
                               else {
                                 echo "<div class='tpsRestant'>";
@@ -165,31 +181,101 @@
                             </div>
                             <div class='monPanierPrixArticle'>
                               <?php
-                              if (isset($_SESSION['panier']['offre'][$data2['id']])){
-                                if ($_SESSION['type']=="acheteur"){echo "<p> ".$data3['prixVendeur']." €</p>";}
-                                else {echo "<p> ".$data3['prixAcheteur']." €</p>";}
-                              }
-                              else {
                                 echo "<p> ".$prix." €</p>";
-                              }
                               ?>
                             </div>
                           </div>
-                          <form action="traitement/offre.php?" method="post">
-                            <table>
-                              <tr>
-                                <td>Mon Prix <?php if ($type=="enchere"){echo "max";}?>:</td>
-                                <td> <input type='text' name='<?php 
-                                if ($type=="offre"){if($_SESSION['type']=="acheteur"){echo "prixAcheteur";}else{echo "prixVendeur";}}
-                                else{ echo "prixMax";}
-                                ?>'  placeholder="votre prix" autocomplete="test" required> €</td>
-                              </tr>
-                              <tr>
-                                <td>Envoyer mon Offre :</td>
-                                <td> <input type='submit' name='offre' value="valider"></td>
-                              </tr>
-                            </table>
-                          </form>
+                          <?php
+                          if ($type=="offre"){
+                            if ($_SESSION['type']=="acheteur"){
+                              if ($nbNegoc%2==0){
+                                ?>
+                                <form action="<?php echo"traitement/offre.php?id=".$id."&prix=".$prix;?>" method="post">
+                                  <table>
+                                    <tr>
+                                      <td>Mon Prix :</td>
+                                      <td> <input type='text' name='prixAcheteur' placeholder="votre prix" autocomplete="test" required> €</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Envoyer mon Offre :</td>
+                                      <td><input type='submit' name='offre' value="valider"></td>
+                                    </tr>
+                                  </table>
+                                </form>
+                                <?php
+                              }
+                              else {
+                                echo"<p>Mon offre: ".$prix2." €</p>";
+                              }
+                            }
+                            else {
+                              $sql = "SELECT * FROM offre WHERE achatId=".$value;
+                              $result3=mysqli_query($db_handle,$sql);
+                              while($data3 = mysqli_fetch_assoc($result3)){
+                                $nbNegoc=$data3['nbNegoc'];
+                                $prix=$data3['prixAcheteur'];
+                                $prix2=$data3['prixVendeur'];
+                                if ($nbNegoc==9){
+                                  ?>
+                                  <form action="<?php echo"traitement/offre.php?id=".$id."&acheteur=".$data3['acheteurId']."&objetId=".$data['id'];?>" method="post">
+                                    
+                                  </form>
+                                 <?php
+                                }
+                                else if ($nbNegoc%2==1){
+                                  ?>
+                                  <form action="<?php echo"traitement/offre.php?id=".$id."&acheteur=".$data3['acheteurId']."&objetId=".$data['id'];?>" method="post">
+                                    <table>
+                                      <tr>
+                                        <td>Offre :</td>
+                                        <td><?php echo $prix;?> €</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Mon Prix :</td>
+                                        <td> <input type='text' name='prixVendeur' placeholder="votre prix" autocomplete="test" required> €</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Envoyer mon Offre :</td>
+                                        <td> <input type='submit' name='offre' value="valider"></td>
+                                      </tr>
+                                    </table>
+                                  </form>
+                                  <?php
+                                }
+                                else {
+                                  echo"<p>Mon offre: ".$prix2." €</p>";
+                                }
+                              }
+                            }
+                          }
+                          else{
+                            if ($_SESSION['type']=="acheteur"){
+                              if ($type=="newEnchere"){
+                                ?>
+                                <form action="<?php echo"traitement/offre.php?id=".$id;?>" method="post">
+                                  <table>
+                                    <tr>
+                                      <td>Mon Prix :</td>
+                                      <td> <input type='text' name='prixMax' placeholder="votre prix" autocomplete="test" required> €</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Envoyer mon Offre :</td>
+                                      <td><input type='submit' name='offre' value="valider"></td>
+                                    </tr>
+                                  </table>
+                                </form>
+                                <?php
+                              }
+                              else {
+                                $sql = "SELECT * FROM prixmax WHERE enchereId=".$id." AND acheteurId=".$_SESSION['id'];
+                                $result3=mysqli_query($db_handle,$sql);
+                                while($data3 = mysqli_fetch_assoc($result3)){
+                                  echo"<p>Mon prix max: ".$data3['prixMax']." €</p>";
+                                }
+                              }
+                            }
+                          }
+                        ?>
                         </div>
                         <div class="footerBoiteDeNego">
                           <img src="icon/logo.png" width="100" style="display: block; margin-left: auto;

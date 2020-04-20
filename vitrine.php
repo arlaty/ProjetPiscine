@@ -1,15 +1,23 @@
 <?php
     session_start();
     include("traitement/connexionBase.php");
+    if (isset($_GET['Ferraille'])){$Ferraille=1;}else{$Ferraille=0;}
+    if (isset($_GET['Musee'])){$Musee=1;}else{$Musee=0;}
+    if (isset($_GET['VIP'])){$VIP=1;}else{$VIP=0;}
+    if (!isset($_GET['Ferraille'])&&!isset($_GET['Musee'])&&!isset($_GET['VIP'])){
+        $Ferraille=1;
+        $Musee=1;
+        $VIP=1;
+    }
     $filtreCategories = array(
-        'Ferraille ou Trésor' => 1,
-        'Bon pour le Musée' => 1,
-        'Accessoire VIP' => 1,
+        'Ferraille ou Trésor' => $Ferraille,
+        'Bon pour le Musée' => $Musee,
+        'Accessoire VIP' => $VIP,
     );
     $filtreAchat = array(
         'achat' => array('immediat' => 1,
-                            'selector' => 'OR',
-                            'offre' => 1),
+                        'selector' => 'OR',
+                        'offre' => 1),
         'enchere' => 1,
     );
     if (isset($_GET['main'])){
