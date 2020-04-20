@@ -60,7 +60,7 @@
             </div>
         </div>
     </div>
-    <a href="#" id="myBtn">salut</a>
+    
 <!-- Popup qui informe l'utilisateur que l'article est payé -->
     <div id="myModal" class="modal">
     <div class="contenuPopup">
